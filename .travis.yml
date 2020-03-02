@@ -1,18 +1,33 @@
-sudo: false
+# 语言
 language: node_js
+# node版本
 node_js:
-  - 10 # use nodejs v10 LTS
-cache: npm
+  - 8
+# 指定缓存模块
+cache:
+  directories:
+    - node_modules
+# 监听分支
 branches:
   only:
-    - master # build master branch only
+    - master
+# 下载主题
+before_install:
+  - git clone git@github.com:yscoder/hexo-theme-indigo.git themes/indigo
+install:
+  - npm install
 script:
-  - hexo generate # generate static files
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GH_TOKEN
-  keep-history: true
-  on:
-    branch: master
-  local-dir: public
+  - hexo clean
+  - hexo generate
+after_script:
+  - git config user.name "DealiAxy"
+  - git config user.email "admin@deali.cn"
+  - sed -i "s/{GITHUB_TOKEN}/${GITHUB_TOKEN}/g" ./_config.yml
+  - sed -i "s/{TENCENT_TOKEN}/${TENCENT_TOKEN}/g" ./_config.yml
+  - hexo deploy
+# 通知
+notifications:
+  email:
+    - admin@deali.cn
+  on_success: change
+  on_failure: always
