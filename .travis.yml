@@ -16,3 +16,10 @@ deploy:
   on:
     branch: master
   local-dir: public
+
+# 通知
+notifications:
+  email:
+    - admin@deali.cn
+  on_success: change
+  on_failure: always
