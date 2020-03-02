@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JavaWeb开发---Servlet的生命周期实验 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="开发,JavaEE,Web技术,生命周期,实验">
+    <meta name="description" content="前言Servlet是运行在服务器端的程序，它的运行状态由Servlet容器（简称容器）来维护。 通常，在容器收到客户对Servlet的请求时，容器会判断这个Servlet是否为第一次被访问，如果是第一次被访问，则会创建一个Servlet实例同时调用该实例的init()方法，进行初始化。 每个Servlet只会被创建一个实例，同时也只会被初始化一次。然后将这个实例一直保存在内存中，对所有的请求进行处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb开发---Servlet的生命周期实验">
+<meta property="og:url" content="http://blog.deali.cn/posts/22429d851fd8998f.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言Servlet是运行在服务器端的程序，它的运行状态由Servlet容器（简称容器）来维护。 通常，在容器收到客户对Servlet的请求时，容器会判断这个Servlet是否为第一次被访问，如果是第一次被访问，则会创建一个Servlet实例同时调用该实例的init()方法，进行初始化。 每个Servlet只会被创建一个实例，同时也只会被初始化一次。然后将这个实例一直保存在内存中，对所有的请求进行处">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/22429d851fd8998f/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.832Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="JavaEE">
+<meta property="article:tag" content="Web技术">
+<meta property="article:tag" content="生命周期">
+<meta property="article:tag" content="实验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/22429d851fd8998f/8869373-901590e019f6f85b.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaWeb开发---Servlet的生命周期实验</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaWeb开发---Servlet的生命周期实验</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编写测试用jsp"><span class="post-toc-number">2.</span> <span class="post-toc-text">编写测试用jsp</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编写Servlet程序"><span class="post-toc-number">3.</span> <span class="post-toc-text">编写Servlet程序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码说明"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">代码说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编写web-xml配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">编写web.xml配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行Tomcat"><span class="post-toc-number">5.</span> <span class="post-toc-text">运行Tomcat</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析日志测试"><span class="post-toc-number">6.</span> <span class="post-toc-text">分析日志测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">7.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Servlet的生命周期"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">Servlet的生命周期</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">8.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-8c6f47c7834a75357aa8802962deffda"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaWeb开发---Servlet的生命周期实验</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Servlet是运行在服务器端的程序，它的运行状态由Servlet容器（简称容器）来维护。</p>
+<p>通常，在容器收到客户对Servlet的请求时，容器会判断这个Servlet是否为第一次被访问，如果是第一次被访问，则会创建一个Servlet实例同时调用该实例的init()方法，进行初始化。</p>
+<p>每个Servlet只会被创建一个实例，同时也只会被初始化一次。然后将这个实例一直保存在内存中，对所有的请求进行处理。默认的服务功能是调用与HTTP请求方法相应的do功能。同时，HttpServlet.service()方法会检查请求方法是否调用了适当的处理方法。</p>
+<p>最后，当服务器关闭时，容器将会调用Servlet的destroy()方法清除Servlet实例。</p>
+<p>我们下面用实验看一下这个过程：</p>
+<h2 id="编写测试用jsp"><a href="#编写测试用jsp" class="headerlink" title="编写测试用jsp"></a>编写测试用jsp</h2><p>首先，我们写一个很简单的JSP程序，我们通过JSP页面来调用Servlet方法。我们在Tomcat安装目录下的webapps文件夹下新建一个ServletLife文件夹，进入该文件夹，写一个index.jsp文件，代码如下：</p>
+<p>index.jsp</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">contentType</span>=<span class="string">"text/html;charset=GBK"</span> <span class="attr">language</span>=<span class="string">"java"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Show servlet life cycle<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">center</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"ShowLifeCycle"</span> <span class="attr">name</span>=<span class="string">form</span>"&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"SUBMIT"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这是一段很简单的JSP程序，只为说明问题，整个程序只有一个提交表单的<code>submit</code>。</p>
+<ul>
+<li>代码第8行指定表单提交给ShowLifeCycle</li>
+<li>代码第9行创建一个“提交”</li>
+</ul>
+<p>然后我们在我们创建的/ServletLife目录下新建一个WEB-INF文件夹，进入WEB-INF文件夹，再创建一个classes文件夹。</p>
+<h2 id="编写Servlet程序"><a href="#编写Servlet程序" class="headerlink" title="编写Servlet程序"></a>编写Servlet程序</h2><p>Servlet.java 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.servlet.ServletConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Servlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ServletConfig config;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Servlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        System.out.println(<span class="string">"=== "</span> + ++counter + <span class="string">" instances ==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化servlet</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.init(config);</span><br><span class="line">        <span class="keyword">this</span>.config = config;</span><br><span class="line">        System.out.println(<span class="string">"=== invoke init() ==="</span> + <span class="keyword">new</span> Date().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=== invoke doPost ==="</span> + <span class="keyword">new</span> Date().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=== invoke doGet() ==="</span> + <span class="keyword">new</span> Date().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.service(req, resp);</span><br><span class="line">        System.out.println(<span class="string">"=== invoke service ==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=== invoke destroy() ==="</span> + <span class="keyword">new</span> Date().toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h3><ul>
+<li>11行，定义一个类变量，用来记录一共创建了几个实例。</li>
+<li>13~16行，显式地写出构造函数，是为了打印出一共创建了多少个实例。</li>
+<li>18~24行，初始化函数。每次调用显示”=== invoke init() ===”以及当前时间。</li>
+<li>26~28行，在doPost()方法中打印”=== invoke doPost ===”以及当前时间。</li>
+<li>30~32行，在doGet()方法中打印”=== invoke doGet ===”以及当前时间。</li>
+<li>34~38行，这里我们重写service()方法，只是为了在调用此方法的时候打印出””’ invoke service ===”以及当前时间。</li>
+<li>40~43行，在调用destroy()方法时，打印”=== invoke destroy() ===”以及当前时间。</li>
+</ul>
+<p>将该java文件编译后的Servlet.class放到/WEB-INF/classes文件夹下。</p>
+<h2 id="编写web-xml配置"><a href="#编写web-xml配置" class="headerlink" title="编写web.xml配置"></a>编写web.xml配置</h2><p>然后在/WEB-INF文件夹下创建一个配置文件web.xml：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">version</span>=<span class="string">"3.1"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LifeCycle<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>Servlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LifeCycle<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/ShowLifeCycle<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个文件主要来配置Servlet的。</p>
+<h2 id="运行Tomcat"><a href="#运行Tomcat" class="headerlink" title="运行Tomcat"></a>运行Tomcat</h2><p>接下来运行Tomcat，查看控制台日志，里面会有一行刚刚打印的文字：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13-Jan-2018 10:26:21.214 <span class="builtin-name">INFO</span> [main] org.apache.catalina.startup.Catalina.start<span class="built_in"> Server </span>startup <span class="keyword">in</span> 108 ms</span><br></pre></td></tr></table></figure>
+<p>说明Tomcat服务器正常启动。</p>
+<p>然后我们在浏览器地址栏输入以下网址：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>localhost:<span class="number">8080</span><span class="regexp">/ServletOne/</span></span><br></pre></td></tr></table></figure>
+<p>页面上只有一个submit按钮</p>
+<h2 id="分析日志测试"><a href="#分析日志测试" class="headerlink" title="分析日志测试"></a>分析日志测试</h2><p>点击该按钮，此时Servlet被请求，查看控制台输出，此时内容如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; 1 instances &#x3D;&#x3D;&#x3D;</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke init() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:26:30 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke doGet() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:26:30 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke service &#x3D;&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第2行，当第一次收到该Servlet请求时，会调用该Servlet的实例方法，并创建1个实例。”=== 1 instances ===”;</li>
+<li>-第3行，创建该实例后，调用Servlet的init()方法进行初始化操作；</li>
+<li>第4行，通过doGet()方法处理请求响应；</li>
+<li>第5行，在service()方法最后一行打印出”=== invoke service ===”,实际上，doGet()方法是由service()方法调用的。</li>
+</ul>
+<p>接下来我们重新创建一个Servlet请求，打开浏览器，重复以上过程，找到localhost/8080/ServletLife/index.jsp页面，点击submit，然后重新打开刚才的文本文档，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; 1 instances &#x3D;&#x3D;&#x3D;</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke init() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:26:30 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke doGet() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:26:30 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke service &#x3D;&#x3D;&#x3D;</span><br><span class="line">13-Jan-2018 10:26:31.202 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\manager]</span><br><span class="line">13-Jan-2018 10:26:31.272 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\manager] has finished in [70] ms</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke doGet() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:33:10 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke service &#x3D;&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
+<p>新增加了6、7两行。再次请求Servlet，并没有新建一个Servlet实例，也没有init过程，直接使用上次创建的实例来处理请求响应，doGet()方法被调用。</p>
+<p>然后我们关闭Tomcat服务器。查看控制台日志，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; 1 instances &#x3D;&#x3D;&#x3D;</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke init() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:26:30 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke doGet() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:26:30 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke service &#x3D;&#x3D;&#x3D;</span><br><span class="line">13-Jan-2018 10:26:31.202 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\manager]</span><br><span class="line">13-Jan-2018 10:26:31.272 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\manager] has finished in [70] ms</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke doGet() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:33:10 CST 2018</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke service &#x3D;&#x3D;&#x3D;</span><br><span class="line">&#x3D;&#x3D;&#x3D; invoke destroy() &#x3D;&#x3D;&#x3D;Sat Jan 13 10:33:20 CST 2018</span><br></pre></td></tr></table></figure>
+
+<p>可以看到destroy()方法被调用，清除Servlet实例。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h3><ul>
+<li>浏览器向Servlet提交请求，Servlet实例化</li>
+<li>Servlet执行<code>init</code>方法，持续相应HTTP请求</li>
+<li>浏览器/页面 关闭，Servlet实例析构</li>
+</ul>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/22429d851fd8998f/8869373-901590e019f6f85b.png" class="">
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.832Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaEE/" rel="tag">JavaEE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%8A%80%E6%9C%AF/" rel="tag">Web技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/22429d851fd8998f.html&title=《JavaWeb开发---Servlet的生命周期实验》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/22429d851fd8998f.html&title=《JavaWeb开发---Servlet的生命周期实验》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/22429d851fd8998f.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaWeb开发---Servlet的生命周期实验》 — 画星星高手&url=http://blog.deali.cn/posts/22429d851fd8998f.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/22429d851fd8998f.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/dd05dff98812be5b.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Asp-Net-Core学习笔记：入门篇</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/456edb84dd6571cf.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android开发：使用CardView实现卡片式设计</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/22429d851fd8998f.html&title=《JavaWeb开发---Servlet的生命周期实验》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/22429d851fd8998f.html&title=《JavaWeb开发---Servlet的生命周期实验》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/22429d851fd8998f.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaWeb开发---Servlet的生命周期实验》 — 画星星高手&url=http://blog.deali.cn/posts/22429d851fd8998f.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/22429d851fd8998f.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHUlEQVR42u3aQW7EIBAEwPz/0841OZh0gx1poTitdm1DOdKEmeHrKx7Xj3H36/j6/Jq7WR4YGBgYH8u4hmM8wXjK/Al34GRtGBgY5zCSRczFvbk4ma8NAwMD46lrxsE6+YyBgYGRL3G8ccyvTMAYGBgYbRKbLPrZwP1KLo6BgfGBjDw1/f/Pr/Q3MDAwPopxlaMt/a9sDYtVYWBgbM3IA1yLaRsAeVv0dj0YGBjHMNpUti3ArTyn3r1iYGBswWinn2O3x8vqF4eBgbE1o01Kxxu4nPfUXRgYGBhzbcU8vObpbpswY2Bg7MfIbytCXnx9W1z74y+AgYGxKSN/aH447KlS3eQrwMDAOICxvhGc61E89kwMDIxNGfk0yTd5MS5/cl1ow8DA2IixXixrt4bthi9CYmBgbMp4L1y28b5NfX99g4GBcQDjjeJXXrabO+qBgYFxDiNPWdtt3LOtgpXWKQYGxq6M9nBDm+6+kehiYGDszRg/Ot/qzbUWirc7vgsDA+NgxkrQbI9orNyFgYFxAmPuoENeDkvCeh5kMTAwzmFc5WhL9sl2c648F02GgYGxBWMlzOXTrDQm55oHGBgY+zHaJT4VcJNmQH5EDAMD4wRGHviSReQNyPY/QJGLY2BgHMxo09q2JdAWATEwMDDyCVbanHmALlqYGBgY2zHyZkB+tKIt6OfbRAwMjNMY+QRtsWzl4EUe1jEwMLZmfAOGONsZB/jrDAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

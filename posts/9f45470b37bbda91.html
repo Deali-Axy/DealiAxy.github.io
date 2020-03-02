@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>C#学习（三）深入理解委托、匿名方法和-Lambda-表达式 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="表达式,方法,C#,.Net,匿名,委托,学习,深入,理解">
+    <meta name="description" content="前言lambda的概念建立在委托的基础上，委托，实现了类型安全的回调方法。在.NET 中回调无处不在，所以委托也无处不在，事件模型建立在委托机制上，Lambda 表达式本质上就是一种匿名委托。本文中将完成一次关于委托的旅行，全面阐述委托及其核心话题，逐一梳理委托、委托链、事件、匿名方法和 Lambda 表达式。 委托的定义了解委托，从其定义开始，通常一个委托被声明为： 1public delega">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#学习（三）深入理解委托、匿名方法和-Lambda-表达式">
+<meta property="og:url" content="http://blog.deali.cn/posts/9f45470b37bbda91.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言lambda的概念建立在委托的基础上，委托，实现了类型安全的回调方法。在.NET 中回调无处不在，所以委托也无处不在，事件模型建立在委托机制上，Lambda 表达式本质上就是一种匿名委托。本文中将完成一次关于委托的旅行，全面阐述委托及其核心话题，逐一梳理委托、委托链、事件、匿名方法和 Lambda 表达式。 委托的定义了解委托，从其定义开始，通常一个委托被声明为： 1public delega">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/9f45470b37bbda91/8869373-26e9af8bb7c7cdb0.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/9f45470b37bbda91/8869373-32f118858929f082.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.648Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="表达式">
+<meta property="article:tag" content="方法">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content=".Net">
+<meta property="article:tag" content="匿名">
+<meta property="article:tag" content="委托">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="深入">
+<meta property="article:tag" content="理解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/9f45470b37bbda91/8869373-26e9af8bb7c7cdb0.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C#学习（三）深入理解委托、匿名方法和-Lambda-表达式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C#学习（三）深入理解委托、匿名方法和-Lambda-表达式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#委托的定义"><span class="post-toc-number">2.</span> <span class="post-toc-text">委托的定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多播委托和委托链"><span class="post-toc-number">3.</span> <span class="post-toc-text">多播委托和委托链</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#委托的本质"><span class="post-toc-number">4.</span> <span class="post-toc-text">委托的本质</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#委托和事件"><span class="post-toc-number">5.</span> <span class="post-toc-text">委托和事件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#匿名方法"><span class="post-toc-number">6.</span> <span class="post-toc-text">匿名方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Lambda表达式"><span class="post-toc-number">7.</span> <span class="post-toc-text">Lambda表达式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#规则"><span class="post-toc-number">8.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结论"><span class="post-toc-number">9.</span> <span class="post-toc-text">结论</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在后面"><span class="post-toc-number">10.</span> <span class="post-toc-text">写在后面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欢迎交流"><span class="post-toc-number">11.</span> <span class="post-toc-text">欢迎交流</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-20f1dea67fa2e0e87c4d1c95d91d8938"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C#学习（三）深入理解委托、匿名方法和-Lambda-表达式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>lambda的概念建立在委托的基础上，委托，实现了类型安全的回调方法。在.NET 中回调无处不在，所以委托也无处不在，事件模型建立在委托机制上，Lambda 表达式本质上就是一种匿名委托。本文中将完成一次关于委托的旅行，全面阐述委托及其核心话题，逐一梳理委托、委托链、事件、匿名方法和 Lambda 表达式。</p>
+<h2 id="委托的定义"><a href="#委托的定义" class="headerlink" title="委托的定义"></a>委托的定义</h2><p>了解委托，从其定义开始，通常一个委托被声明为：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">CalculateDelegate</span>(<span class="params">Int32 x, Int32 y</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>关键字 delegate 用于声明一个委托类型 CalculateDelegate，可以对其添加访问修饰符，默认其返回值类型为 void，接受两个 Int32 型参数 x 和 y，但是委托并不等同与方法，而是一个引用类型，类似于 C++中的函数指针，稍后在委托本质里将对此有所交代。</p>
+<p>下面的示例将介绍如何通过委托来实现一个计算器模拟程序，在此基础上来了解关于委托的定义、创建和应用：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">DelegateAndEvent</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DeepInto</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//声明一个委托</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">CalculateDelegate</span>(<span class="params">Int32 x, Int32 y</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建与委托关联的方法，二者具有相同的返回值类型和参数列表</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params">Int32 x, Int32 y</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(x + y);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//定义委托类型变量</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> CalculateDelegate myDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">//进行委托绑定</span></span><br><span class="line">            myDelegate = <span class="keyword">new</span> CalculateDelegate(Add);</span><br><span class="line">            <span class="comment">//回调 Add 方法</span></span><br><span class="line">            myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述示例，在类 DelegateEx 内部声明了一个 CalculateDelegate 委托类型，它具有和关联方法Add 完全相同的返回值类型和参数列表，否则将导致编译时错误。将方法 Add 传递给 CalculateDelegate 构造器，也就是将方法 Add 指派给 CalculateDelegate 委托，并将该引用赋给 myDelegate 变量，也就表示 myDeleage 变量保存了指向 Add 方法的引用，以此实现对 Add 的回调。</p>
+<p>由此可见，委托表示了对其回调方法的签名，可以将方法当作参数进行传递，并根据传入的方法来动态的改变方法调用。只要为委托提供相同签名的方法，就可以与委托绑定，例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Subtract</span>(<span class="params">Int32 x, Int32 y</span>)</span> &#123;</span><br><span class="line">    Console.WriteLine(x - y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样，可以将方法 Subtract 分配给委托，通过参数传递实现方法回调，例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//进行委托绑定</span></span><br><span class="line">    myDelegate = <span class="keyword">new</span> CalculateDelegate(Subtract);</span><br><span class="line">    myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多播委托和委托链"><a href="#多播委托和委托链" class="headerlink" title="多播委托和委托链"></a>多播委托和委托链</h2><p>在上述委托实现中，Add 方法和 Subtract 可以绑定于同一个委托类型 myDelegate，由此可以很容易想到将多个方法绑定到一个委托变量，在调用一个方法时，可以依次执行其绑定的所有方法，这种技术称为多播委托。在.NET 中提供了相当简洁的语法来创建委托链，以+=和-=操作符分别进行绑定和解除绑定的操作，多个方法绑定到一个委托变量就形成一个委托链，对其调用时，将会依次调用所有绑定的回调方法。例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myDelegate = <span class="keyword">new</span> CalculateDelegate(Add);</span><br><span class="line">myDelegate += <span class="keyword">new</span> CalculateDelegate(Subtract);</span><br><span class="line">myDelegate += <span class="keyword">new</span> CalculateDelegate(Multiply);</span><br><span class="line">myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上述执行将在控制台依次输出 300、-100 和 20000 三个结果，可见多播委托按照委托链顺序调用所有绑定的方法，同样以-=操作可以解除委托链上的绑定，例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myDelegate -= <span class="keyword">new</span> CalculateDelegate(Add);</span><br><span class="line">myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
+<p>结果将只有-100 和 20000 被输出，可见通过-=操作解除了 Add 方法。<br>事实上，+=和-=操作分别调用了 Deleagate.Combine 和 Deleagate.Remove 方法，由对应的 IL 可知：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function">method <span class="keyword">public</span> hidebysig <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>) cil managed</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">.entrypoint</span><br><span class="line"><span class="comment">// 代码大小 151 (0x97)</span></span><br><span class="line">.maxstack <span class="number">4</span></span><br><span class="line">IL_0000: nop</span><br><span class="line">IL_0001: ldnull</span><br><span class="line">IL_0002: ldftn <span class="keyword">void</span> </span><br><span class="line">InsideDotNet.NewFeature.CSharp3.DelegateEx::Add(int32, int32)</span><br><span class="line"><span class="comment">//部分省略……</span></span><br><span class="line">IL_0023: call class [mscorlib]System.Delegate [mscorlib]System.Delegate:: Combine(class [ms</span><br><span class="line">corlib]System.Delegate, class [mscorlib]System.Delegate)</span><br><span class="line"><span class="comment">//部分省略……</span></span><br><span class="line">IL_0043: call class [mscorlib]System.Delegate [mscorlib]System.Delegate:: Combine(class [ms</span><br><span class="line">corlib]System.Delegate, class [mscorlib]System.Delegate)</span><br><span class="line"><span class="comment">//部分省略……</span></span><br><span class="line">IL_0075: call class [mscorlib]System.Delegate [mscorlib]System.Delegate:: Remove(class [ms</span><br><span class="line">corlib]System.Delegate, class [mscorlib]System.Delegate)</span><br><span class="line"><span class="comment">//部分省略……</span></span><br><span class="line">IL_0095: nop</span><br><span class="line">IL_0096: ret</span><br><span class="line">&#125; <span class="comment">// end of method DelegateEx::Main</span></span><br></pre></td></tr></table></figure>
+
+<p>所以，上述操作实际等效于：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    myDelegate = (CalculateDelegate)Delegate.Combine(<span class="keyword">new</span> CalculateDelegate(Add),</span><br><span class="line">        <span class="keyword">new</span> CalculateDelegate(Subtract), <span class="keyword">new</span> CalculateDelegate(Multiply));</span><br><span class="line">    myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">    myDelegate = (CalculateDelegate)Delegate.Remove(myDelegate, </span><br><span class="line">        <span class="keyword">new</span> CalculateDelegate(Add));</span><br><span class="line">    myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，多播委托返回值一般为 void，委托类型为非 void 类型时，多播委托将返回最后一个调<br>用的方法的执行结果，所以在实际的应用中不被推荐。</p>
+<h2 id="委托的本质"><a href="#委托的本质" class="headerlink" title="委托的本质"></a>委托的本质</h2><p>委托在本质上仍然是一个类，如此简洁的语法正是因为 CLR 和编译器在后台完成了一系列操作，将上述 CalculateDelegate 委托编译为 IL，你将会看得更加明白，如图：</p>
+<img src="/posts/9f45470b37bbda91/8869373-26e9af8bb7c7cdb0.png" class="">
+
+<p>所以，委托本质上仍旧是一个类，该类继承自 System.MulticastDelegate 类，该类维护一个带有链接的委托列表，在调用多播委托时，将按照委托列表的委托顺序而调用的。还包括一个接受两个参数的构造函数和 3 个重要方法：BeginInvoke、EndInvoke 和 Invoke。</p>
+<p>首先来了解 CalculateDelegate 的构造函数，它包括了两个参数：第一个参数表示一个对象引用，它指向了当前委托调用回调函数的实例，在本例中即指向一个 DelegateEx 对象；第二个参数标识了回调方法，也就是 Add 方法。因此，在创建一个委托类型实例时，将会为其初始化一个指向对象的引用和一个标识回调方法的整数，这是由编译器完成的。那么一个回调方法是如何被执行的，继续以 IL 代码来分析委托的调用，即可显露端倪（在此仅分析委托关联 Add 方法时的情况）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.method public hidebysig static void Main() cil managed</span><br><span class="line">&#123;</span><br><span class="line">.entrypoint</span><br><span class="line">&#x2F;&#x2F; 代码大小 37 (0x25)</span><br><span class="line">.maxstack 8</span><br><span class="line">IL_0000: nop</span><br><span class="line">IL_0001: ldnull</span><br><span class="line">IL_0002: ldftn void </span><br><span class="line">InsideDotNet.NewFeature.CSharp3.DelegateEx::Add(int32, int32)</span><br><span class="line">IL_0008: newobj instance void InsideDotNet.NewFeature.CSharp3.DelegateEx&#x2F; CalculateDelega</span><br><span class="line">te::.ctor(object, native int)</span><br><span class="line">IL_000d: stsfld class InsideDotNet.NewFeature.CSharp3.DelegateEx&#x2F; CalculateDelegate InsideD</span><br><span class="line">otNet.NewFeature.CSharp3.DelegateEx::myDelegate</span><br><span class="line">IL_0012: ldsfld class </span><br><span class="line">InsideDotNet.NewFeature.CSharp3.DelegateEx&#x2F;Calculate Delegate InsideDotNet.NewFeature.CSharp</span><br><span class="line">3.DelegateEx::myDelegate</span><br><span class="line">IL_0017: ldc.i4.s 100</span><br><span class="line">IL_0019: ldc.i4 0xc8</span><br><span class="line">IL_001e: callvirt instance void InsideDotNet.NewFeature.CSharp3.DelegateEx&#x2F; CalculateDelegat</span><br><span class="line">e::Invoke(int32, int32)</span><br><span class="line">IL_0023: nop</span><br><span class="line">IL_0024: ret&#125; &#x2F;&#x2F; end of method DelegateEx::Main</span><br></pre></td></tr></table></figure>
+
+<p>在 IL 代码中可见，首先调用 CalculateDelegate 的构造函数来创建一个 myDelegate 实例，然后通过 CalculateDelegate::Invoke 执行回调方法调用，可见真正执行调用的是 Invoke 方法。因此，你也可以通过 Invoke 在代码中显示调用，例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myDelegate.Invoke(<span class="number">100</span>, <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+<p>其执行过程和隐式调用是一样的，注意在.NET 1.0 中 C#编译器是不允许显示调用的，以后的版本中修正了这一限制。</p>
+<p>另外，Invoke 方法直接对当前线程调用回调方法，在异步编程环境中，除了 Invoke 方法，也会生成 BeginInvoke 和 EndInvoke 方法来完成一定的工作。这也就是委托类中另外两个方法的作用。</p>
+<h2 id="委托和事件"><a href="#委托和事件" class="headerlink" title="委托和事件"></a>委托和事件</h2><p>.NET 的事件模型建立在委托机制之上，透彻的了解了委托才能明白的分析事件。可以说，事件是对委托的封装，从委托的示例中可知，在客户端可以随意对委托进行操作，一定程度上破坏了面向的对象的封装机制，因此事件实现了对委托的封装。<br>下面，通过将委托的示例进行改造，来完成一个事件的定义过程：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">DelegateAndEvent</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Calculator</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//定义一个 CalculateEventArgs，</span></span><br><span class="line">        <span class="comment">//用于存放事件引发时向处理程序传递的状态信息</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CalculateEventArgs</span> : <span class="title">EventArgs</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">readonly</span> Int32 x, y;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">CalculateEventArgs</span>(<span class="params">Int32 x, Int32 y</span>)</span></span><br><span class="line"><span class="function"></span>            &#123;</span><br><span class="line">                <span class="keyword">this</span>.x = x;</span><br><span class="line">                <span class="keyword">this</span>.y = y;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//声明事件委托</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">CalculateEventHandler</span>(<span class="params"><span class="keyword">object</span> sender, CalculateEventArgs e</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//定义事件成员，提供外部绑定</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">event</span> CalculateEventHandler MyCalculate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//提供受保护的虚方法，可以由子类覆写来拒绝监视</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnCalculate</span>(<span class="params">CalculateEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">if</span> (MyCalculate != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                MyCalculate(<span class="keyword">this</span>, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//进行计算，调用该方法表示有新的计算发生</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Calculate</span>(<span class="params">Int32 x, Int32 y</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            CalculateEventArgs e = <span class="keyword">new</span> CalculateEventArgs(x, y);</span><br><span class="line">            <span class="comment">//通知所有的事件的注册者</span></span><br><span class="line">            OnCalculate(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例中，对计算器模拟程序做了简要的修改，从二者的对比中可以体会事件的完整定义过程，主要包括：</p>
+<ul>
+<li>定义一个内部事件参数类型，用于存放事件引发时向事件处理程序传递的状态信息，EventArgs是事件数据类的基类。</li>
+<li>声明事件委托，主要包括两个参数：一个表示事件发送者对象，一个表示事件参数类对象。</li>
+<li>定义事件成员。</li>
+<li>定义负责通知事件引发的方法，它被实现为 protected virtual 方法，目的是可以在派生类中覆写该方法来拒绝监视事件。</li>
+<li>定义一个触发事件的方法，例如 Calculate 被调用时，表示有新的计算发生。</li>
+</ul>
+<p>一个事件的完整程序就这样定义好了。然后，还需要定义一个事件触发程序，用来监听事件：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义事件触发者</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CalculatorManager</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//定义消息通知方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="keyword">object</span> sender, Calculator.CalculateEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Console.WriteLine(e.x + e.y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Substract</span>(<span class="params"><span class="keyword">object</span> sender, Calculator.CalculateEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Console.WriteLine(e.x - e.y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，实现一个事件的处理程序：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test_Calculator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="comment">//事件触发者</span></span><br><span class="line">        CalculatorManager cm = <span class="keyword">new</span> CalculatorManager();</span><br><span class="line">        <span class="comment">//事件绑定</span></span><br><span class="line">        calculator.MyCalculate += cm.Add;</span><br><span class="line">        calculator.Calculate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">        calculator.MyCalculate += cm.Substract;</span><br><span class="line">        calculator.Calculate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">        <span class="comment">//事件注销</span></span><br><span class="line">        calculator.MyCalculate -= cm.Add;</span><br><span class="line">        calculator.Calculate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果对设计模式有所了解，上述实现过程实质是 Observer 模式在委托中的应用，在.NET 中对Observer 模式的应用严格的遵守了相关的规范。在 Windows Form 程序开发中，对一个Button 的Click 就对应了事件的响应，例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.button1.Click += <span class="keyword">new</span> System.EventHandler(<span class="keyword">this</span>.button1_Clic</span><br></pre></td></tr></table></figure>
+
+<p>用于将 button1_Click 方法绑定到 button1 的 Click 事件上，当有按钮被按下时，将会触发执行<br>button1_Click 方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button1_Click</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="匿名方法"><a href="#匿名方法" class="headerlink" title="匿名方法"></a>匿名方法</h2><p>匿名方法以内联方式放入委托对象的使用位置，而避免创建一个委托来关联回调方法，也就是由委托调用了匿名的方法，将方法代码和委托实例直接关联，在语法上有简洁和直观的好处。例如以匿名方法来绑定 Click 事件将变得非常简单：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">button1.Click += <span class="keyword">delegate</span></span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(<span class="string">"Hello world."</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>因此，有必要以匿名方法来实现本节开始的委托示例，了解其实现过程和底层实质，例如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">AnonymousMethodEx</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">CalculateDelegate</span>(<span class="params">Int32 x, Int32 y</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">//匿名方法</span></span><br><span class="line">        CalculateDelegate mySubstractDelegate = <span class="keyword">delegate</span>(Int32 x, Int32 y) &#123; Console.WriteLine(x - y); &#125;;</span><br><span class="line">        CalculateDelegate myAddDelegate = <span class="keyword">delegate</span>(Int32 x, Int32 y) &#123; Console.WriteLine(x + y); &#125;;</span><br><span class="line">        mySubstractDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>事实上，匿名方法和委托在 IL 层是等效的，编译器为匿名方法增加了两个静态成员和静态方法，如图：</p>
+<img src="/posts/9f45470b37bbda91/8869373-32f118858929f082.png" class="">
+
+<p>由编译器生成的两个静态成员和静态方法，辅助实现了委托调用一样的语法结构，这正是匿名方法在底层的真相。</p>
+<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>Lambda 表达式是 Functional Programming 的核心概念，现在 C# 3.0 中也引入了 Lambda 表达式来实现更加简洁的语法，并且为 LINQ 提供了语法基础，这些将在本书第 12 章有所交代。再次应用 Lambda 表达式来实现相同的过程，其代码为：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Lambda</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LambdaExpressionEx</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">CalculateDelegate</span>(<span class="params">Int32 x, Int32 y</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            CalculateDelegate myDelegate = (x, y) =&gt; Console.WriteLine(x - y);</span><br><span class="line">            myDelegate(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析 Lambda 表达式的 IL 代码，可知编译器同样自动生成了相应的静态成员和静态方法，Lambda 表达式在本质上仍然是一个委托。带来这一切便利的是编译器，在此对 IL 上的细节不再做进一步分析。</p>
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ul>
+<li>委托实现了面向对象的，类型安全的方法回调机制。</li>
+<li>以 Delegate 作为委托类型的后缀，以 EventHandle 作为事件委托的后缀，是规范的命名规则。</li>
+<li>多播委托返回值一般为 void，不推荐在多播委托中返回非 void 的类型。</li>
+<li>匿名方法和 Lambda 表达式提供了更为简洁的语法表现，而这些新的特性主要是基于编译器而实现的，在 IL 上并没有本质的变化。</li>
+<li>.NET 的事件是 Observer 模式在委托中的应用，并且基于.NET 规范而实现，体现了更好的耦合性和灵活性。</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>从委托到 Lambda 表达式的逐层演化，我们可以看到.NET 在语言上的不断进化和发展，也正是这些进步促成了技术的向前发展，使得.NET 在语言上更加地兼容和优化。对于技术开发人员而言，这种进步也正是我们所期望的。<br>然而，从根本上了解委托、认识委托才是一切的基础，否则语法上的进化只能使得理解更加迷惑。本节的讨论，意在为理解这些内容提供基础，建立一个较为全面的概念。</p>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p><em>注：本文是对微软C# MVP王涛大佬的教程搬运和重新排版</em><br>本文很好的介绍了委托、匿名方法和lambda表达式，也是对前面两篇笔记的总结。</p>
+<h2 id="欢迎交流"><a href="#欢迎交流" class="headerlink" title="欢迎交流"></a>欢迎交流</h2><p>交流问题请在微信公众号后台留言，每一条信息我都会回复哈~</p>
+<ul>
+<li>微信公众号：画星星高手</li>
+<li>打代码直播间：<a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener">https://live.bilibili.com/11883038</a></li>
+<li>知乎：<a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener">https://www.zhihu.com/people/dealiaxy</a></li>
+<li>简书：<a href="https://www.jianshu.com/u/965b95853b9f" target="_blank" rel="noopener">https://www.jianshu.com/u/965b95853b9f</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.648Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Net/" rel="tag">.Net</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D/" rel="tag">匿名</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A7%94%E6%89%98/" rel="tag">委托</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%B9%E6%B3%95/" rel="tag">方法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%85%A5/" rel="tag">深入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%90%86%E8%A7%A3/" rel="tag">理解</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">表达式</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/9f45470b37bbda91.html&title=《C#学习（三）深入理解委托、匿名方法和-Lambda-表达式》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/9f45470b37bbda91.html&title=《C#学习（三）深入理解委托、匿名方法和-Lambda-表达式》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/9f45470b37bbda91.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#学习（三）深入理解委托、匿名方法和-Lambda-表达式》 — 画星星高手&url=http://blog.deali.cn/posts/9f45470b37bbda91.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/9f45470b37bbda91.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/6b13381b19c88d71.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaWeb开发---使用IDEA创建Servlet程序</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/32c1a1d50771278d.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android-ORM-框架：GreenDao入门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/9f45470b37bbda91.html&title=《C#学习（三）深入理解委托、匿名方法和-Lambda-表达式》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/9f45470b37bbda91.html&title=《C#学习（三）深入理解委托、匿名方法和-Lambda-表达式》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/9f45470b37bbda91.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#学习（三）深入理解委托、匿名方法和-Lambda-表达式》 — 画星星高手&url=http://blog.deali.cn/posts/9f45470b37bbda91.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/9f45470b37bbda91.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQY7DIAwF0N7/0pntSFUy34aMBDxWVUQbXheWsf35xOv6Wt/P7/b/fpLs+d45bWFgYCzLuB5Xcqy7F4+Dk7NhYGCcw0gO8fz6XtBM/r7ns2FgYGDM2nMHzj9jYGBgjAfc3pPq1RcDA+NkRi9Feztwv3IXx8DAWJCRXzX///Mr/Q0MDIylGFdx9Ur8vdSwcCoMDIytGdW0L8fkSV6eYv5RwsPAwNiUkQfHkTJZj1poiGJgYGzNyLcm6WAegvM9ORgDA+MExvPh8qCc/E416JcrghgYGBsxkiCbvzhvN+YhPmpRYGBgbM3Ie4K9wJ0nl9U0sdnaxMDAWJyRFMjG25nVkJ2DMTAwdmX0imX5NbiXCOYADAyMMxlzL7QjZbVC8Q4DA2NrRnLEakMx2T9yrf30/mkMDIzFGeNluOQ1vcGywrAFBgbGMYxqmazXXOyF+EITFAMDYyNGNV3Lo/X4QOrQzAgGBsZGjGp7sjoGkQy89oYtbsttGBgYWzPyBK4XgvOksNlOwMDAOJiRj3wlCWUe1qvfwsDAOIGRpGsjAxN5Ka3XnMDAwNiVcRXX3BJ/EkyjZgMGBsbWjAnRutXazBuck2dGMDAwlmXkl8bnUDsrZDfPgIGBcQCjMNYQHGKk3F8d48DAwMDIC2f5hTYf5shbqhgYGBh5iKwmmiMBelrAxcDAWISRDze8V9CvFvUwMDDOYfSujm8PXoxcrTEwMDZi/AC5TmqYulFWcQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

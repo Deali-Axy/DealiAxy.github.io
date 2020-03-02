@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="代码,重构,改善">
+    <meta name="description" content="前言前阵子当当网做活动，购买图书有优惠，于是趁机清了一小部分购物车，因而买来了这本心仪已久的《重构》。虽然到现在还没拆封，有点惭愧&#x3D; &#x3D;… 不过找到空闲时间一定要好好拜读一下经典。 Amazon.com ReviewYour class library works, but could it be better? Refactoring: Improving the Design of Exist">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code">
+<meta property="og:url" content="http://blog.deali.cn/posts/10796de41c0ede32.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言前阵子当当网做活动，购买图书有优惠，于是趁机清了一小部分购物车，因而买来了这本心仪已久的《重构》。虽然到现在还没拆封，有点惭愧&#x3D; &#x3D;… 不过找到空闲时间一定要好好拜读一下经典。 Amazon.com ReviewYour class library works, but could it be better? Refactoring: Improving the Design of Exist">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/10796de41c0ede32/8869373-ffeaac347ffe025b.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/10796de41c0ede32/8869373-a951f70b12c99ede.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/10796de41c0ede32/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.968Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="重构">
+<meta property="article:tag" content="改善">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/10796de41c0ede32/8869373-ffeaac347ffe025b.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%B9%A6%E5%8D%95/">书单</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Amazon-com-Review"><span class="post-toc-number">2.</span> <span class="post-toc-text">Amazon.com Review</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#豆瓣简介"><span class="post-toc-number">3.</span> <span class="post-toc-text">豆瓣简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图片"><span class="post-toc-number">4.</span> <span class="post-toc-text">图片</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实拍图片"><span class="post-toc-number">5.</span> <span class="post-toc-text">实拍图片</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">6.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-fa159c319a9bb2567abe61ecdbe99809"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E4%B9%A6%E5%8D%95/">书单</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前阵子当当网做活动，购买图书有优惠，于是趁机清了一小部分购物车，因而买来了这本心仪已久的《重构》。<br>虽然到现在还没拆封，有点惭愧= =… 不过找到空闲时间一定要好好拜读一下经典。</p>
+<h2 id="Amazon-com-Review"><a href="#Amazon-com-Review" class="headerlink" title="Amazon.com Review"></a>Amazon.com Review</h2><p>Your class library works, but could it be better? Refactoring: Improving the Design of Existing Code shows how refactoring can make object-oriented code simpler and easier to maintain. Today refactoring requires considerable design know-how, but once tools become available, all programmers should be able to improve their code using refactoring techniques.</p>
+<p>Besides an introduction to refactoring, this handbook provides a catalog of dozens of tips for improving code. The best thing about Refactoring is its remarkably clear presentation, along with excellent nuts-and-bolts advice, from object expert Martin Fowler. The author is also an authority on software patterns and UML, and this experience helps make this a better book, one that should be immediately accessible to any intermediate or advanced object-oriented developer. (Just like patterns, each refactoring tip is presented with a simple name, a “motivation,” and examples using Java and UML.)</p>
+<p>Early chapters stress the importance of testing in successful refactoring. (When you improve code, you have to test to verify that it still works.) After the discussion on how to detect the “smell” of bad code, readers get to the heart of the book, its catalog of over 70 “refactorings”–tips for better and simpler class design. Each tip is illustrated with “before” and “after” code, along with an explanation. Later chapters provide a quick look at refactoring research.</p>
+<p>Like software patterns, refactoring may be an idea whose time has come. This groundbreaking title will surely help bring refactoring to the programming mainstream. With its clear advice on a hot new topic, Refactoring is sure to be essential reading for anyone who writes or maintains object-oriented software. –Richard Dragan</p>
+<p>Topics Covered: Refactoring, improving software code, redesign, design tips, patterns, unit testing, refactoring research, and tools.</p>
+<h2 id="豆瓣简介"><a href="#豆瓣简介" class="headerlink" title="豆瓣简介"></a>豆瓣简介</h2><p>重构，一言以蔽之，就是在不改变外部行为的前提下，有条不紊地改善代码。多年前，正是本书原版的出版，使重构终于从编程高手们的小圈子走出，成为众多普通程序员日常开发工作中不可或缺的一部分。本书也因此成为与《设计模式》齐名的经典著作，被译为中、德、俄、日等众多语言，在世界范围内畅销不衰。<br>本书凝聚了软件开发社区专家多年摸索而获得的宝贵经验，拥有不因时光流逝而磨灭的价值。今天，无论是重构本身，业界对重构的理解，还是开发工具对重构的支持力度，都与本书最初出版时不可同日而语，但书中所蕴涵的意味和精华，依然值得反复咀嚼，而且往往能够常读常新。</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><img src="/posts/10796de41c0ede32/8869373-ffeaac347ffe025b.png" class="">
+
+<h2 id="实拍图片"><a href="#实拍图片" class="headerlink" title="实拍图片"></a>实拍图片</h2><img src="/posts/10796de41c0ede32/8869373-a951f70b12c99ede.png" class="">
+
+
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/10796de41c0ede32/8869373-901590e019f6f85b.png" class="">
+
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.968Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%94%B9%E5%96%84/" rel="tag">改善</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%87%8D%E6%9E%84/" rel="tag">重构</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/10796de41c0ede32.html&title=《《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/10796de41c0ede32.html&title=《《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/10796de41c0ede32.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code》 — 画星星高手&url=http://blog.deali.cn/posts/10796de41c0ede32.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/10796de41c0ede32.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/b8a3dd3a261ae013.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">在Nginx上配置https加密服务器</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/cf94fb7732ff527c.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">修改&#34;Inotify-Watches-Limit&#34;提高idea性能</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/10796de41c0ede32.html&title=《《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/10796de41c0ede32.html&title=《《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/10796de41c0ede32.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《重构-改善既有代码》Refactoring-Improving-the-Design-of-Existing-Code》 — 画星星高手&url=http://blog.deali.cn/posts/10796de41c0ede32.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/10796de41c0ede32.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aSW7DMBAEwPz/08o1gGGlm2MlEFU8GYYWlg9jzvL1Fa/jZb1+/+76n98k17xe+bGFgYFxW8Zxus4ZyZMn4GRvGBgYz2EkmziPcvldyY+Y7w0DAwNjFASDUJt/xsDAwGgDbnJwbNPUf/jfwMDAuBWjPaLlCW27rctzcQwMjBsy1gpnf/P5kv4GBgbGrRhHudrXT46Gxa4wMDC2ZlxRvm+3GCWoSQkPAwNjU8b5DfNAvNYSyEc0IjcGBsbNGWtF+bYAt7atvOSHgYGxN+M8wM1HtdqD4GKzEwMD42GMesRhqbiWtCELNgYGxtaMtnnZBtP24NiG3cUeLAYGxq0Yk3GH9vWTEtsvwRcDA2NrxtoARJuytrF/cWgDAwNja8b8GNeW/hd7F+2PgoGBsREjbw/k4bIN0Pmhs+7BYmBg3JyRbz0f7WqD+CSVfZuLY2BgbMdIGo0teNKebEc0MDAwnsZoB1jzQJm0CtaSYQwMjL0ZV5TjW9LHcnEMDIytGZP2ZH7sWyv3F80DDAyMBzDWymp5QjtpGBQzIxgYGI9kJAExKYpNEuYo9GNgYGzKOMqV54ztE9ryXNRPwMDA2IKRr7w01hbgkuvXnoOBgbETY55qtolr3pBYrBpiYGBsymgDX5u4TkJwlDZjYGBgDJLJdoCsnhPBwMDAKJsHbRugDdBRCxMDA2NTxqfGJubtyeQuDAyMpzHmL5gkrpMgi4GB8QDGN84pS6lv+FXGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>我用Qt和Python开发了一个视频合并工具 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python,开发,工具,视频,合并">
+    <meta name="description" content="想合并视频，但是却找不到比较好用的工具，很多都要收费，我想着「这破功能还得收费？」，于是决定自己搞一个，一开始用Python做了一个，效果还不错，完美完成了我的视频合并任务，不过没有图形界面，想分享给朋友一起用也没办法，于是昨天用Qt写了个图形界面套上去，中间还是遇到一些问题的，通过这篇文章记录一下。 软件的界面就是这样啦，用Qt Designer随便拖出来的，和VS拖控件也差不了多少。用起来挺方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我用Qt和Python开发了一个视频合并工具">
+<meta property="og:url" content="http://blog.deali.cn/posts/121bbe5c6e9957ed.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="想合并视频，但是却找不到比较好用的工具，很多都要收费，我想着「这破功能还得收费？」，于是决定自己搞一个，一开始用Python做了一个，效果还不错，完美完成了我的视频合并任务，不过没有图形界面，想分享给朋友一起用也没办法，于是昨天用Qt写了个图形界面套上去，中间还是遇到一些问题的，通过这篇文章记录一下。 软件的界面就是这样啦，用Qt Designer随便拖出来的，和VS拖控件也差不了多少。用起来挺方">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/121bbe5c6e9957ed/8869373-9ce46c92f1bde75e.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/121bbe5c6e9957ed/8869373-047a0bb28ed95736.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/121bbe5c6e9957ed/8869373-4725722c99866d2c.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/121bbe5c6e9957ed/8869373-ecf41e1ef8231832.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/121bbe5c6e9957ed/8869373-884047d6791563b8.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.964Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="视频">
+<meta property="article:tag" content="合并">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/121bbe5c6e9957ed/8869373-9ce46c92f1bde75e.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">我用Qt和Python开发了一个视频合并工具</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">我用Qt和Python开发了一个视频合并工具</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python/">Python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Qt"><span class="post-toc-number">1.</span> <span class="post-toc-text">Qt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Python"><span class="post-toc-number">2.</span> <span class="post-toc-text">Python</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#moviepy进度展示"><span class="post-toc-number">3.</span> <span class="post-toc-text">moviepy进度展示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pyinstaller打包"><span class="post-toc-number">4.</span> <span class="post-toc-text">pyinstaller打包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欢迎交流"><span class="post-toc-number">6.</span> <span class="post-toc-text">欢迎交流</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-f55a64a4c621198d8c81fbe973703240"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">我用Qt和Python开发了一个视频合并工具</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python/">Python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>想合并视频，但是却找不到比较好用的工具，很多都要收费，我想着「这破功能还得收费？」，于是决定自己搞一个，一开始用Python做了一个，效果还不错，完美完成了我的视频合并任务，不过没有图形界面，想分享给朋友一起用也没办法，于是昨天用Qt写了个图形界面套上去，中间还是遇到一些问题的，通过这篇文章记录一下。</p>
+<p>软件的界面就是这样啦，用Qt Designer随便拖出来的，和VS拖控件也差不了多少。<br>用起来挺方便的，我已经传到网盘了，有需要的同学可以在公众号后台回复「视频合并」直接获取下载链接。</p>
+<img src="/posts/121bbe5c6e9957ed/8869373-9ce46c92f1bde75e.png" class="">
+
+<h2 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h2><p>首先是Qt，要开发GUI的话（我当然要求跨平台），现在好像选择也不是很多，electron这种就算了，系统调用太麻烦，不然还是可以考虑，毕竟谁还不会点前端是吧，.Net也不考虑了，没有成熟的跨平台GUI库，Flutter的Desktop还处于Preview阶段，pass掉，数来数去也就Qt上得了台面了。于是就Qt咯。</p>
+<p>前段时间准备面试的时候学了一下C++和Qt，正好拿来用用，不过我的视频操作库是Python的，要我C++操作ffmpeg？no，我选择PyQt，不过PyQt5现在几乎没啥中文资料，咋办嘞，之前找到一本书，少有的PyQt5教材，只不过排版很差，我看了差不多一天，给所有章节加上了书签，也熟悉了一下Python的Qt绑定，使用上和C++差不多，只不过不用自己释放对象了，很舒服，但是又由于Python动态类型，有些不熟悉的API用起来又不是那么顺手了，好在我具有多年Python经验，对着pydoc还是可以搞出来。</p>
+<p>关于这书的下次再写一篇博客专门说好了，有些地方记录一下也不错。</p>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>Python语言设计得还可以，库也是真的多，我想合并视频，立刻就找到一个视频编辑库，moviepy，这个库不单可以合并视频，还可以剪切，加转场效果，调大小等多种操作，很不错，稍加利用就可以开发一个视频编辑工具了。</p>
+<p>我来贴一下合并视频的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProcThread</span><span class="params">(QThread)</span>:</span></span><br><span class="line">    progress = pyqtSignal(int)</span><br><span class="line">    message = pyqtSignal(str)</span><br><span class="line">    finished = pyqtSignal()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, videos: list, output_path=<span class="string">''</span>, parent=None)</span>:</span></span><br><span class="line">        super(ProcThread, self).__init__(parent)</span><br><span class="line">        self.videos = []</span><br><span class="line">        self.output_path = output_path</span><br><span class="line">        <span class="keyword">for</span> video_file <span class="keyword">in</span> videos:</span><br><span class="line">            print(video_file)</span><br><span class="line">            self.videos.append(VideoFileClip(video_file))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        final_clip = concatenate_videoclips(self.videos)</span><br><span class="line">        my_logger = MyBarLogger(self.message, self.progress)</span><br><span class="line">        final_clip.write_videofile(self.output_path, logger=my_logger)</span><br><span class="line">        self.finished.emit()</span><br></pre></td></tr></table></figure>
+
+<p>这里用了线程，Qt里面的线程类QThread，这样在处理视频的时候界面不会卡主，同时自己定义了几号信号，利用Qt的信号与槽的机制给GUI主线程反馈进度和完成情况。</p>
+<p>这部分很简单啦，顺便贴一下信号和槽连接的代码（省略了一些代码）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.thread.message.connect(self.thread_message)</span><br><span class="line">    self.thread.progress.connect(self.thread_progress)</span><br><span class="line">    self.thread.finished.connect(self.thread_finished)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_message</span><span class="params">(self, value)</span>:</span></span><br><span class="line">    self.statusBar.showMessage(value)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_progress</span><span class="params">(self, value)</span>:</span></span><br><span class="line">    self.progressBar.setValue(value)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_finished</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.btn_start.setEnabled(<span class="literal">True</span>)</span><br><span class="line">    QMessageBox.information(self, <span class="string">'处理完成'</span>, <span class="string">'操作完成'</span>, QMessageBox.Yes)</span><br></pre></td></tr></table></figure>
+
+<p>这部分很简单没什么好说的，接下来说一下几个坑。</p>
+<h2 id="moviepy进度展示"><a href="#moviepy进度展示" class="headerlink" title="moviepy进度展示"></a>moviepy进度展示</h2><p>moviepy处理视频本来是输出在控制台的，那么进度也是在控制台输出的，但是我这写了图形界面啊，我得让他的进度输出在进度条上面才行，一开始没有思路，只好谷歌搜一下。</p>
+<p>搜到一个github的issue，和我一样的需求，他要写GUI，需要获取处理视频的进度，定制进度条输出，如图：</p>
+<img src="/posts/121bbe5c6e9957ed/8869373-047a0bb28ed95736.png" class="">
+
+<p>然后我就看了下面人的回复，这个问题最早是2015年提出的，到17年还有人跟进，看来这个问题还没解决，终于最后有人提出使用proglog替换掉moviepy原本的进度库，问题终于能解决了，如图：</p>
+<img src="/posts/121bbe5c6e9957ed/8869373-4725722c99866d2c.png" class="">
+
+<p>然后2019年有人贴了另一个issue，本issue被开发团队关闭。</p>
+<p>新issue是这样：</p>
+<img src="/posts/121bbe5c6e9957ed/8869373-ecf41e1ef8231832.png" class="">
+
+<p>就是说虽然换了proglog，但是没文档啊，这咋搞？我看了一眼，这个proglog确实文档很少，有点坑。</p>
+<p>不过下面还是有人贴了地址，是proglog项目的地址，点进去看看。<br><a href="https://github.com/Edinburgh-Genome-Foundry/Proglog" target="_blank" rel="noopener">https://github.com/Edinburgh-Genome-Foundry/Proglog</a></p>
+<p>嗯，找到自定义回调函数的地方了：</p>
+<img src="/posts/121bbe5c6e9957ed/8869373-884047d6791563b8.png" class="">
+
+<p>看来按这个写就好了，但是坑人啊，我试了一下，这样只会输出message，就是说进行到哪一步了，没输出进度啊，这作者坑人。</p>
+<p>但是进度明明是有的，于是只能调试程序的时候打断点跟踪了，过程我就不放了，反正打断点的时候发现，ProgressBarLogger类有个state属性，看介绍是这样：</p>
+<blockquote>
+<p>Instance attribute state of proglog.proglog.ProgressLogger</p>
+</blockquote>
+<p>看了一下里面的内容，有个bars字段，拿出来看，是个OrderedDict对象，之前我没接触过这个数据结构，有点懵，其实它就是个排好序的dict，要遍历着实费劲，搞了半天（也有可能是熬夜写代码头脑不灵活）才弄好。</p>
+<p>moviepy更新进度的时候，就是在这个state[“bars”]里面传，一个任务一个dict，这个dict里面包含title、index、total等字段，total就是工作量了，index就是现在进行到哪，到这问题就OK啦，我拿index和total一除再乘以100不就是百分比了吗？这不就完事了，然后我再把线程的信号一传，实时显示进度，完美~！</p>
+<p>贴一下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyBarLogger</span><span class="params">(ProgressBarLogger)</span>:</span></span><br><span class="line">    actions_list = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, message, progress)</span>:</span></span><br><span class="line">        self.message = message</span><br><span class="line">        self.progress = progress</span><br><span class="line">        super(MyBarLogger, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(self, **changes)</span>:</span></span><br><span class="line">        bars = self.state.get(<span class="string">'bars'</span>)</span><br><span class="line">        index = len(bars.values()) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> index &gt; <span class="number">-1</span>:</span><br><span class="line">            bar = list(bars.values())[index]</span><br><span class="line">            progress = int(bar[<span class="string">'index'</span>] / bar[<span class="string">'total'</span>] * <span class="number">100</span>)</span><br><span class="line">            self.progress.emit(progress)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'message'</span> <span class="keyword">in</span> changes: self.message.emit(changes[<span class="string">'message'</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="pyinstaller打包"><a href="#pyinstaller打包" class="headerlink" title="pyinstaller打包"></a>pyinstaller打包</h2><p>本来没什么好说的，但是打包完也太大了吧，600+m，这谁顶得住，而且打包过程还出错。<br>第一次出错是：</p>
+<blockquote>
+<p>RecursionError: maximum recursion depth exceeded</p>
+</blockquote>
+<p>就是超出python的最大递归深度，这没办法，可能包太多了，目录太深入，解决办法是调整递归深度上限。</p>
+<p>执行 pyinstaller，会生成 filename.spec文件，在这个 filename.spec 文件开头添加代码，把递归深度调到10w：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.setrecursionlimit(<span class="number">100000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>解决了问题，然后第二个问题来了，由于我代码里面用了中文，但是Windows的cmd默认不是utf-8的，报了这个错：</p>
+<blockquote>
+<p>UnicodeDecodeError: ‘utf-8’ codec can’t decode byte 0xce in position 130: invalid continuation b</p>
+</blockquote>
+<p>解决方法是：</p>
+<ol>
+<li>换Linux（误）</li>
+<li>改变控制台编码（临时）：使用命令 chcp 65001</li>
+</ol>
+<p>这样就完成了。</p>
+<p>还有一点，单文件打包出来600多m，太大了无法运行，所以还是不要打包单文件的，这样大小虽然有1G多，但是用7z压缩一下就200多m，还可以接受，hhh。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>PyQt勉强可以开发吧，和C#这些那没得比，但是跨平台还是不错的，就是打包之后太大了。</p>
+<p>相关代码已经开源：<a href="https://github.com/Deali-Axy/VideoMerge" target="_blank" rel="noopener">https://github.com/Deali-Axy/VideoMerge</a></p>
+<h2 id="欢迎交流"><a href="#欢迎交流" class="headerlink" title="欢迎交流"></a>欢迎交流</h2><p>交流问题请在微信公众号后台留言，每一条信息我都会回复哈~</p>
+<ul>
+<li>微信公众号：画星星高手</li>
+<li>打代码直播间：<a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener">https://live.bilibili.com/11883038</a></li>
+<li>知乎：<a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener">https://www.zhihu.com/people/dealiaxy</a></li>
+<li>简书：<a href="https://www.jianshu.com/u/965b95853b9f" target="_blank" rel="noopener">https://www.jianshu.com/u/965b95853b9f</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.964Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%88%E5%B9%B6/" rel="tag">合并</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html&title=《我用Qt和Python开发了一个视频合并工具》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html&title=《我用Qt和Python开发了一个视频合并工具》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/121bbe5c6e9957ed.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我用Qt和Python开发了一个视频合并工具》 — 画星星高手&url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/4ac21801fe062a8f.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">你可能不知道的Linux死机重启方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/b2d6b38519a28cc1.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【VB超简单入门】二、知识准备</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html&title=《我用Qt和Python开发了一个视频合并工具》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html&title=《我用Qt和Python开发了一个视频合并工具》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/121bbe5c6e9957ed.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我用Qt和Python开发了一个视频合并工具》 — 画星星高手&url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/121bbe5c6e9957ed.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aW47DIBAEwNz/0tkDRHa6gaxkKL4iLetQjjSaB69XvN4f6/OvV/vbPZ87ly0MDIzHMt63K99z9eT7I96Di+/FwMA4gJEcYj4053EyPxsGBgZGEjrvD50klMlnDAwMjDbgjhWlLRgDAwOjLWLbQDwWQH9ei2NgYDyQkZem///5J/MNDAyMRzHe5WoTvpnUsDgVBgbG1ow8wCVDzZkBQFJUf2nhYWBgbMpoQ+TYVYx2JFBfFMPAwNiaMXZJIgEk++eL5Kh3iIGB8XBGXSiW8a1NBNtQi4GBcQ4jLyDbNC5vw7WvBgMD4zTG/fhw7PJE1Ocrm2t1LxADA2MLxqqWfR5828BdnAcDA+MAxtpAOVaOjg1EMTAw9maMXXdohwF5kM3Hq9HvgIGBsQVjLL1Litj8oO0r+PKiMTAwDmDklyrGRpWryuBLDAYGxnaMmQHkTCs/v3hRN9owMDC2Y8y0w8ZCZzsqqCtyDAyMTRl58Tl2uHw8OVMSY2Bg7M2YedyqlDG/6np5TgwMjAMYeRk5kxS2e5L/wsDAOIeRX8maTxPrjLWtxTEwMDZiLAt2cehM3mvbnsPAwNibka+ZcJkPJpNUtS2bMTAw9mDkQTb/snbkmQfiaDCAgYGxKSMPfHnpmzTsxornL11DDAyM4xktKS+Gp8pUDAwMjLIOzhPN+UYeBgbGOYx2GLA2dI618DAwMM5h/O5qRfuEtVQMDIwtGH/tA7JQgfdDnwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>梦想家装平台开发记录，Asp-Net-Core上手实践 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="开发,记录,家装,上手,梦想,实践,平台">
+    <meta name="description" content="DreamingHomeDreaming Home 梦想家，家装平台 EF Core概念 Model: 数据模型，一个普通的C#类 DbContext: 与数据库沟通的桥梁，一个数据库对应一个DbContext  注册EF Core服务12services.AddEntityFrameworkSqlite()    .AddDbContext&lt;MainContext&gt;(options">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梦想家装平台开发记录，Asp-Net-Core上手实践">
+<meta property="og:url" content="http://blog.deali.cn/posts/08698edee1f26e06.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="DreamingHomeDreaming Home 梦想家，家装平台 EF Core概念 Model: 数据模型，一个普通的C#类 DbContext: 与数据库沟通的桥梁，一个数据库对应一个DbContext  注册EF Core服务12services.AddEntityFrameworkSqlite()    .AddDbContext&lt;MainContext&gt;(options">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/08698edee1f26e06/8869373-f92d18589ff932c2.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.832Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="记录">
+<meta property="article:tag" content="家装">
+<meta property="article:tag" content="上手">
+<meta property="article:tag" content="梦想">
+<meta property="article:tag" content="实践">
+<meta property="article:tag" content="平台">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/08698edee1f26e06/8869373-f92d18589ff932c2.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">梦想家装平台开发记录，Asp-Net-Core上手实践</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">梦想家装平台开发记录，Asp-Net-Core上手实践</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#DreamingHome"><span class="post-toc-number">1.</span> <span class="post-toc-text">DreamingHome</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#EF-Core概念"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">EF Core概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注册EF-Core服务"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">注册EF Core服务</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库上下文-DbContext"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数据库上下文 DbContext</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库迁移"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">数据库迁移</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引入Swagger支持"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">引入Swagger支持</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装依赖"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">安装依赖</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置中间件"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">配置中间件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动测试"><span class="post-toc-number">1.5.3.</span> <span class="post-toc-text">启动测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意"><span class="post-toc-number">1.5.4.</span> <span class="post-toc-text">注意</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义以及扩展"><span class="post-toc-number">1.5.5.</span> <span class="post-toc-text">自定义以及扩展</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.5.6.</span> <span class="post-toc-text">小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#描述响应类型"><span class="post-toc-number">1.5.7.</span> <span class="post-toc-text">描述响应类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行效果"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">运行效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欢迎交流"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">欢迎交流</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-8bd16602995274608d773b31e187f621"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">梦想家装平台开发记录，Asp-Net-Core上手实践</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="DreamingHome"><a href="#DreamingHome" class="headerlink" title="DreamingHome"></a>DreamingHome</h1><p>Dreaming Home 梦想家，家装平台</p>
+<h2 id="EF-Core概念"><a href="#EF-Core概念" class="headerlink" title="EF Core概念"></a>EF Core概念</h2><ul>
+<li><code>Model</code>: 数据模型，一个普通的C#类</li>
+<li><code>DbContext</code>: 与数据库沟通的桥梁，一个数据库对应一个<code>DbContext</code></li>
+</ul>
+<h2 id="注册EF-Core服务"><a href="#注册EF-Core服务" class="headerlink" title="注册EF Core服务"></a>注册<code>EF Core</code>服务</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">services.AddEntityFrameworkSqlite()</span><br><span class="line">    .AddDbContext&lt;MainContext&gt;(options =&gt; options.UseSqlite(Configuration[<span class="string">"database:connection"</span>]));</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库上下文-DbContext"><a href="#数据库上下文-DbContext" class="headerlink" title="数据库上下文 DbContext"></a>数据库上下文 <code>DbContext</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class MainContext : DbContext</span><br><span class="line">&#123;</span><br><span class="line">    public <span class="function"><span class="title">MainContext</span></span>() &#123; &#125;</span><br><span class="line">    public MainContext(DbContextOptions&lt;MainContext&gt; options) : base(options) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)</span><br><span class="line">    &#123;</span><br><span class="line">        var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile(<span class="string">"appsettings.json"</span>);</span><br><span class="line">        var configuration = builder.Build();</span><br><span class="line">        optionsBuilder.UseSqlite(configuration[<span class="string">"database:connection"</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我遇到一个很奇怪的问题，单纯在<code>Startup.cs</code>里面注册EFCore根本不行，运行的时候老是提示我<code>No database provider</code>，只能在<code>DbContext</code>里面再重写这个<code>OnConfiguring</code>，重新配置一遍数据库= =…</p>
+<h2 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h2><p>创建数据库迁移：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet ef migrations add InitialCreate -v</span><br></pre></td></tr></table></figure>
+
+<p>查看状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet ef migrations list</span><br></pre></td></tr></table></figure>
+
+<p>应用迁移来更新数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet ef database update -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="引入Swagger支持"><a href="#引入Swagger支持" class="headerlink" title="引入Swagger支持"></a>引入Swagger支持</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install-Package Swashbuckle.AspNetCore</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置中间件"><a href="#配置中间件" class="headerlink" title="配置中间件"></a>配置中间件</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Swashbuckle.AspNetCore.Swagger;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在Startup.ConfigureServices中配置服务</span></span><br><span class="line">services.AddSwaggerGen(c =&gt; &#123; c.SwaggerDoc(<span class="string">"v1"</span>, <span class="keyword">new</span> OpenApiInfo &#123;Title = <span class="string">"My Api"</span>, Version = <span class="string">"v1"</span>&#125;); &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在Startup.Configure中配置中间件</span></span><br><span class="line">app.UseSwagger();</span><br><span class="line">app.UseSwaggerUI(c =&gt; &#123; c.SwaggerEndpoint(<span class="string">"/swagger/v1/swagger.json"</span>, <span class="string">"My API V1"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>把应用的根路径设置为<code>Swagger UI</code>，如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.UseSwaggerUI(c =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    c.SwaggerEndpoint(<span class="string">"/swagger/v1/swagger.json"</span>, <span class="string">"My API V1"</span>);</span><br><span class="line">    c.RoutePrefix = <span class="keyword">string</span>.Empty;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h3><p>启动应用，并导航到<code>http://localhost:&lt;port&gt;/swagger/v1/swagger.json</code>，生成的描述终结点的文档显示如下json格式。</p>
+<p>可在 <code>http://localhost:&lt;port&gt;/swagger</code> 找到 Swagger UI。 通过 Swagger UI 浏览 API文档。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>每一个<code>Controller</code>的方法都需要标注出具体的<code>Http</code>方法，不然会报错</li>
+<li><code>Swagger</code>会自动读取每个接口函数的C#文档，但是前提是要生成xml文档才可以</li>
+</ul>
+<h3 id="自定义以及扩展"><a href="#自定义以及扩展" class="headerlink" title="自定义以及扩展"></a>自定义以及扩展</h3><p>修改之前配置的Swagger服务：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">services.AddSwaggerGen(c =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    c.SwaggerDoc(<span class="string">"v1"</span>,</span><br><span class="line">        info: <span class="keyword">new</span> OpenApiInfo</span><br><span class="line">        &#123;</span><br><span class="line">            Version = <span class="string">"v1"</span>,</span><br><span class="line">            Title = <span class="string">"Dreaming Home 智能家装平台"</span>,</span><br><span class="line">            Description = <span class="string">"智能家装平台 Api 文档"</span>,</span><br><span class="line">            TermsOfService = <span class="keyword">new</span> Uri(<span class="string">"http://blog.deali.cn"</span>),</span><br><span class="line">            Contact = <span class="keyword">new</span> OpenApiContact</span><br><span class="line">            &#123;</span><br><span class="line">                Name = <span class="string">"DealiAxy"</span>,</span><br><span class="line">                Email = <span class="string">"dealiaxy@gmail.com"</span>,</span><br><span class="line">                Url = <span class="keyword">new</span> Uri(<span class="string">"https://zhuanlan.zhihu.com/deali"</span>),</span><br><span class="line">            &#125;,</span><br><span class="line">            License = <span class="keyword">new</span> OpenApiLicense</span><br><span class="line">            &#123;</span><br><span class="line">                Name = <span class="string">"GNU GENERAL PUBLIC LICENSE Version 2"</span>,</span><br><span class="line">                Url = <span class="keyword">new</span> Uri(<span class="string">"https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"</span>),</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>显示接口的xml文档要先生成，然后在<code>services.AddSwaggerGen</code>里面设置才行。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为 Swagger JSON and UI设置xml文档注释路径</span></span><br><span class="line"><span class="comment">//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）</span></span><br><span class="line"><span class="keyword">var</span> basePath = Path.GetDirectoryName(<span class="keyword">typeof</span>(Program).Assembly.Location);</span><br><span class="line"><span class="keyword">var</span> xmlPath = Path.Combine(basePath, <span class="string">"Doc"</span>, <span class="string">"DreamingHome.xml"</span>);</span><br><span class="line">c.IncludeXmlComments(xmlPath);</span><br></pre></td></tr></table></figure>
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过上面的操作可以总结出，Swagger UI 显示上述注释代码的 <code>&lt;summary&gt;</code> 元素的内部文本作为api大的注释！</p>
+<p>当然你还可以将 remarks 元素添加到 <code>Get</code> 操作方法文档。 它可以补充 <code>&lt;summary&gt;</code> 元素中指定的信息，并提供更可靠的 Swagger UI。 <code>&lt;remarks&gt;</code> 元素内容可包含文本、JSON 或 XML。 代码如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 这是一个带参数的get请求</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;remarks&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 例子:</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Get api/Values/1</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/remarks&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="id"&gt;</span>主键<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>测试字符串<span class="doctag">&lt;/returns&gt;</span>          </span></span><br><span class="line">[<span class="meta">HttpGet(<span class="meta-string">"&#123;id&#125;"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> ActionResult&lt;<span class="keyword">string</span>&gt; <span class="title">Get</span>(<span class="params"><span class="keyword">int</span> id</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">$"你请求的 id 是 <span class="subst">&#123;id&#125;</span>"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="描述响应类型"><a href="#描述响应类型" class="headerlink" title="描述响应类型"></a>描述响应类型</h3><blockquote>
+<p>摘录自：<a href="https://www.cnblogs.com/yanbigfeg/p/9232844.html" target="_blank" rel="noopener">https://www.cnblogs.com/yanbigfeg/p/9232844.html</a></p>
+</blockquote>
+<p>接口使用者最关心的就是接口的返回内容和响应类型啦。下面展示一下201和400状态码的一个简单例子：</p>
+<p>我们需要在我们的方法上添加：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ProducesResponseType(201)</span>]</span><br><span class="line">[<span class="meta">ProducesResponseType(400)</span>]</span><br></pre></td></tr></table></figure>
+
+<p>然后添加相应的状态说明：返回value字符串如果id为空</p>
+<p>最终代码应该是这个样子：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> 这是一个带参数的get请求</span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;remarks&gt;</span></span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> 例子:</span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> Get api/Values/1</span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/remarks&gt;</span></span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="id"&gt;</span>主键<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>测试字符串<span class="doctag">&lt;/returns&gt;</span> </span></span><br><span class="line"> <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;response code="201"&gt;</span>返回value字符串<span class="doctag">&lt;/response&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;response code="400"&gt;</span>如果id为空<span class="doctag">&lt;/response&gt;</span>  </span></span><br><span class="line"> <span class="comment">// GET api/values/2</span></span><br><span class="line">[<span class="meta">HttpGet(<span class="meta-string">"&#123;id&#125;"</span>)</span>]</span><br><span class="line">[<span class="meta">ProducesResponseType(201)</span>]</span><br><span class="line">[<span class="meta">ProducesResponseType(400)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> ActionResult&lt;<span class="keyword">string</span>&gt; <span class="title">Get</span>(<span class="params"><span class="keyword">int</span> id</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="string">$"你请求的 id 是 <span class="subst">&#123;id&#125;</span>"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h2><img src="/posts/08698edee1f26e06/8869373-f92d18589ff932c2.png" class="">
+
+
+<h2 id="欢迎交流"><a href="#欢迎交流" class="headerlink" title="欢迎交流"></a>欢迎交流</h2><p>交流问题请在微信公众号后台留言，每一条信息我都会回复哈~</p>
+<ul>
+<li>微信公众号：画星星高手</li>
+<li>打代码直播间：<a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener">https://live.bilibili.com/11883038</a></li>
+<li>知乎：<a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener">https://www.zhihu.com/people/dealiaxy</a></li>
+<li>简书：<a href="https://www.jianshu.com/u/965b95853b9f" target="_blank" rel="noopener">https://www.jianshu.com/u/965b95853b9f</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.832Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8A%E6%89%8B/" rel="tag">上手</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E8%B7%B5/" rel="tag">实践</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%B6%E8%A3%85/" rel="tag">家装</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B3%E5%8F%B0/" rel="tag">平台</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A2%A6%E6%83%B3/" rel="tag">梦想</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/08698edee1f26e06.html&title=《梦想家装平台开发记录，Asp-Net-Core上手实践》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/08698edee1f26e06.html&title=《梦想家装平台开发记录，Asp-Net-Core上手实践》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/08698edee1f26e06.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《梦想家装平台开发记录，Asp-Net-Core上手实践》 — 画星星高手&url=http://blog.deali.cn/posts/08698edee1f26e06.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/08698edee1f26e06.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/11e6fd287559dfc0.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">一加3升级Android9-0的刷机折腾之路</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/21d2f8a511e8c64f.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Spring-Boot：创建第一个应用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/08698edee1f26e06.html&title=《梦想家装平台开发记录，Asp-Net-Core上手实践》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/08698edee1f26e06.html&title=《梦想家装平台开发记录，Asp-Net-Core上手实践》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/08698edee1f26e06.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《梦想家装平台开发记录，Asp-Net-Core上手实践》 — 画星星高手&url=http://blog.deali.cn/posts/08698edee1f26e06.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/08698edee1f26e06.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHElEQVR42u3aMZaDMAwFwNz/0my7RYAviRTY42pfloAmhZAsfz7xOk5Wcv3/T5Jrru88WhgYGK9lHJcreUDy+dkdrsFJbBgYGPswkiCS4K6TbDWVF344DAwMjEep1e9iYGBgTBjVpjQpMTEwMDAmTWyC/0XifrgXx8DAeCFjEsqv//7JfAMDA+NVjKO4eptlvdKwEBUGBsbSjKca1Lz4y3+aajwYGBirMvJ0mQeXfLc6EL1poTEwMJZmXG+l5Ycq5oOBXiq/eW9gYGAsxJiUdElizQvBvNDEwMDYhzHZms8Hn0lqzvFf4sTAwNiA0SsBq9tkhXa0ugGHgYGxAWPy3+rG2bNbbF/eGxgYGFsyrlvWXqCTF8DpCBMDA2NRRvL4aljVrf+8AL3ZvMPAwFiaMWk784SYb7r1PsHAwFiVkR9rmGzP9dJ0ISljYGBswJi3oJPrq2n6phfHwMBYlDE5MPrUgdRR4sbAwFiakTyyd1ysN1qoNskYGBi7MZJb9x6ZF4W91hcDA2M3Rn6LPEHn14yGChgYGJsx8jTXu3JSdJ6+GDAwMBZlHMVVHT3m5WZ1ey7yYWBgLMHIV056dsA5GaxiYGCsxMhbzep4sodvjlQxMDA2YPQSXy+7T94A0WELDAwMjGKTWR0JNFtWDAwMjOJhiHmhmZePGBgY+zCqxyZ6Qec5s1xQYmBgLM149gHVIPIk+3D5iIGB8Q7GHy/WIuDz/I03AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

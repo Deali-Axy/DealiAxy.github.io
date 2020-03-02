@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>该死的应用闪退，终于解决error-while-inflating-CardView | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="解决,AR,应用,闪退,该死">
+    <meta name="description" content="前言（先来一个微笑脸）这个问题已经困扰我好久了，之前各种搜索无果，得到的解决方案无非就是 AppCompact 和 CardView 包的版本不一样云云，然而我根本没有这个问题。（怕是不把我Gradle看在眼里？） 问题 就是这么个界面，用到了RecycleView和Cardview，但是在SDK 23以下都不行，官方已经写明这个组件是支持到SDK9还是10的，反正基本是个android手机就可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="该死的应用闪退，终于解决error-while-inflating-CardView">
+<meta property="og:url" content="http://blog.deali.cn/posts/56c89f21e1526eda.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言（先来一个微笑脸）这个问题已经困扰我好久了，之前各种搜索无果，得到的解决方案无非就是 AppCompact 和 CardView 包的版本不一样云云，然而我根本没有这个问题。（怕是不把我Gradle看在眼里？） 问题 就是这么个界面，用到了RecycleView和Cardview，但是在SDK 23以下都不行，官方已经写明这个组件是支持到SDK9还是10的，反正基本是个android手机就可以">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/56c89f21e1526eda/8869373-198a79198c023179.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/56c89f21e1526eda/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.880Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="解决">
+<meta property="article:tag" content="AR">
+<meta property="article:tag" content="应用">
+<meta property="article:tag" content="闪退">
+<meta property="article:tag" content="该死">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/56c89f21e1526eda/8869373-198a79198c023179.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">该死的应用闪退，终于解决error-while-inflating-CardView</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">该死的应用闪退，终于解决error-while-inflating-CardView</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">解决</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">4.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-984db13425dc24e7bb5ab44f93540ee7"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">该死的应用闪退，终于解决error-while-inflating-CardView</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>（先来一个微笑脸）这个问题已经困扰我好久了，之前各种搜索无果，得到的解决方案无非就是 <code>AppCompact</code> 和 <code>CardView</code> 包的版本不一样云云，然而我根本没有这个问题。（怕是不把我Gradle看在眼里？）</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><img src="/posts/56c89f21e1526eda/8869373-198a79198c023179.png" class="">
+<p>就是这么个界面，用到了RecycleView和Cardview，但是在SDK 23以下都不行，官方已经写明这个组件是支持到SDK9还是10的，反正基本是个android手机就可以，然而，它就是不行，在SDK24以上都没问题，我自己用的手机都没问题，就是在模拟器上和几个旧版本的测试机，都闪退了。<br>我真的想掐死这个Cardview。。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>今天晚上花了两个小时在查资料上，翻了Google的官方文档，下载了几个官方Samples，然而并没有发现什么有价值的解决方案，然后继续在Stack Overflow上搜索，Stack Overflow真的是程序员居家出行必备的好帮手，最后终于功夫不负有心人，找到了和我一样遇到相同问题的网友。</p>
+<p>具有参考意义的是这两个回答：</p>
+<p><a href="https://stackoverflow.com/questions/38132148/error-while-inflating-class-android-support-v7-widget-cardview" target="_blank" rel="noopener">https://stackoverflow.com/questions/38132148/error-while-inflating-class-android-support-v7-widget-cardview</a></p>
+<blockquote>
+<p>Try this it will help you remove this android:foreground=”?android:attr/selectableItemBackground”</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:card_view</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:paddingLeft</span>=<span class="string">"4dp"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:paddingRight</span>=<span class="string">"4dp"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:paddingBottom</span>=<span class="string">"2dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.CardView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/cardview"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">card_view:cardBackgroundColor</span>=<span class="string">"@android:color/white"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">card_view:cardElevation</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">card_view:cardMaxElevation</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">card_view:cardUseCompatPadding</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">....here i have a bunch of other layout elements</span><br><span class="line">         <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.v7.widget.CardView</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个回答让我把 android:foreground 删掉，我照着删掉了，但是还是不行，但是确实SDK 23以下用这个有兼容性问题。</p>
+<p>然后是这个：<br><a href="https://stackoverflow.com/questions/28541920/error-when-inflating-cardview" target="_blank" rel="noopener">https://stackoverflow.com/questions/28541920/error-when-inflating-cardview</a></p>
+<blockquote>
+<p>From the official notes of <a href="http://android-developers.blogspot.be/2014/10/appcompat-v21-material-design-for-pre.html" target="_blank" rel="noopener">appcompat v21</a></p>
+</blockquote>
+<p>他让我去看一下官方文档：</p>
+<blockquote>
+<p>Why are there no ripples on pre-Lollipop? A lot of what allows RippleDrawable to run smoothly is Android 5.0’s new RenderThread. To optimize for performance on previous versions of Android, we’ve left RippleDrawable out for now.</p>
+</blockquote>
+<p>When trying to use ripple-drawables, you get errors on pre-lollipop (that’s why it says line 2, it’s the xml drawable). Use a different folder (drawable-v21) for ripples and use selectors in your normal drawables if you want a difference for different states.</p>
+<p>Official support is not coming soon, I believe, because lollipop has a dedicated render-thread that no other version has.</p>
+<p>意思就是 <code>android:stateListAnimator=&quot;@drawable/selector_elevation&quot;</code>这个不行，在旧版本的系统上不支持。。<br>然后还是新的支持coming soon？我不信。</p>
+<p>所以最后，我把这两行代码都删掉了，感人的一幕出现了，终于可以了<del>~</del><br>删掉的代码，shit！</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">android:stateListAnimator="@drawable/selector_elevation"</span><br><span class="line">android:foreground="?android:attr/selectableItemBackground"</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/56c89f21e1526eda/8869373-901590e019f6f85b.png" class="">
+
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.880Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR/" rel="tag">AR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BA%94%E7%94%A8/" rel="tag">应用</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%A3%E5%86%B3/" rel="tag">解决</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%A5%E6%AD%BB/" rel="tag">该死</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AA%E9%80%80/" rel="tag">闪退</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/56c89f21e1526eda.html&title=《该死的应用闪退，终于解决error-while-inflating-CardView》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/56c89f21e1526eda.html&title=《该死的应用闪退，终于解决error-while-inflating-CardView》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/56c89f21e1526eda.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《该死的应用闪退，终于解决error-while-inflating-CardView》 — 画星星高手&url=http://blog.deali.cn/posts/56c89f21e1526eda.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/56c89f21e1526eda.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/439a402881696521.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Config-Software-mirrors-source-for-OpenSuSE-42-3</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/f3573101022adff3.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Debian8-stable-升级Python版本到3-6</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/56c89f21e1526eda.html&title=《该死的应用闪退，终于解决error-while-inflating-CardView》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/56c89f21e1526eda.html&title=《该死的应用闪退，终于解决error-while-inflating-CardView》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/56c89f21e1526eda.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《该死的应用闪退，终于解决error-while-inflating-CardView》 — 画星星高手&url=http://blog.deali.cn/posts/56c89f21e1526eda.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/56c89f21e1526eda.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHElEQVR42u3awW7DIBAE0Pz/T6fXVlWdGTapZHicosjCfhxGsMvjEY/nt3H9zO/nr8dfzz8+MTAwMG7LyF+Tv/L6Q6/nyZcDAwPjNEYSoNdT59GcLGL+bRgYGBjXjDy489kwMDAwJozrF7TbwXxDiYGBgTEph+X/TH6/+SyOgYFxQ0Z+1Pz/3x/pb2BgYNyK8SzH2qYwbyo8lwYGBsbejLUWZn28DBoAa5c8MDAwTmC0YdoWy1rwGhIDA2NvxiQ61xjtM0UbFQMD4wBGW+JfK+63Lc8oajEwMLZmtFe1Ru3DOFjb9ioGBsYJjPyiw9pWbxKv0fJhYGAcwHhvuT9foHnb8kfVEAMDY1NGfhxNXtxGdr4ExdUxDAyMTRl5XLaFs7w90EY/BgbGaYz5Fa5J0s9bnhgYGCcw8qNmW+PKt49tSQ4DA+McRvKheWi2VyWSN0YNUQwMjK0Z7UZwEql57C5SMTAwtmbMJ1prXraH5+iiBgYGxqaM9pVJkyDazI3bABgYGKcx1i54Xc/w3vGCh4GBsTVjvr2bNDjz4lrUg8XAwNiOMYm8fJuYz5CX5zAwMM5htDHXflBR7Vu6/FHDMDAwbstIQjY/WLaRmi/Zi/DFwMA4gNEea/Oj7zyC60IbBgYGxiBeE9LiHhYDAwOjbCi2bYB8BgwMjJMZ7SG2bWGuBfrHy20YGBg3YaztuyYXMvI2Q942wMDA2JTxBep7zFINPrBcAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

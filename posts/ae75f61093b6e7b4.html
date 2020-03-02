@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Apache-Commons-IO-最佳实践 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="运维,实践">
+    <meta name="description" content="本文列举了Java输入输出部分（IO area）的大量“最佳实践”（best practices）。 java.io.File通常你需要去处理文件或文件名时，有许多会出错的情况：  一个类可在Unix运行但不能在Windows运行，反之亦然。 由于双路径分隔符（path separator）或缺失路径分隔符（path separator）导致文件名无效。 (在Windows上的)符合通用命名标准（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache-Commons-IO-最佳实践">
+<meta property="og:url" content="http://blog.deali.cn/posts/ae75f61093b6e7b4.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="本文列举了Java输入输出部分（IO area）的大量“最佳实践”（best practices）。 java.io.File通常你需要去处理文件或文件名时，有许多会出错的情况：  一个类可在Unix运行但不能在Windows运行，反之亦然。 由于双路径分隔符（path separator）或缺失路径分隔符（path separator）导致文件名无效。 (在Windows上的)符合通用命名标准（">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/ae75f61093b6e7b4/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.904Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="运维">
+<meta property="article:tag" content="实践">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/ae75f61093b6e7b4/8869373-901590e019f6f85b.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Apache-Commons-IO-最佳实践</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Apache-Commons-IO-最佳实践</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#java-io-File"><span class="post-toc-number">1.</span> <span class="post-toc-text">java.io.File</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入输出流缓冲（Buffering-streams）"><span class="post-toc-number">2.</span> <span class="post-toc-text">输入输出流缓冲（Buffering streams）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">3.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-b9dc62668e1dace7e1ccdffc2883ed11"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Apache-Commons-IO-最佳实践</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文列举了Java输入输出部分（IO area）的大量“最佳实践”（best practices）。</p>
+<h2 id="java-io-File"><a href="#java-io-File" class="headerlink" title="java.io.File"></a>java.io.File</h2><p>通常你需要去处理文件或文件名时，有许多会出错的情况：</p>
+<ul>
+<li>一个类可在Unix运行但不能在Windows运行，反之亦然。</li>
+<li>由于双路径分隔符（<code>path separator</code>）或缺失路径分隔符（<code>path separator</code>）导致文件名无效。</li>
+<li>(在Windows上的)符合通用命名标准（<code>UNC</code>）的文件名无法在开发人员开发的（<code>home-grown</code>）工具方法中运行</li>
+<li>等等</li>
+</ul>
+<p>上述是字符串（<code>String</code>）文件名不运行的准确原因。使用java.io.File类代为处理上述情况将更合适。因此我们的最佳实践（<code>best practice</code>）推荐使用java.io.File类代替字符串（<code>String</code>）处理文件名以避免依赖具体的平台（<code>platform</code>）。</p>
+<p><code>Commons-io 1.1</code> 包括一个专用于处理文件名的类-文件名工具类（<code>FilenameUtils</code>）。它处理了许多上述文件名的问题，但是我们仍然推荐，你尽可能地使用java.io.File对象来处理。</p>
+<p>让我们看一个例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getExtension</span><span class="params">(String filename)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> index = filename.lastIndexOf(<span class="string">'.'</span>);</span><br><span class="line">   <span class="keyword">if</span> (index == -<span class="number">1</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> filename.substring(index + <span class="number">1</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>简单吗？对，但如果开发人员传入（<code>pass</code>）一个全路径（<code>full path</code>）字符串而不仅仅是一个文件名会发生什么？考虑以下情况，传入完全符合要求的路径：<code>&quot;C:\Temp\documentation.new\README&quot;</code>。上面定义的方法（<code>method</code>）可能返回（<code>return</code>） <code>&quot;new\README&quot;</code>-完全不是你想要的结果。</p>
+<p>请使用 <code>java.io.File</code> 代替字符串（<code>String</code>）处理文件名。该类所提供的功能是经过良好测试的（<code>well tested</code>）。在文件工具类（<code>FileUtils</code>）中你将找到关于 <code>java.io.File</code> 的其他有用的工具方法（<code>function</code>）。</p>
+<p>例如： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String tmpdir = <span class="string">"/var/tmp"</span>;</span><br><span class="line"> String tmpfile = tmpdir System.getProperty(<span class="string">"file.separator"</span>) <span class="string">"test.tmp"</span>;</span><br><span class="line"> InputStream in = <span class="keyword">new</span> java.io.FileInputStream(tmpfile);</span><br></pre></td></tr></table></figure>
+<p>改为： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File tmpdir = <span class="keyword">new</span> File(<span class="string">"/var/tmp"</span>);</span><br><span class="line"> File tmpfile = <span class="keyword">new</span> File(tmpdir, <span class="string">"test.tmp"</span>);</span><br><span class="line"> InputStream in = <span class="keyword">new</span> java.io.FileInputStream(tmpfile);</span><br></pre></td></tr></table></figure>
+
+<h2 id="输入输出流缓冲（Buffering-streams）"><a href="#输入输出流缓冲（Buffering-streams）" class="headerlink" title="输入输出流缓冲（Buffering streams）"></a>输入输出流缓冲（<code>Buffering streams</code>）</h2><p>输入输出性能非常依赖缓冲策略（<code>buffering strategy</code>）。一般而言，缓冲512或1024大小字节来读取数据块（<code>packets</code>）是非常迅速的，因为这个大小与数据块（<code>packets</code>）在硬盘（<code>harddisk</code>）文件系统（<code>file system</code>）或文件缓存（<code>file system cache</code>）中的大小非常匹配。而且当你仅仅读取一点字节时，时间性能就会显著下降（<code>drop</code>）。</p>
+<p>当读取或写入输入输出流时，特别是当访问文件的时候，确保你正确地缓冲输入输出流。只需要使用缓冲字节输入流（<code>BufferedInputStream</code>）修饰（<code>decorate</code>）你的文件字节输入流（<code>FileInputStream</code>）即可</p>
+<blockquote>
+<p>译注：Java中的输入输出流采用了<code>修饰模式</code>，或叫<code>装饰模式</code>：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">InputStream in = <span class="keyword">new</span> java.io.FileInputStream(myfile);</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">   in = <span class="keyword">new</span> java.io.BufferedInputStream(in);</span><br><span class="line">   </span><br><span class="line">   in.read(.....</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">   IOUtils.closeQuietly(in);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意，你不能缓存一个已经缓冲了的输入输出流。</strong><br>一些组件，例如XML解析器（<code>XML parser</code>）会使用他们自己的字节输入流（<code>InputStream</code>）缓存修饰（<code>decorate</code>），你传递一个缓存输入输出流到XML解析器（<code>XML parser</code>）也没多大影响但会拖慢（<code>slow down</code>）你的代码性能。如果你用我们的复制工具类（<code>CopyUtils</code>）或输入输出工具类（<code>IOUtils</code>），你就不需要额外缓冲输入输出流，将这些代码当作已经在复制过程中缓存了即可。检查<code>Javadoc</code>可以获取更多信息。其他如在你写入一个字节数组输出流（<code>ByteArrayOutputStream</code>）到内存（<code>memory</code>）的情况，是不需要缓冲的。</p>
+<blockquote>
+<p><em>本文由侯骏雄授权发表。</em><br>翻译：侯骏雄（QQ：2442278700）<br>博客：<a href="http://blog.csdn.net/houjx114" target="_blank" rel="noopener">http://blog.csdn.net/houjx114</a></p>
+</blockquote>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/ae75f61093b6e7b4/8869373-901590e019f6f85b.png" class="">
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.904Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E8%B7%B5/" rel="tag">实践</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html&title=《Apache-Commons-IO-最佳实践》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html&title=《Apache-Commons-IO-最佳实践》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/ae75f61093b6e7b4.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Apache-Commons-IO-最佳实践》 — 画星星高手&url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/d6c488cd114fe5da.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">在Android模拟器里取得root权限</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/561461a96ca69678.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Debian下SSH服务的安装与配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html&title=《Apache-Commons-IO-最佳实践》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html&title=《Apache-Commons-IO-最佳实践》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/ae75f61093b6e7b4.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Apache-Commons-IO-最佳实践》 — 画星星高手&url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/ae75f61093b6e7b4.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aO27DQAwFQN3/0gqQKkBi5ZGUCu3OVkag2DsuaP6OIz7n90me+fnk79f5M8cTBwMD47WM8/IkV7y+aELK8R+pGBgYGzCug2yP988HB8E9uRsGBgZGL8lLEspeWMfAwMDIGcn/Xofa6+QSAwMDo1fEVjtdves+XotjYGC8kDEpLJ9+/eB8AwMD4yWMs3iSZlz+WUkpG90KAwNjaUa1fVYNyk/8GhQyXAwMjCUYk1IzHzrmS2B5svjH7wYGBsaijHkonCx4TQalGBgY+zCqyxDJ359o50XlKwYGxtKMpHE2WfmqlrLlLxcDA2NpRvUS1cZ90ozLF8uqowgMDIyVGL3Vq3mzrDfm/PjOGBgYizKqiVoyGKgmcDcknRgYGJsx8pZZngImsF6wxsDA2IHRS9eq5WivAZcX0hgYGGszqgtbk4WJBwtaDAyMpRnzS9zF7o0fjl5OioGB8SpGtQTtjSTzsJsveWBgYOzDSNpe1ev2its8fEfNQQwMjIUYk4vm7f4qvrzSgYGBsQ2jN5KcjAeq4H+6hhgYGIsy8qQwv251VNlb8miWrxgYGC9knMWTr3Ml718tlaMiFgMDYzlGfu5dvMgHpdWiFwMDY1XGPCzOv6fJ+AEDA2MfRp725SE1oUbLE8koAgMDA+OmscH8yY94DAwMjEGpma+CJffBwMDYmVEtYiehc56YYmBg7Ma4YVMjvlYSmpN2WxmAgYHxVsYXX97WLAgPAZ0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

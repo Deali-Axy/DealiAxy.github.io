@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Android开发：使用CardView实现卡片式设计 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="使用,产品,移动开发,开发,android,AR,实现,设计">
+    <meta name="description" content="开头引用一段官网的介绍 A FrameLayout with a rounded corner background and shadow. CardView uses elevation property on Lollipop for shadows and falls back to a custom emulated shadow implementation on older platf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发：使用CardView实现卡片式设计">
+<meta property="og:url" content="http://blog.deali.cn/posts/456edb84dd6571cf.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="开头引用一段官网的介绍 A FrameLayout with a rounded corner background and shadow. CardView uses elevation property on Lollipop for shadows and falls back to a custom emulated shadow implementation on older platf">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/456edb84dd6571cf/8869373-4b5f632df2a85495.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/456edb84dd6571cf/8869373-dbb473d82614922a.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/456edb84dd6571cf/8869373-a0fc7ea8a0da7528.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/456edb84dd6571cf/8869373-a72715f47b73cd23.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/456edb84dd6571cf/8869373-840421b58db987ed.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.884Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="使用">
+<meta property="article:tag" content="产品">
+<meta property="article:tag" content="移动开发">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="AR">
+<meta property="article:tag" content="实现">
+<meta property="article:tag" content="设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/456edb84dd6571cf/8869373-4b5f632df2a85495.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android开发：使用CardView实现卡片式设计</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android开发：使用CardView实现卡片式设计</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开头引用一段官网的介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">开头引用一段官网的介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简略版介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">简略版介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始使用"><span class="post-toc-number">3.</span> <span class="post-toc-text">开始使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于Z轴"><span class="post-toc-number">4.</span> <span class="post-toc-text">关于Z轴</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#排版技巧"><span class="post-toc-number">5.</span> <span class="post-toc-text">排版技巧</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Shadow-Padding"><span class="post-toc-number">6.</span> <span class="post-toc-text">Shadow Padding</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#圆角覆盖"><span class="post-toc-number">7.</span> <span class="post-toc-text">圆角覆盖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Ripple效果"><span class="post-toc-number">8.</span> <span class="post-toc-text">Ripple效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lift-on-touch"><span class="post-toc-number">9.</span> <span class="post-toc-text">lift-on-touch</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结说明"><span class="post-toc-number">10.</span> <span class="post-toc-text">总结说明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">11.</span> <span class="post-toc-text">参考资料</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欢迎与我交流"><span class="post-toc-number">12.</span> <span class="post-toc-text">欢迎与我交流</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-a6a878fb8c916316d5314ddbc8e9385c"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android开发：使用CardView实现卡片式设计</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="开头引用一段官网的介绍"><a href="#开头引用一段官网的介绍" class="headerlink" title="开头引用一段官网的介绍"></a>开头引用一段官网的介绍</h2><blockquote>
+<p>A FrameLayout with a rounded corner background and shadow.</p>
+<p>CardView uses <code>elevation</code> property on Lollipop for shadows and falls back to a custom emulated shadow implementation on older platforms.</p>
+<p>Due to expensive nature of rounded corner clipping, on platforms before Lollipop, CardView does not clip its children that intersect with rounded corners. Instead, it adds padding to avoid such intersection (See <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#setPreventCornerOverlap(boolean)" target="_blank" rel="noopener">setPreventCornerOverlap(boolean)</a> to change this behavior).</p>
+<p>Before Lollipop, CardView adds padding to its content and draws shadows to that area. This padding amount is equal to <code>maxCardElevation + (1 - cos45) * cornerRadius</code> on the sides and <code>maxCardElevation * 1.5 + (1 - cos45) * cornerRadius</code> on top and bottom.</p>
+<p>Since padding is used to offset content for shadows, you cannot set padding on CardView. Instead, you can use content padding attributes in XML or <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#setContentPadding(int,%20int,%20int,%20int)" target="_blank" rel="noopener">setContentPadding(int, int, int, int)</a> in code to set the padding between the edges of the CardView and children of CardView.</p>
+<p>Note that, if you specify exact dimensions for the CardView, because of the shadows, its content area will be different between platforms before Lollipop and after Lollipop. By using api version specific resource values, you can avoid these changes. Alternatively, If you want CardView to add inner padding on platforms Lollipop and after as well, you can call<a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#setUseCompatPadding(boolean)" target="_blank" rel="noopener">setUseCompatPadding(boolean)</a> and pass <code>true</code>.</p>
+<p>To change CardView’s elevation in a backward compatible way, use <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#setCardElevation(float)" target="_blank" rel="noopener">setCardElevation(float)</a>. CardView will use elevation API on Lollipop and before Lollipop, it will change the shadow size. To avoid moving the View while shadow size is changing, shadow size is clamped by <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#getMaxCardElevation()" target="_blank" rel="noopener">getMaxCardElevation()</a>. If you want to change elevation dynamically, you should call <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#setMaxCardElevation(float)" target="_blank" rel="noopener">setMaxCardElevation(float)</a> when CardView is initialized.</p>
+</blockquote>
+<p>简单的效果图：</p>
+<img src="/posts/456edb84dd6571cf/8869373-4b5f632df2a85495.png" class="">
+
+
+<h2 id="简略版介绍"><a href="#简略版介绍" class="headerlink" title="简略版介绍"></a>简略版介绍</h2><blockquote>
+<p>Apps often need to display data in similarly styled containers. These containers are often used in lists to hold each item’s information. The system provides the <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a> API as an easy way for you show information inside cards that have a consistent look across the platform. These cards have a default elevation above their containing view group, so the system draws shadows below them. Cards provide an easy way to contain a group of views while providing a consistent style for the container.</p>
+</blockquote>
+<h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><ol>
+<li>Add the dependencies<blockquote>
+<p>The <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a> widget is part of the <a href="https://developer.android.com/tools/support-library/features.html#v7" target="_blank" rel="noopener">v7 Support Libraries</a>. To use it in your project, add the following dependency to your app module’s <code>build.gradle</code> file:</p>
+</blockquote>
+</li>
+</ol>
+<p>Cardview 是Android 5.0 才引入的，所以需要导入这个依赖包。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    implementation <span class="string">'com.android.support:cardview-v7:27.1.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Create Cards<blockquote>
+<p>In order to use the <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a> you need to add it to your layout file. Use it as a view group to contain other views. In this example, the <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a> contains a single <a href="https://developer.android.com/reference/android/widget/TextView.html" target="_blank" rel="noopener">TextView</a> to display some information to the user.</p>
+</blockquote>
+</li>
+</ol>
+<p>XML代码就是前面分析的那个，这里不再重复了。</p>
+<p>The cards are drawn to the screen with a default elevation, which causes the system to draw a shadow underneath them. You can provide a custom elevation for a card with the <code>card_view:cardElevation</code> attribute. This will draw a more pronounced shadow with a larger elevation, and a lower elevation will result in a lighter shadow. <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a> uses real elevation and dynamic shadows on Android 5.0 (API level 21) and above and falls back to a programmatic shadow implementation on earlier versions.</p>
+<p>Use these properties to customize the appearance of the <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a> widget:</p>
+<ul>
+<li>To set the corner radius in your layouts, use the <code>card_view:cardCornerRadius</code> attribute.</li>
+<li>To set the corner radius in your code, use the <code>CardView.setRadius</code> method.</li>
+<li>To set the background color of a card, use the <code>card_view:cardBackgroundColor</code> attribute.</li>
+</ul>
+<p>For more information, see the API reference for <a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView</a>.</p>
+<p>关于Cards的设计规范可以参考官网介绍：<a href="https://material.google.com/components/cards.html#" target="_blank" rel="noopener">https://material.google.com/components/cards.html#</a></p>
+<p>为了更好地实现这种 Cards UI 的设计，Google在v7包中引进了一种全新的控件：<a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html#" target="_blank" rel="noopener">CardVew</a>，本文将从开发的角度介绍CardView的一些常见使用细节。</p>
+<p>Google用一句话介绍了CardView：一个带圆角和阴影背景的FrameLayout。CardView在Android Lollipop（API 21）及以上版本的系统中适配较好，本文我们以一个具体的例子来学习CardView的基本使用和注意事项，效果图如下：</p>
+<img src="/posts/456edb84dd6571cf/8869373-dbb473d82614922a.png" class="">
+
+
+<p>这是一个list列表，列表中的item使用了卡片式设计，主要利用CardView控件实现，下面来分析一下布局文件的核心代码。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:card_view</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span> &gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- A CardView that contains a TextView --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.v7.widget.CardView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:card_view</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/card_view"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"200dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">card_view:cardCornerRadius</span>=<span class="string">"4dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/info_text"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.v7.widget.CardView</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看出，核心部分在于CardView的属性使用，下面我们针对几个特殊的属性逐一分析，深化了解。</p>
+<h2 id="关于Z轴"><a href="#关于Z轴" class="headerlink" title="关于Z轴"></a>关于Z轴</h2><p>Android5.0 引入了Z轴的概念，可以让组件呈现3D效果.</p>
+<img src="/posts/456edb84dd6571cf/8869373-a0fc7ea8a0da7528.png" class="">
+
+
+<h2 id="排版技巧"><a href="#排版技巧" class="headerlink" title="排版技巧"></a>排版技巧</h2><p>前面我们说过，CardView从本质上属于FrameLayout，而CardView通常包含了较多的内容元素，为了方便地排版布局中的各个元素，一般借助于其他基本布局容器，比如这里我们使用了一个RelativeLayout作为CardView的唯一Child。</p>
+<h2 id="Shadow-Padding"><a href="#Shadow-Padding" class="headerlink" title="Shadow Padding"></a>Shadow Padding</h2><p>在Android Lollipop之前的系统，CardView会自动添加一些额外的padding空间来绘制阴影部分，这也导致了以Lollipop为分界线的不同系统上CardView的尺寸大小不同。为了解决这个问题，有两种方法：第一种，使用不同API版本的dimension资源适配（也就是借助values和values-21文件夹中不同的dimens.xml文件）；第二种，就是使用cardUseCompatPadding属性，设置为true（默认值为false），让CardView在不同系统中使用相同的padding值。</p>
+<h2 id="圆角覆盖"><a href="#圆角覆盖" class="headerlink" title="圆角覆盖"></a>圆角覆盖</h2><p>这也是一个解决系统兼容的问题。在pre-Lollipop平台（API 21版本之前）上，CardView不会裁剪内容元素以满足圆角需求，而是使用添加padding的替代方案，从而使内容元素不会覆盖CardView的圆角。而控制这个行为的属性就是cardPreventCornerOverlap，默认值为true。在本例中我们设置了该属性为false。这里我们看一下，在pre-Lollipop平台中，不同cardPreventCornerOverlap值的效果对比图（左false，右true）：</p>
+<img src="/posts/456edb84dd6571cf/8869373-a72715f47b73cd23.png" class="">
+
+<p>显然，默认值下自动添加padding的方式不可取，所以需要设置该属性值为false。需要注意的一点是，该属性的设置在Lollipop及以上版本的系统中没有任何影响，除非cardUseCompatPadding的值为true。</p>
+<h2 id="Ripple效果"><a href="#Ripple效果" class="headerlink" title="Ripple效果"></a>Ripple效果</h2><p>Cards一般都是可点击的，为此我们使用了foreground属性并使用系统的selectableItemBackground值，同时设置clickable为true（如果在java代码中使用了cardView.setOnClickListener，就可以不用写clickable属性了），从而达到在Lollipop及以上版本系统中实现点击时的涟漪效果（Ripple）。在pre-Lollipop版本中，则是一个普通的点击变暗的效果。</p>
+<h2 id="lift-on-touch"><a href="#lift-on-touch" class="headerlink" title="lift-on-touch"></a>lift-on-touch</h2><p>根据官网<a href="https://material.google.com/motion/material-motion.html#" target="_blank" rel="noopener">Material motion</a>部分对交互动作规范的指导，Cards、Button等视图应该有一个触摸抬起（lift-on-touch）的交互效果，也就是在三维立体空间上的Z轴发生位移，从而产生一个阴影加深的效果，与Ripple效果共同使用，官网给了一个很好的示例图：</p>
+<img src="/posts/456edb84dd6571cf/8869373-840421b58db987ed.png" class="">
+
+
+<p>在实现这个效果也很简单，可以在<code>res/drawable</code>目录下建立一个lift_on_touch.xml文件，内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- animate the translationZ property of a view when pressed --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:state_enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">objectAnimator</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:duration</span>=<span class="string">"@android:integer/config_shortAnimTime"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:propertyName</span>=<span class="string">"translationZ"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:valueTo</span>=<span class="string">"6dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:valueType</span>=<span class="string">"floatType"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">objectAnimator</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:duration</span>=<span class="string">"@android:integer/config_shortAnimTime"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:propertyName</span>=<span class="string">"translationZ"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:valueTo</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:valueType</span>=<span class="string">"floatType"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>即通过属性动画动态改变translationZ值，沿着Z轴，从0dp到6dp变化。这里的6dp值也是有出处的，参考<a href="https://github.com/google/iosched/blob/master/android/src/main/res/values/dimens.xml#L122" target="_blank" rel="noopener">Google I/O 2014 app</a>和<a href="https://developer.android.com/training/material/shadows-clipping.html#Elevation" target="_blank" rel="noopener">Assign Elevation to Your Views</a>。然后将其赋值给<code>android:stateListAnimator</code>属性即可。由于<code>stateListAnimator</code>属性只适用于Lollipop及以上版本，为了隐藏xml中的版本警告，可以指定<code>tools:targetApi=&quot;lollipop&quot;</code>。</p>
+<p>关于这个功能，需要补充说明一点。这里的<code>lift_on_touch.xml</code>，严格意义上来讲，属于anim资源，同时适用于API 21及以上版本，所以按道理上来讲应该将其放置在<code>res/anim-v21</code>目录下，然后使用<code>@anim/lift_on_touch</code>赋值给<code>stateListAnimator</code>属性，而不是例子中的<code>@drawable/lift_on_touch</code>方法。但是放置在<code>res/anim-v21</code>目录下会产生一个“错误”提示：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">selector </span>style=<span class="string">"box-sizing: border-box;"</span>&gt;XML file should <span class="keyword">be </span>in either “animator” or “drawable”,not “anim”&lt;/<span class="keyword">selector&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然这个“错误”不影响编译运行，但是对于追求完美主义的程序员们来说还是碍眼，所以本例中我选择将其放在了<code>res/drawable</code>目录下，大家可以自行斟酌使用。</p>
+<p>关于对lift-on-touch效果的理解，YouToBe网站有个视频解说，感兴趣的话可以参看看，地址如下：<br><a href="https://www.youtube.com/watch?v=YaG_ljfzeUw" target="_blank" rel="noopener">DesignBytes: Paper and Ink: The Materials that Matter</a></p>
+<h2 id="总结说明"><a href="#总结说明" class="headerlink" title="总结说明"></a>总结说明</h2><p>CardView还有一些其他属性可供使用，比如cardElevation设置阴影大小，contentPadding代替普通android:padding属性等，比较基础，本文就不一一介绍了，大家可以在官网上参考学习。从上面的介绍可以看出，在使用CardView时基本上都会用到一些标准配置的属性，我们可以借助style属性，将其封装到styles.xml文件中，统一管理，比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppCardView"</span> <span class="attr">parent</span>=<span class="string">"@style/CardView.Light"</span>&gt;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"cardPreventCornerOverlap"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"cardUseCompatPadding"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:foreground"</span>&gt;</span>?attr/selectableItemBackground<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:stateListAnimator"</span> <span class="attr">tools:targetApi</span>=<span class="string">"lollipop"</span>&gt;</span>@anim/lift_up<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line">        ......</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>谷歌官方文档 <a href="https://developer.android.com/reference/android/support/v7/widget/CardView" target="_blank" rel="noopener">https://developer.android.com/reference/android/support/v7/widget/CardView</a></li>
+<li>谷歌官方文档 <a href="https://developer.android.com/guide/topics/ui/layout/cardview" target="_blank" rel="noopener">https://developer.android.com/guide/topics/ui/layout/cardview</a></li>
+<li><a href="http://yifeng.studio/2016/10/18/android-cardview/" target="_blank" rel="noopener">http://yifeng.studio/2016/10/18/android-cardview/</a></li>
+<li><a href="https://www.jianshu.com/p/b105019028b6" target="_blank" rel="noopener">https://www.jianshu.com/p/b105019028b6</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1025/3621.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1025/3621.html</a></li>
+</ul>
+<h2 id="欢迎与我交流"><a href="#欢迎与我交流" class="headerlink" title="欢迎与我交流"></a>欢迎与我交流</h2><ul>
+<li>打代码直播间：<a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener">https://live.bilibili.com/11883038</a></li>
+<li>微信公众号：DealiAxy</li>
+<li>知乎：<a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener">https://www.zhihu.com/people/dealiaxy</a></li>
+<li>简书：<a href="https://www.jianshu.com/u/965b95853b9f" target="_blank" rel="noopener">https://www.jianshu.com/u/965b95853b9f</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.884Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR/" rel="tag">AR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8/" rel="tag">使用</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E7%8E%B0/" rel="tag">实现</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/" rel="tag">移动开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/456edb84dd6571cf.html&title=《Android开发：使用CardView实现卡片式设计》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/456edb84dd6571cf.html&title=《Android开发：使用CardView实现卡片式设计》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/456edb84dd6571cf.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android开发：使用CardView实现卡片式设计》 — 画星星高手&url=http://blog.deali.cn/posts/456edb84dd6571cf.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/456edb84dd6571cf.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/22429d851fd8998f.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaWeb开发---Servlet的生命周期实验</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/e0461c801e4fdf92.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">How-to-Convert-OpenSSH-keys-to-Putty-(-ppk)-on-Linux</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/456edb84dd6571cf.html&title=《Android开发：使用CardView实现卡片式设计》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/456edb84dd6571cf.html&title=《Android开发：使用CardView实现卡片式设计》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/456edb84dd6571cf.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android开发：使用CardView实现卡片式设计》 — 画星星高手&url=http://blog.deali.cn/posts/456edb84dd6571cf.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/456edb84dd6571cf.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3ay1KDYAwGUN//pevWGQW/JLRKelh1hJacTczl//iIr8fB9fXu0fPVZ74/edmFgYFxW8bj9Ooxzt+Sg5PYMDAw3odx9OIk0CppksoP/46BgYFxkCjz3zl/PvmMgYGBMU+jSVN63qb+8f8NDAyMf8+YD9QmheNLe3EMDIwbMvJW8/Wfn7LfwMDAuBXjUbyqzeqkNCxEhYGBsZpxVYNa/YUEU16IYmBgvA2jeswiT5TVlrXaKmNgYGxl5IkvT5S9sCbHxTAwMN6HMR/NVw9bVJPv4bswMDBWM3qz96vSaz50y+9iYGDsY5wn3DyI5oCs9d3otAgGBsYixmRkP1l8XtvoYmBg7Gbkg/veOKy6o8hTfzQ1xMDAWMFIxl5JAVdNl0lx2RveYWBg7Gb0lpfVgq/X1vZaXwwMjB2M6uC+d2isugwoJ2UMDIzVjHx52TvVUL37lAIRAwPj5ozJkax8EDZZFUTFKAYGxmrGJOXl381LyXkixsDA2MqoBponx2pRWL37w9ANAwNjNeM8XVZXAufpNV8YFAaCGBgYb8PotY4TUp70f4kTAwNjKeNRvHqlXjWhV8dzGBgYuxnVleS81Uza3Tz0MgYDA+O2jF6rOSkE83UCBgYGRi/EPJlelYKjqDAwMDBa4ebN6gVtKgYGBsagsMvDzReWh/sNDAyM1YzkxcmY7Clb1mS0h4GBsZrRq7vy4X4yjKum8svKRwwMjP/O+AQrLbwqMl9WIwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>LittleWhiteOne基本设计 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="产品,设计,基本">
+    <meta name="description" content="LittleWhite One魔改chatterbot框架实现的新版小白~ 简介 core：核心框架，魔改版chatterbot corpus：英文和中文训练语料 nltk_data：需要用到的nltk数据集  文本相似度算法 LevenshteinDistance SpacySimilarity JaccardSimilarity  Levenshtein Distance算法中文名：莱文斯坦距">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LittleWhiteOne基本设计">
+<meta property="og:url" content="http://blog.deali.cn/posts/ff681baa212fee18.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="LittleWhite One魔改chatterbot框架实现的新版小白~ 简介 core：核心框架，魔改版chatterbot corpus：英文和中文训练语料 nltk_data：需要用到的nltk数据集  文本相似度算法 LevenshteinDistance SpacySimilarity JaccardSimilarity  Levenshtein Distance算法中文名：莱文斯坦距">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/ff681baa212fee18/8869373-78cbcc8897912b52.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/ff681baa212fee18/8869373-f187538fdff080e0.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/ff681baa212fee18/8869373-dd02f73baef5f3ef.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.832Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="产品">
+<meta property="article:tag" content="设计">
+<meta property="article:tag" content="基本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/ff681baa212fee18/8869373-78cbcc8897912b52.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LittleWhiteOne基本设计</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">LittleWhiteOne基本设计</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#LittleWhite-One"><span class="post-toc-number">1.</span> <span class="post-toc-text">LittleWhite One</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文本相似度算法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">文本相似度算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Levenshtein-Distance算法"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">Levenshtein Distance算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SpacySimilarity算法"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">SpacySimilarity算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JaccardSimilarity算法"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">JaccardSimilarity算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#todo"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">todo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法优化"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">算法优化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练优化"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">训练优化</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-8e17209929f7426d19b4ccfbd11d2835"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">LittleWhiteOne基本设计</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="LittleWhite-One"><a href="#LittleWhite-One" class="headerlink" title="LittleWhite One"></a>LittleWhite One</h1><p>魔改chatterbot框架实现的新版小白~</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>core：核心框架，魔改版chatterbot</li>
+<li>corpus：英文和中文训练语料</li>
+<li>nltk_data：需要用到的nltk数据集</li>
+</ul>
+<h2 id="文本相似度算法"><a href="#文本相似度算法" class="headerlink" title="文本相似度算法"></a>文本相似度算法</h2><ul>
+<li>LevenshteinDistance</li>
+<li>SpacySimilarity</li>
+<li>JaccardSimilarity</li>
+</ul>
+<h3 id="Levenshtein-Distance算法"><a href="#Levenshtein-Distance算法" class="headerlink" title="Levenshtein Distance算法"></a>Levenshtein Distance算法</h3><p>中文名：莱文斯坦距离<br>参考资料：<a href="https://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Levenshtein_distance</a></p>
+<blockquote>
+<p>Levenshtein distance是表征或度量两段字符串的差异度的概念,以单词kitten和sitting为例，定义：替换(substitution)、插入(insert)和删除(delete)三种标准编辑手段来消除这两个词之间的差异，每经过1次标准编辑手段，Levenshtein distance增计一次，则kitten需经过2次替换、1次插入新字符，来得到sitting这个单词，因此所谓的Levenshtein distance应为3。按照其定义，该距离和字符串差异度呈正比关系。</p>
+</blockquote>
+<p><strong>定义</strong>：<br>两个字符串a，b之间的莱文斯坦距离</p>
+<img src="/posts/ff681baa212fee18/8869373-78cbcc8897912b52.png" class="">
+
+<p>编辑距离是NLP基本的度量文本相似度的算法，可以作为文本相似任务的重要特征之一，其可应用于诸如拼写检查、论文查重、基因序列分析等多个方面。但是其缺点也很明显，算法基于文本自身的结构去计算，并没有办法获取到语义层面的信息。</p>
+<h3 id="SpacySimilarity算法"><a href="#SpacySimilarity算法" class="headerlink" title="SpacySimilarity算法"></a>SpacySimilarity算法</h3><p> SpacySimilarity属于语义相似度的计算方法。 </p>
+<p>参考资料： <a href="https://spacy.io/api/doc/#similarity" target="_blank" rel="noopener">https://spacy.io/api/doc/#similarity</a> </p>
+<p>先将句子的词向量求平均，获取句子的语义表示，然后计算两个句子的语义表示的余弦相似度。</p>
+<h3 id="JaccardSimilarity算法"><a href="#JaccardSimilarity算法" class="headerlink" title="JaccardSimilarity算法"></a>JaccardSimilarity算法</h3><p>参考资料：<a href="https://en.wikipedia.org/wiki/Jaccard_index" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Jaccard_index</a></p>
+<p>给定两个集合A,B，Jaccard 系数定义为A与B交集的大小与A与B并集的大小的比值，定义如下：</p>
+<img src="/posts/ff681baa212fee18/8869373-f187538fdff080e0.png" class="">
+
+<p>当集合A，B都为空时，J(A,B)定义为1。</p>
+<p>与Jaccard 系数相关的指标叫做Jaccard 距离，用于描述集合之间的不相似度。Jaccard 距离越大，样本相似度越低。公式定义如下：</p>
+<img src="/posts/ff681baa212fee18/8869373-dd02f73baef5f3ef.png" class="">
+
+<h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><ul>
+<li><input disabled="" type="checkbox"> 试用另外的基于词向量的几种计算文本相似度方法 ：<ul>
+<li><input disabled="" type="checkbox"> 使用词向量求平均计算相似度</li>
+<li><input disabled="" type="checkbox"> 词向量tfidf加权求平均计算相似度</li>
+<li><input disabled="" type="checkbox"> 词向量加权-PCA计算相似度</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 基于深度学习的方式，计算句子的语义相似度 </li>
+</ul>
+<h3 id="训练优化"><a href="#训练优化" class="headerlink" title="训练优化"></a>训练优化</h3><ul>
+<li><input disabled="" type="checkbox"> 使用新的大容量语料训练</li>
+<li><input disabled="" type="checkbox"> 接入tai套取聊天语料</li>
+<li><input disabled="" type="checkbox"> 结合LittleWhite v3的双引擎从用户对话中学习</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.832Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC/" rel="tag">基本</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/ff681baa212fee18.html&title=《LittleWhiteOne基本设计》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/ff681baa212fee18.html&title=《LittleWhiteOne基本设计》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/ff681baa212fee18.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LittleWhiteOne基本设计》 — 画星星高手&url=http://blog.deali.cn/posts/ff681baa212fee18.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/ff681baa212fee18.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/da0ea68fcdcc320c.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python踩坑：类与类对象类型参数传递与使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/b3ae5396b2af38be.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PHP-Ajax-跨域问题最佳解决方案</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/ff681baa212fee18.html&title=《LittleWhiteOne基本设计》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/ff681baa212fee18.html&title=《LittleWhiteOne基本设计》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/ff681baa212fee18.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LittleWhiteOne基本设计》 — 画星星高手&url=http://blog.deali.cn/posts/ff681baa212fee18.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/ff681baa212fee18.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aS27DMAxF0ex/0860QBLpPlEuYOp6VBROzOMCLD96vfB1/bk+f0/u//XZz3t+feeGS4YMGY9lXMOLhDXGkBcx/uZxbDJkyDiHQYIgwaVJk7y+cWwyZMiQsZZe07Jyw7NkyJAhY5hA04Ky0vrKkCHjZAYv0fjDKu3ujb24DBkyHsjgreb//3zLfkOGDBmPYlzhla45K6VhEJUMGTJaM3iCI49fK/L42G4SjwwZMpoy9iY+XurVF6Lo7yBDhox2jLQEXAsChYWHel8SrgwZMloz0lDWikLyUuIVpgwZMlozSOmWJl+eXvnikxzskCFDRlfG+AH1oRgJnbS4E7YMGTJaM3aVd+QV1EdsQZ0rQ4aMRoxxOhsHVL+fZEvUbMuQIaM1gxdtaVtLEm7axE7KRBkyZDRlrI3G4tqTJ83wszJkyDiHwUda6eEwvgxIV6eTJlaGDBntGDxEPoevrCfj75EhQ0ZrRn15mQZUXw8EHbkMGTIaMXjRFhx9AMGlTezk9cmQIeMYxi2bB1wU8pHctqGbDBkyWjDWSkaerHf9RoYMGScw0iViepyLYCqHOWTIkNGVcYUXXwnwZpWk+AlVhgwZrRn8WguovpisLEplyJDRiZEm2XRMVm99ZciQISNtUHcdmFj7DzA5LSJDhgwZhbUlH/enIz8ZMmTIqI/Y1gZ28dE0GTJkHMCoHIlIU2c6aNvci8uQIeOBjPQB6UGK+v2cKkOGjHaMN5BdQc+gA2RkAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

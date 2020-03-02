@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="笔记,学习,文件,日志,视图,模型">
+    <meta name="description" content="TagHelper入门优点：根据参数自动生成，不需要手写超链接，类似Django模板里面的url命令。 在ViewImport中添加TagHelper 1@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers  比如，链接TagHelper使用 12345&lt;a class&#x3D;&quot;btn btn-outline-primary&quot;    asp-con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志">
+<meta property="og:url" content="http://blog.deali.cn/posts/291087cedfa8e994.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="TagHelper入门优点：根据参数自动生成，不需要手写超链接，类似Django模板里面的url命令。 在ViewImport中添加TagHelper 1@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers  比如，链接TagHelper使用 12345&lt;a class&#x3D;&quot;btn btn-outline-primary&quot;    asp-con">
+<meta property="og:locale" content="cn">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.832Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="文件">
+<meta property="article:tag" content="日志">
+<meta property="article:tag" content="视图">
+<meta property="article:tag" content="模型">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TagHelper"><span class="post-toc-number">1.</span> <span class="post-toc-text">TagHelper</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入门"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">入门</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#环境-TagHelper"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">环境 TagHelper</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#表单-Tag-Helper"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">表单 Tag Helper</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模型绑定"><span class="post-toc-number">2.</span> <span class="post-toc-text">模型绑定</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型验证"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">模型验证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-设置模型"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">1.设置模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#常用的模型验证方法"><span class="post-toc-number">2.1.1.1.</span> <span class="post-toc-text">常用的模型验证方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-在控制器中加入验证代码"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">2.在控制器中加入验证代码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-使用TagHelper在网页上显示错误信息"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">3.使用TagHelper在网页上显示错误信息</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#EF-Core入门"><span class="post-toc-number">3.</span> <span class="post-toc-text">EF Core入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#首先实现DbContext"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">首先实现DbContext</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注册DbContext连接池"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">注册DbContext连接池</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现仓储"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">实现仓储</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EF-Core-常用命令"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">EF Core 常用命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加种子数据"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">添加种子数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#领域模型与数据库架构"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">领域模型与数据库架构</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文件上传"><span class="post-toc-number">4.</span> <span class="post-toc-text">文件上传</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义ViewModel"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">定义ViewModel</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写视图"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">编写视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写控制器"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">编写控制器</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多文件上传"><span class="post-toc-number">5.</span> <span class="post-toc-text">多文件上传</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ViewModel"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">ViewModel</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改视图"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">修改视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改控制器代码"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">修改控制器代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#错误处理"><span class="post-toc-number">6.</span> <span class="post-toc-text">错误处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加错误处理页面"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">添加错误处理页面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置全局异常跳转"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">设置全局异常跳转</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#日志记录"><span class="post-toc-number">7.</span> <span class="post-toc-text">日志记录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欢迎交流"><span class="post-toc-number">8.</span> <span class="post-toc-text">欢迎交流</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-86e31bff25f817779dcb44ee1025eeea"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="TagHelper"><a href="#TagHelper" class="headerlink" title="TagHelper"></a>TagHelper</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>优点：根据参数自动生成，不需要手写超链接，类似Django模板里面的url命令。</p>
+<p>在ViewImport中添加TagHelper</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@addTagHelper</span> *,Microsoft.AspNetCore.Mvc.TagHelpers</span><br></pre></td></tr></table></figure>
+
+<p>比如，链接TagHelper使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn btn-outline-primary"</span> </span></span><br><span class="line"><span class="tag">   <span class="attr">asp-controller</span>=<span class="string">"student"</span> <span class="attr">asp-action</span>=<span class="string">"get"</span> </span></span><br><span class="line"><span class="tag">   <span class="attr">asp-route-id</span>=<span class="string">"@student.Id"</span>&gt;</span></span><br><span class="line">    查看</span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>缓存破坏的TagHelper</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"~/images/banner.jpg"</span> <span class="attr">alt</span>=<span class="string">"Alternate Text"</span> <span class="attr">asp-append-version</span>=<span class="string">"true"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="环境-TagHelper"><a href="#环境-TagHelper" class="headerlink" title="环境 TagHelper"></a>环境 TagHelper</h3><p>在开发环境中使用本地css文件，在非开发环境下使用的是CDN的css文件。</p>
+<p>注：<code>integrity</code>是用来做完整性检查的，保证CDN提供文件的完整和安全。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">include</span>=<span class="string">"Development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"~/lib/twitter-bootstrap/css/bootstrap.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">exclude</span>=<span class="string">"Development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"</span> <span class="attr">integrity</span>=<span class="string">"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>为了防止CDN加载失败页面无法显示，可以加上fallback相关属性，第一个是失败时加载的文件，第二个是不检查这个文件的完整性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.css"</span><br><span class="line">asp-suppress-fallback-integrity="true"</span><br></pre></td></tr></table></figure>
+
+<h3 id="表单-Tag-Helper"><a href="#表单-Tag-Helper" class="headerlink" title="表单 Tag Helper"></a>表单 Tag Helper</h3><p>直接贴上一个布局的代码，把class样式都去掉了，保留最基本代码。</p>
+<p>确实是很方便的，和Django、jinja2之类的模板比完全不输。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@model</span> Student</span><br><span class="line"></span><br><span class="line">&lt;form asp-controller=<span class="string">"student"</span> asp-action=<span class="string">"create"</span>&gt;</span><br><span class="line">    &lt;label asp-for=<span class="string">"Name"</span>&gt;&lt;/label&gt;</span><br><span class="line">    &lt;input asp-for=<span class="string">"Name"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;label asp-for=<span class="string">"Email"</span>&gt;&lt;/label&gt;</span><br><span class="line">    &lt;input asp-for=<span class="string">"Email"</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;label asp-for=<span class="string">"ClassName"</span>&gt;&lt;/label&gt;</span><br><span class="line">    &lt;select asp-for=<span class="string">"ClassName"</span> asp-items=<span class="string">"Html.GetEnumSelectList&lt;ClassNameEnum&gt;()"</span>&gt;&lt;/select&gt;</span><br><span class="line"></span><br><span class="line">    &lt;button type=<span class="string">"submit"</span>&gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="模型绑定"><a href="#模型绑定" class="headerlink" title="模型绑定"></a>模型绑定</h2><p>将Http请求中的数据绑定到控制器方法上对应参数的顺序：</p>
+<ul>
+<li>Form Values （Post表单数据）</li>
+<li>Route Values （路由中的值）</li>
+<li>Query String （Get的查询字符串）</li>
+</ul>
+<h3 id="模型验证"><a href="#模型验证" class="headerlink" title="模型验证"></a>模型验证</h3><h4 id="1-设置模型"><a href="#1-设置模型" class="headerlink" title="1.设置模型"></a>1.设置模型</h4><p>首先在Model中加入验证属性，如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">Display(Name = <span class="meta-string">"姓名"</span>), MaxLength(4, ErrorMessage = <span class="meta-string">"名字长度不能超过四个字"</span>)</span>]</span><br><span class="line">    [<span class="meta">Required(ErrorMessage = <span class="meta-string">"请输入名字！"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">Display(Name = <span class="meta-string">"班级"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> ClassNameEnum ClassName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">Required(ErrorMessage = <span class="meta-string">"请输入邮箱！"</span>)</span>]</span><br><span class="line">    [<span class="meta">Display(Name = <span class="meta-string">"邮箱"</span>)</span>]</span><br><span class="line">    [<span class="meta">RegularExpression(@<span class="meta-string">"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"</span>, ErrorMessage = <span class="meta-string">"邮箱格式不正确"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Email &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="常用的模型验证方法"><a href="#常用的模型验证方法" class="headerlink" title="常用的模型验证方法"></a>常用的模型验证方法</h5><ul>
+<li>Required</li>
+<li>Range：指定允许的最小值和最大值</li>
+<li>MinLength</li>
+<li>MaxLength</li>
+<li>Compare：比较两个属性，比如密码和确认密码</li>
+<li>RegularExpression：正则匹配</li>
+</ul>
+<h4 id="2-在控制器中加入验证代码"><a href="#2-在控制器中加入验证代码" class="headerlink" title="2.在控制器中加入验证代码"></a>2.在控制器中加入验证代码</h4><p>使用<code>ModelState.IsValid</code>来验证模型属性是否正确</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IActionResult <span class="title">Create</span>(<span class="params">Student student</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ModelState.IsValid)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> newStudent = _studentRepository.Add(student);</span><br><span class="line">        <span class="keyword">return</span> RedirectToAction(<span class="string">"details"</span>, <span class="keyword">new</span> &#123; id = newStudent.Id &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> View();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-使用TagHelper在网页上显示错误信息"><a href="#3-使用TagHelper在网页上显示错误信息" class="headerlink" title="3.使用TagHelper在网页上显示错误信息"></a>3.使用TagHelper在网页上显示错误信息</h4><p>例子如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="text-danger" asp-validation-summary="All"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class="form-group row"&gt;</span><br><span class="line">&lt;label asp-for="Name" class="col-sm-2 col-form-label"&gt;&lt;/label&gt;</span><br><span class="line">&lt;div class="col-sm-10"&gt;</span><br><span class="line">&lt;input asp-for="Name" class="form-control" /&gt;</span><br><span class="line">&lt;span class="text-danger" asp-validation-for="Name"&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="EF-Core入门"><a href="#EF-Core入门" class="headerlink" title="EF Core入门"></a>EF Core入门</h2><h3 id="首先实现DbContext"><a href="#首先实现DbContext" class="headerlink" title="首先实现DbContext"></a>首先实现DbContext</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AppDbContext</span>:<span class="title">DbContext</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 将应用程序的配置传递给DbContext</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppDbContext</span>(<span class="params">DbContextOptions&lt;AppDbContext&gt; options</span>) : <span class="title">base</span>(<span class="params">options</span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对要使用到的每个实体都添加 DbSet&lt;TEntity&gt; 属性</span></span><br><span class="line">    <span class="comment">// 通过DbSet属性来进行增删改查操作</span></span><br><span class="line">    <span class="comment">// 对DbSet采用Linq查询的时候，EFCore自动将其转换为SQL语句</span></span><br><span class="line">    <span class="keyword">public</span> DbSet&lt;Student&gt; Students &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="注册DbContext连接池"><a href="#注册DbContext连接池" class="headerlink" title="注册DbContext连接池"></a>注册DbContext连接池</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddDbContextPool&lt;AppDbContext&gt;(options =&gt; options.UseSqlServer(_configuration.GetConnectionString(<span class="string">"StudentDBConnection"</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>其中，本地SqlServer数据库的配置，在<code>appserttings.json</code>中：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"ConnectionStrings": &#123;</span><br><span class="line">    "StudentDBConnection": "server=(localdb)\\MSSQLLocalDB;database=StudentDB;Trusted_Connection=true"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现仓储"><a href="#实现仓储" class="headerlink" title="实现仓储"></a>实现仓储</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SqlStudentRepository</span> : <span class="title">IStudentRepository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> AppDbContext _context;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SqlStudentRepository</span>(<span class="params">AppDbContext context</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        _context = context;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">Add</span>(<span class="params">Student student</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        _context.Students.Add(student);</span><br><span class="line">        _context.SaveChanges();</span><br><span class="line">        <span class="keyword">return</span> student;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">Delete</span>(<span class="params"><span class="keyword">int</span> id</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> student = _context.Students.Find(id);</span><br><span class="line">        <span class="keyword">if</span> (student != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            _context.Students.Remove(student);</span><br><span class="line">            _context.SaveChanges();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> student;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IEnumerable&lt;Student&gt; <span class="title">GetAll</span>(<span class="params"></span>)</span> =&gt; _context.Students;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">GetById</span>(<span class="params"><span class="keyword">int</span> id</span>)</span> =&gt; _context.Students.Find(id);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Student <span class="title">Update</span>(<span class="params">Student updatedStudent</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> student = _context.Students.Attach(updatedStudent);</span><br><span class="line">        student.State = EntityState.Modified;</span><br><span class="line">        _context.SaveChanges();</span><br><span class="line">        <span class="keyword">return</span> updatedStudent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="EF-Core-常用命令"><a href="#EF-Core-常用命令" class="headerlink" title="EF Core 常用命令"></a>EF Core 常用命令</h3><p>在nuget控制台中，不区分大小写</p>
+<ul>
+<li>Get-Help about_enti：显示帮助，<code>about_enti</code>全名很长可以只写前面的</li>
+<li>Add-Migration：添加迁移记录</li>
+<li>Update-Database：更新数据库</li>
+</ul>
+<h3 id="添加种子数据"><a href="#添加种子数据" class="headerlink" title="添加种子数据"></a>添加种子数据</h3><p>重写<code>DbContext</code>的<code>OnModelCreating</code>方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnModelCreating</span>(<span class="params">ModelBuilder modelBuilder</span>)</span> &#123; </span><br><span class="line">    modelBuilder.Entity&lt;Student&gt;().HasData(</span><br><span class="line">        <span class="keyword">new</span> Student &#123; Id = <span class="number">1</span>, Name = <span class="string">"小米"</span> &#125;,</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了避免<code>DbContext</code>代码太乱，也可以使用扩展方法的方式：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">ModelBuilderExtensions</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSeedData</span>(<span class="params"><span class="keyword">this</span> ModelBuilder mBuilder</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        mBuilder.Entity&lt;Student&gt;().HasData(</span><br><span class="line">            <span class="keyword">new</span> Student &#123; Id = <span class="number">1</span>, Name = <span class="string">"小米"</span> &#125;,</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="领域模型与数据库架构"><a href="#领域模型与数据库架构" class="headerlink" title="领域模型与数据库架构"></a>领域模型与数据库架构</h3><ul>
+<li>使用迁移功能同步领域模型和数据库架构</li>
+<li>使用 <code>add-migration</code> 添加迁移记录</li>
+<li>使用 <code>remove-migration</code> 删除最近一条记录</li>
+<li>使用 <code>update-database 迁移记录名称</code> 可以回滚至任意一次迁移</li>
+</ul>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><h3 id="定义ViewModel"><a href="#定义ViewModel" class="headerlink" title="定义ViewModel"></a>定义ViewModel</h3><p>要上传的字段采用 <code>IFormFile</code> 类型</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">StudentCreateViewModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">	<span class="comment">// 省略无关代码...</span></span><br><span class="line">    [<span class="meta">Display(Name = <span class="meta-string">"图片"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> IFormFile Photo &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写视图"><a href="#编写视图" class="headerlink" title="编写视图"></a>编写视图</h3><p>修改<code>cshtml</code>视图文件，修改模型绑定：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@model</span> StudentCreateViewModel</span><br></pre></td></tr></table></figure>
+
+<p>加入上传文件的表单项</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="form-group row"&gt;</span><br><span class="line">    &lt;label asp-for="Photo" class="col-sm-2 col-form-label"&gt;&lt;/label&gt;</span><br><span class="line">    &lt;div class="col-sm-10"&gt;</span><br><span class="line">        &lt;div class="custom-file"&gt;</span><br><span class="line">        &lt;input asp-for="Photo" class="form-control custom-file-input" /&gt;</span><br><span class="line">        &lt;label class="custom-file-label"&gt;请选择图片&lt;/label&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为了选择文件后能显示出文件名还要编写js：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'.custom-file-input'</span>).on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> fileName = $(<span class="keyword">this</span>).val().split(<span class="string">'\\'</span>).pop();</span><br><span class="line">        $(<span class="keyword">this</span>).next(<span class="string">'.custom-file-label'</span>).html(fileName);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写控制器"><a href="#编写控制器" class="headerlink" title="编写控制器"></a>编写控制器</h3><p>通过构造函数注入 <code>HostingEnvironment</code></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">StudentController</span>(<span class="params">IStudentRepository studentRepository, HostingEnvironment hostingEnvironment</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    _studentRepository = studentRepository;</span><br><span class="line">    _hostingEnvironment = hostingEnvironment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>处理文件上传和保存的逻辑</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IActionResult <span class="title">Create</span>(<span class="params">StudentCreateViewModel model</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ModelState.IsValid)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> uniqueFileName = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (model.Photo != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> uploadDir = Path.Combine(</span><br><span class="line">                _hostingEnvironment.WebRootPath, </span><br><span class="line">                <span class="string">"uploads"</span>, <span class="string">"images"</span>);</span><br><span class="line">            uniqueFileName = Guid.NewGuid().ToString() + </span><br><span class="line">                <span class="string">"_"</span> + model.Photo.FileName;</span><br><span class="line">            model.Photo.CopyTo(<span class="keyword">new</span> FileStream(</span><br><span class="line">                Path.Combine(uploadDir, uniqueFileName), </span><br><span class="line">                FileMode.Create));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> student = <span class="keyword">new</span> Student</span><br><span class="line">        &#123;</span><br><span class="line">            Name = model.Name,</span><br><span class="line">            Email = model.Email,</span><br><span class="line">            ClassName = model.ClassName,</span><br><span class="line">            PhotoPath = uniqueFileName,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> newStudent = _studentRepository.Add(student);</span><br><span class="line">        <span class="keyword">return</span> RedirectToAction(<span class="string">"details"</span>, </span><br><span class="line">                                <span class="keyword">new</span> &#123; id = newStudent.Id &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> View();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多文件上传"><a href="#多文件上传" class="headerlink" title="多文件上传"></a>多文件上传</h2><p>和单文件差不多</p>
+<h3 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h3><p>增加 <code>List&lt;IFormFile&gt;</code> 类型字段</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Display(Name = <span class="meta-string">"图库"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> List&lt;IFormFile&gt; Gallery &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="form-group row"&gt;</span><br><span class="line">    &lt;label asp-for="Gallery" class="col-sm-2 col-form-label"&gt;&lt;/label&gt;</span><br><span class="line">    &lt;div class="col-sm-10"&gt;</span><br><span class="line">        &lt;div class="custom-file"&gt;</span><br><span class="line">            &lt;input asp-for="Gallery" multiple id="gallery-input" class="form-control custom-file-input" /&gt;</span><br><span class="line">            &lt;label id="gallery-label" class="custom-file-label"&gt;请选择图片 可以一次选择多张&lt;/label&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#gallery-input'</span>).on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> label = $(<span class="keyword">this</span>).next(<span class="string">'#gallery-label'</span>);</span><br><span class="line">    <span class="keyword">var</span> files = $(<span class="keyword">this</span>)[<span class="number">0</span>].files;</span><br><span class="line">    <span class="keyword">if</span> (files.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        label.html(<span class="string">`你已经选择了<span class="subst">$&#123;files.length&#125;</span>个文件`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (files.length == <span class="number">1</span>) &#123;</span><br><span class="line">        label.html(files[<span class="number">0</span>].name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改控制器代码"><a href="#修改控制器代码" class="headerlink" title="修改控制器代码"></a>修改控制器代码</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理多文件上传</span></span><br><span class="line"><span class="keyword">if</span> (model.Gallery != <span class="literal">null</span> &amp;&amp; model.Gallery.Count &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> photo <span class="keyword">in</span> model.Gallery)</span><br><span class="line">    &#123;</span><br><span class="line">        uniqueFileName = Guid.NewGuid().ToString() + <span class="string">"_"</span> </span><br><span class="line">            + photo.FileName;</span><br><span class="line">        photo.CopyTo(<span class="keyword">new</span> FileStream(Path.Combine(uploadDir, </span><br><span class="line">        uniqueFileName),FileMode.Create));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="添加错误处理页面"><a href="#添加错误处理页面" class="headerlink" title="添加错误处理页面"></a>添加错误处理页面</h3><p>在 <code>Startup.cs</code> 中设置中间件：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.UseStatusCodePagesWithReExecute(<span class="string">"/error/&#123;0&#125;"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>推荐用 <code>UseStatusCodePagesWithReExecute</code> 而不是 <code>UseStatusCodePagesWithRedirects</code>，前者在管道内执行执行错误跳转url，后者会重定向到该url，导致http错误状态码变成新页面的正常执行的200码了。</p>
+<p>接着编写错误控制器：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ErrorController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Route(<span class="meta-string">"Error/&#123;statusCode&#125;"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Index</span>(<span class="params"><span class="keyword">int</span> statusCode</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> statusCodeResult = HttpContext.Features.</span><br><span class="line">            Get&lt;IStatusCodeReExecuteFeature&gt;();</span><br><span class="line">        <span class="keyword">var</span> viewModel = <span class="keyword">new</span> ErrorViewModel</span><br><span class="line">        &#123;</span><br><span class="line">            Path = statusCodeResult.OriginalPath,</span><br><span class="line">            QueryString = statusCodeResult.</span><br><span class="line">                OriginalQueryString,</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">switch</span> (statusCode)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">404</span>:</span><br><span class="line">                viewModel.Message = <span class="string">"页面未找到"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> View(<span class="string">"Error"</span>, viewModel);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对了，我还定义了ViewModel：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ErrorViewModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> Code &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Message &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Path &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> QueryString &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>视图代码就不贴了，无非就是显示ViewModel里的这些错误信息~</p>
+<h3 id="设置全局异常跳转"><a href="#设置全局异常跳转" class="headerlink" title="设置全局异常跳转"></a>设置全局异常跳转</h3><p>添加中间件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.UseExceptionHandler(<span class="string">"/exception"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>编写处理用的控制器，这里需要添加<code>AllowAnonymous</code>注解，允许用户在未登录的时候访问到这个异常页面，保证无论如何可以显示出异常页面。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AllowAnonymous</span>]</span><br><span class="line">[<span class="meta">Route(<span class="meta-string">"exception"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IActionResult <span class="title">ExceptionHandler</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exception = HttpContext.Features.</span><br><span class="line">        Get&lt;IExceptionHandlerPathFeature&gt;();</span><br><span class="line">    <span class="keyword">var</span> viewModel = <span class="keyword">new</span> ExceptionViewModel</span><br><span class="line">    &#123;</span><br><span class="line">        Path = exception.Path,</span><br><span class="line">        Message = exception.Error.Message,</span><br><span class="line">        StackTrace = exception.Error.StackTrace,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> View(<span class="string">"Exception"</span>, viewModel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，ViewModel定义如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExceptionViewModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Path &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Message &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> StackTrace &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h2><p>AspNetCore里面自带了一套日志系统，默认已经注册到了服务容器里了，只要在控制器的构造函数里注入就可以使用了，比如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ErrorController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> ILogger&lt;ErrorController&gt; _logger;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ErrorController</span>(<span class="params">ILogger&lt;ErrorController&gt; logger</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>._logger = logger;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认的日志只会记录到控制台或者调试输出，不过我们为了实现更多功能，比如记录到文件或者推送到日志服务器，我们需要使用第三方的日志组件。这里我用的是NLog。</p>
+<p>首先要安装<code>NLog.Web.AspNetCore</code>这个包。</p>
+<p>之后在<code>Program.cs</code>里引入nlog服务：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IWebHostBuilder <span class="title">CreateWebHostBuilder</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span> =&gt;</span><br><span class="line">    WebHost.CreateDefaultBuilder(args)</span><br><span class="line">    .ConfigureLogging((hostingContext, logging) =&gt;</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="comment">// 保留官方的代码中的默认日志程序</span></span><br><span class="line"> logging.AddConfiguration(hostingContext.Configuration.GetSection(<span class="string">"Logging"</span>));</span><br><span class="line">         logging.AddConsole();</span><br><span class="line">         logging.AddDebug();</span><br><span class="line">         logging.AddEventSourceLogger();</span><br><span class="line">         <span class="comment">// 引入 nlog</span></span><br><span class="line">         logging.AddNLog();</span><br><span class="line">      &#125;).UseStartup&lt;Startup&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>保留官方默认日志程序那里，要看AspNetCore的源代码，本文用的是2.2版本，在github看，地址如下：</p>
+<p> <a href="https://github.com/dotnet/aspnetcore/blob/v2.2.8/src/DefaultBuilder/src/WebHost.cs" target="_blank" rel="noopener">https://github.com/dotnet/aspnetcore/blob/v2.2.8/src/DefaultBuilder/src/WebHost.cs</a> </p>
+<p>然后，为了使用nlog，需要创建一个配置文件，在项目根目录创建 <code>NLog.config</code>：</p>
+<p>关于配置文件的说明可以参考：<a href="https://github.com/NLog/NLog/wiki" target="_blank" rel="noopener">https://github.com/NLog/NLog/wiki</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nlog</span> <span class="attr">xmlns</span>=<span class="string">"http://www.nlog-project.org/schemas/NLog.xsd"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">autoReload</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">throwConfigExceptions</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">targets</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"f1"</span> <span class="attr">xsi:type</span>=<span class="string">"File"</span> <span class="attr">fileName</span>=<span class="string">"Logs\nlog-all-$&#123;shortdate&#125;.log"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"n1"</span> <span class="attr">xsi:type</span>=<span class="string">"Network"</span> <span class="attr">address</span>=<span class="string">"tcp://localhost:4001"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"c1"</span> <span class="attr">xsi:type</span>=<span class="string">"Console"</span> <span class="attr">encoding</span>=<span class="string">"utf-8"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">error</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">detectConsoleAvailable</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"c2"</span> <span class="attr">xsi:type</span>=<span class="string">"ColoredConsole"</span> <span class="attr">encoding</span>=<span class="string">"utf-8"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">useDefaultRowHighlightingRules</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">errorStream</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">enableAnsiOutput</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">detectConsoleAvailable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">DetectOutputRedirected</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">targets</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rules</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">maxLevel</span>=<span class="string">"Debug"</span> <span class="attr">writeTo</span>=<span class="string">"c2"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">minLevel</span>=<span class="string">"Info"</span> <span class="attr">writeTo</span>=<span class="string">"f1"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nlog</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后在程序中就可以正常使用日志功能了。比如：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> viewModel = <span class="keyword">new</span> StatusCodeViewModel</span><br><span class="line">&#123;</span><br><span class="line">    Code = statusCode,</span><br><span class="line">    Path = statusCodeResult.OriginalPath,</span><br><span class="line">    QueryString = statusCodeResult.OriginalQueryString,</span><br><span class="line">&#125;;</span><br><span class="line">_logger.LogWarning(viewModel.ToString());</span><br></pre></td></tr></table></figure>
+
+<p>还有可以在<code>appsettings.json</code>里面配置日志等级和命名空间过滤，跟在<code>NLog.conf</code>里面配置效果是一样的。例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">"Logging": &#123;</span><br><span class="line">    "LogLevel": &#123;</span><br><span class="line">        "Default": "Warning",</span><br><span class="line">        "StudyManagement.Controllers.ErrorController": </span><br><span class="line">        <span class="string">"Warning"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="欢迎交流"><a href="#欢迎交流" class="headerlink" title="欢迎交流"></a>欢迎交流</h2><p>交流问题请在微信公众号后台留言，每一条信息我都会回复哈~</p>
+<ul>
+<li>微信公众号：画星星高手</li>
+<li>打代码直播间：<a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener">https://live.bilibili.com/11883038</a></li>
+<li>知乎：<a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener">https://www.zhihu.com/people/dealiaxy</a></li>
+<li>专栏：<a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/deali</a></li>
+<li>简书：<a href="https://www.jianshu.com/u/965b95853b9f" target="_blank" rel="noopener">https://www.jianshu.com/u/965b95853b9f</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.832Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6/" rel="tag">文件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E5%9B%BE/" rel="tag">视图</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/291087cedfa8e994.html&title=《Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/291087cedfa8e994.html&title=《Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/291087cedfa8e994.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志》 — 画星星高手&url=http://blog.deali.cn/posts/291087cedfa8e994.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/291087cedfa8e994.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/49f2d05c4961d718.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux玩家必备：Ubuntu完全配置指南</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/00ae06af28321889.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android-Studio-插件记录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/291087cedfa8e994.html&title=《Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/291087cedfa8e994.html&title=《Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/291087cedfa8e994.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Asp-Net-Core学习笔记：（二）视图、模型、持久化、文件、错误处理、日志》 — 画星星高手&url=http://blog.deali.cn/posts/291087cedfa8e994.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/291087cedfa8e994.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aO27DQAwFQN3/0gmQKkBg+5G0AouarVwo0s4WDD97HPH6+lm/fycref7RM8cZCwMD47KM/DNVUvUgJu/HwMC4AyMJsn9f/eg4ksD9/CjzvWFgYGD00rt8c3lwx8DAwMgDbhIoH/3VB/3fwMDAuCCjGkyrb6immCfW4hgYGBdk9AYD//P79PkGBgbGxzO+Wqua5OXpXXM/GBgYqxl5Q/9dw8j8akV+cBgYGLsZ1eb+ZLTZC7jR0WNgYKxm5AGuV3zmpB7mqMZpDAyMCzLy1G3erO8NAKLkFQMDYzVjEhZ7z08ujUWTWAwMjHWMamCtbq4KyAcM0XwDAwNjNSNvkFXL17wl9/xJDAyM+zAmjf5q+z5P+JoHioGBsZSRN7byYcB8tFkeG2BgYNyA0WuQ9UaSvSnki29hYGDcgFEtLKvXNSYXywrDSwwMjKWMaqCcJ3zJNbLRpjEwMNYx5u34yaWxZEgZJYgYGBirGfkVh9ML0WKB/WI/GBgY6xi9z+el5uTJQnMQAwPjBow8yauWu/O3RceBgYGxmtELi0nx2SuMJykjBgbGPsbkImnvqmuvYffiixgYGKsZvSlhDs6PoFpUV5t3GBgYV2fkG0pSuiQ1rKaehXksBgbGakZvYJAARrV1XvRiYGBgxFufB9nqIAEDAwPjXdcp5kPQ5uADAwNjESNvnE2GjvNhAwYGxj0Zb7ipEWyi187LDxoDA2Mp4xvct7JQHTD6oQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

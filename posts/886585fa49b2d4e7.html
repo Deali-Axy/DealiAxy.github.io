@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>喆大师写给前端的一些建议 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="前端,写给,大师,建议">
+    <meta name="description" content="书籍推荐《 jvascript高级程序设计（第三版） 》 偏字典书籍，江湖人称望远镜，红宝石书，红皮书，更多叫法等你去发现  《 javascript权威指南（第五版）》 就是字典，江湖人称 犀牛书，特点：厚，全  《 javascript语言精粹 》 一位在 js 界很有权威的人写的书，作者是json的发明者 江湖人称 蝴蝶书，特点：薄 完全就是在讲 js 语法，不涉及前端，顺便屌了一些开发人员">
+<meta property="og:type" content="article">
+<meta property="og:title" content="喆大师写给前端的一些建议">
+<meta property="og:url" content="http://blog.deali.cn/posts/886585fa49b2d4e7.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="书籍推荐《 jvascript高级程序设计（第三版） 》 偏字典书籍，江湖人称望远镜，红宝石书，红皮书，更多叫法等你去发现  《 javascript权威指南（第五版）》 就是字典，江湖人称 犀牛书，特点：厚，全  《 javascript语言精粹 》 一位在 js 界很有权威的人写的书，作者是json的发明者 江湖人称 蝴蝶书，特点：薄 完全就是在讲 js 语法，不涉及前端，顺便屌了一些开发人员">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/886585fa49b2d4e7/8869373-47d427c3652d113c.jpg">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.708Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="写给">
+<meta property="article:tag" content="大师">
+<meta property="article:tag" content="建议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/886585fa49b2d4e7/8869373-47d427c3652d113c.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">喆大师写给前端的一些建议</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">喆大师写给前端的一些建议</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#书籍推荐"><span class="post-toc-number">1.</span> <span class="post-toc-text">书籍推荐</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《-jvascript高级程序设计（第三版）-》"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">《 jvascript高级程序设计（第三版） 》</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《-javascript权威指南（第五版）》"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">《 javascript权威指南（第五版）》</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《-javascript语言精粹-》"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">《 javascript语言精粹 》</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《-你不知道的javascript-》系列"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">《 你不知道的javascript 》系列</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《-深入理解es6-》"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">《 深入理解es6 》</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#《-css揭密-》"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">《 css揭密 》</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三大主流框架对比"><span class="post-toc-number">2.</span> <span class="post-toc-text">三大主流框架对比</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Angular"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Angular</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#React"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">React</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vue"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Vue</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于-node-amp-npm"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">关于 node &amp; npm</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于-ES6"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">关于 ES6</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于TS"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">关于TS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其它建议"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">其它建议</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一些资源"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">一些资源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后序"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">后序</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-53aeec022194807667924f266a0e3888"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">喆大师写给前端的一些建议</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h1><h2 id="《-jvascript高级程序设计（第三版）-》"><a href="#《-jvascript高级程序设计（第三版）-》" class="headerlink" title="《 jvascript高级程序设计（第三版） 》"></a>《 jvascript高级程序设计（第三版） 》</h2><ul>
+<li>偏字典书籍，江湖人称望远镜，红宝石书，红皮书，更多叫法等你去发现</li>
+</ul>
+<h2 id="《-javascript权威指南（第五版）》"><a href="#《-javascript权威指南（第五版）》" class="headerlink" title="《 javascript权威指南（第五版）》"></a>《 javascript权威指南（第五版）》</h2><ul>
+<li>就是字典，江湖人称 犀牛书，特点：厚，全</li>
+</ul>
+<h2 id="《-javascript语言精粹-》"><a href="#《-javascript语言精粹-》" class="headerlink" title="《 javascript语言精粹 》"></a>《 javascript语言精粹 》</h2><ul>
+<li>一位在 js 界很有权威的人写的书，作者是json的发明者</li>
+<li>江湖人称 蝴蝶书，特点：薄</li>
+<li>完全就是在讲 js 语法，不涉及前端，顺便屌了一些开发人员</li>
+</ul>
+<blockquote>
+<p>ps：以上书籍均不包含 es6</p>
+</blockquote>
+<h2 id="《-你不知道的javascript-》系列"><a href="#《-你不知道的javascript-》系列" class="headerlink" title="《 你不知道的javascript 》系列"></a>《 你不知道的javascript 》系列</h2><ul>
+<li>本系列可以说是 js 书籍中最有深度的书籍</li>
+<li>一共6本（纸质版是三卷），在github的有名开源书籍</li>
+<li><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="noopener">https://github.com/getify/You-Dont-Know-JS</a></li>
+<li>中文纸质版目前只有前两卷</li>
+<li>正如书名，讲的是一些你平时不会去深究的问题</li>
+<li>以及一些骚操作，如用～～来取整，代替 Math.floor</li>
+</ul>
+<h2 id="《-深入理解es6-》"><a href="#《-深入理解es6-》" class="headerlink" title="《 深入理解es6 》"></a>《 深入理解es6 》</h2><ul>
+<li>冲着作者是红皮书的作者买的</li>
+<li>最近在看这个，里面没有涉及到es7的知识</li>
+<li>暂不评价</li>
+</ul>
+<h2 id="《-css揭密-》"><a href="#《-css揭密-》" class="headerlink" title="《 css揭密 》"></a>《 css揭密 》</h2><ul>
+<li>前几天看的，各种css的骚操作，叹为观止</li>
+</ul>
+<blockquote>
+<p>ps：上面的书我基本都有吧，还有一些书觉得没什么意思，就是不介绍了吧</p>
+</blockquote>
+<h1 id="三大主流框架对比"><a href="#三大主流框架对比" class="headerlink" title="三大主流框架对比"></a>三大主流框架对比</h1><h2 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h2><ul>
+<li>一个功能强大的重量级框架，由Google操刀</li>
+<li>因为在2.0出现全面更新（说是2个框架也不为过），所以社区被分裂开</li>
+<li>顺带一提，1.0和2.0语法相差很大，有些教程还是1.0的</li>
+<li>在2.0之后的版本语法兼容，统称新版，现在好像出5.0了吧</li>
+<li>1.0不用npm构建，2.0开始需要</li>
+<li>2.0开始使用typescript作为亲儿子，需要再学习TS</li>
+<li>总结：功能强大，但学习成本也很大</li>
+</ul>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ul>
+<li>一个十分灵活的轻量级框架，由FaceBook操刀</li>
+<li>JSX，虚拟DOM，组件化思想的开拓者</li>
+<li>有句话这么说，在react中一切皆JS，使用JSX代替HTML，CSS也写在js中</li>
+<li>由于什么都是js控制，所以也导致了它的灵活</li>
+<li>但实际上，它的写法和经典web写法区别很大，让人一开始难以适应</li>
+<li>有孪生兄弟 react native</li>
+<li>作为2015年最火的前端框架，开创了很多先进的思想</li>
+<li>目前在github上star数在前端框架中仍居第一</li>
+<li>但我觉得它的文档不是很友好，<a href="https://reactjs.org，而且需要科学上网" target="_blank" rel="noopener">https://reactjs.org，而且需要科学上网</a></li>
+<li>推荐bootstrap的翻译，只比官文旧一点，而且不用科学上网，<a href="https://react.bootcss.com" target="_blank" rel="noopener">https://react.bootcss.com</a></li>
+</ul>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><ul>
+<li>同为轻量级框架，但它的写法比react更传统</li>
+<li>作者是个国人，目前在 Google Creative Lab 就职</li>
+<li>作为2016最火的框架，出生较晚，吸收了许多框架的优点</li>
+<li>像react的组件化思想，angular的指令</li>
+<li>在最新的版本中支持typescript，jsx，可以选则性使用</li>
+<li>开创.vue文件（需要npm构建），更友好的书写组件</li>
+<li>十分友好的文档，渐近式的教程</li>
+<li>然后依旧推荐bootstrap的镜像，比官网快很多 <a href="https://vuejs.bootcss.com/" target="_blank" rel="noopener">https://vuejs.bootcss.com/</a></li>
+</ul>
+<blockquote>
+<p>ps: 由于angular的重型级适合开发大型应用，不太适合开发h5应用，所以推荐在react和vue中选则一个框架学习。（当然这不代表angular差，几乎什么功能在angular都集成了，只是在一些小应用可能用不到这么多东西，而轻量级框架会给我们更多的选则余地）在三个框架中，angualr的学习成本是最大的，功能也是最多的，像包括自带了ajax插件，这些是其它两个框架所是没有的。然后是vue，再是react。react实际上是一个非常小的框架，但它拥有非常庞大的生态社区，像路由react官方不提供，全交给了社区维护，这也是他文档感觉不全的一个原因（翻遍文档找不到的功能，原来根本就不是在这里找，掀桌子），而vue的路由都是由官方维护。虽然我很想公平的评价，但我使用vue的时间是最长的，不得不说vue是很好的，在国际的影响力也是有的（在guithb上js框架的start数仅次于react）。好了，我也不干涉，相信选则哪个心里也有点B数了（提前恭喜又一个被我带进vue坑，趁你们学习vue，我顺便偷偷学习另外两个框架，#[滑稽] ）最后，不要一持坚持某个框架，多多尝试新鲜事物，毕竟，生命在于折腾 :)</p>
+</blockquote>
+<h2 id="关于-node-amp-npm"><a href="#关于-node-amp-npm" class="headerlink" title="关于 node &amp; npm"></a>关于 node &amp; npm</h2><p>Q： node是什么？</p>
+<p>A： 关于node是什么其实没有一个很好的定义，他不是一个新的语言（使用js，但又有自己独立的api），也不是一个web容器（可以不用来写web），简单来说，它只是将原本只能在浏览器上跑的js剥离出来，它设计的初衷是创建一个支持异步的后台。</p>
+<p>Q： npm是什么？</p>
+<p>A： npm全称 node package manager ，就是node的包管理工具，用来下载和发布node的第三方包，安装node的时候一般会自带安装npm</p>
+<p>Q： 所以node作为一个后台技术，那么前端要学吗？</p>
+<p>A： 相信前面介绍了那么多，大家也都注意到三个框架都推荐使用npm来构建，那么大家可能会很好奇，前端为什么也要用到node。其实这个问题很好理解，node并不是只能写后台，这个就是好比java不是只能写web，当然，node也不是用来写前端的，node在前端的运用相当一个工具，仅此而已。像在node出现之前，像很多js压缩工具是用别的语言写的，随着node的出现，大家也乐意用js来处理前端的东西，随后也出现了很多前端工具，像webpack，然后node就是渐渐变成一个前端的开发平台，很多插件也可以用npm下载，不必去官网下，通过node这个平台，让前端的开发更加多样化，像自动压缩，es6转es5, less自动编译css等，去除了很多繁琐的操作，更加面向现代化的开发模式。再回到问题，前端是否要学习node，其实说了这么多，前端node的使用其实只是用了别人发布的包，除非你是那些包的开发者，否则会用npm下载，安装东西就是够用了。因为node部分别人帮你写好了。</p>
+<h2 id="关于-ES6"><a href="#关于-ES6" class="headerlink" title="关于 ES6"></a>关于 ES6</h2><ul>
+<li><p>Q： ES6是什么？</p>
+</li>
+<li><p>A： 在前面的介绍中，相信我多次提到es6，大家心中也会有些疑惑，前端不是用js吗，es6是什么鬼？ES全称EcmaScript，你可以简单理解成这个js的一个版本号，比如ie6支持的js版本是es3。在很多框架文档中，你可能会看到什么let const 关键字，这又是什么鬼，js不是用var吗，别紧张，我第一次看到这些东西的时候，我还以为他用了别的语言做示范，其实这些都是es6的语法。</p>
+</li>
+<li><p>Q： 既然只是个版本号，为什么我没听过什么es5？es6为什么那么屌？</p>
+</li>
+<li><p>A： 因为es6在js的版本变化中是最大的，你想想，连定义的关键字都不用万年var了，简直就是一个新的语言。因为es6的变化巨大，成为标志性的版本，所以es6之后的版本也统称es6, 之前的旧版语法统称es5</p>
+</li>
+<li><p>Q： es6是否值得到学习？</p>
+</li>
+<li><p>A： 很明确告诉你，es6 作为先进的js版本，非常值，用平常的话来讲，就是「你赚了」！</p>
+</li>
+<li><p>Q： 那我学习es6，之前学的js怎么办？</p>
+</li>
+<li><p>A： es6是js的一个版本，向下兼容，你无需担心之前的东西白学了，所以你可以在其中混用es5和es6，像var和let混用，不过我推荐除了兼容低版本ie，使用let来定义，因为var就是有一些缺陷才出现了let和const。当然也可以用babel(npm包)来将es6编译成es5。</p>
+</li>
+</ul>
+<blockquote>
+<p>ps：还有其它问题就是不一一列举，可以来问我或义大师（推荐使用义大师 #[滑稽]）</p>
+</blockquote>
+<h2 id="关于TS"><a href="#关于TS" class="headerlink" title="关于TS"></a>关于TS</h2><ul>
+<li><p>Q： 什么是TS</p>
+</li>
+<li><p>A： TS全称typescript，是微软出品，JS的强类型变量版，由C#的设计师设计，所以会有一股浓浓的C#风，推荐喜欢C#或讨厌弱类型JS的人试一试（这里手动@定林）。</p>
+</li>
+<li><p>Q： TS和JS什么关系</p>
+</li>
+<li><p>A： 前面也说了，TS是强类型变量版JS，依赖于NODE，如果要用到前端，那需要将TS编译成JS</p>
+</li>
+</ul>
+<blockquote>
+<p>ps: 更多TS请自行baidu，google，顺带一提，还有一门js的预编译语言叫CS (CoffeeScript)，由github出品，ruby/python风格的js，不过没有TS火，可能是因为CS还是弱变量的关系，解决的类语法糖在es6出来后也不需要了</p>
+</blockquote>
+<h2 id="其它建议"><a href="#其它建议" class="headerlink" title="其它建议"></a>其它建议</h2><ul>
+<li>我建议学好es6，不然你可能连文档都看不懂了，这个给一本es6开源的书籍 <a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">http://es6.ruanyifeng.com/</a></li>
+<li>然后不要害怕用npm去构建项目，试着跟着框架的文档，用npm安装，你会发现很简单（毕竟只是安装，又不是让你写）</li>
+<li>有空多多研究一些开源项目，逛逛github，node社区，（不好意思，我不喜欢看CSDN）下面贴出一些我珍藏的资源</li>
+</ul>
+<h2 id="一些资源"><a href="#一些资源" class="headerlink" title="一些资源"></a>一些资源</h2><ul>
+<li>B站 <a href="https://www.bilibili.com/" target="_blank" rel="noopener">https://www.bilibili.com/</a> （你当你什么也没看到）<em>重量级藏品</em></li>
+<li>阿里图标库 <a href="http://www.iconfont.cn/" target="_blank" rel="noopener">http://www.iconfont.cn/</a> （在没有ui的时候，大显身手）ps：上次冯同学问我图做那么快，用的什么刀，其实我根本就没用什么工具，就是在这里面偷的图标（然而我并没有告诉她，哈哈哈）<em>重量级藏品</em></li>
+<li>svg转字体文字 <a href="https://icomoon.io/app/#/select" target="_blank" rel="noopener">https://icomoon.io/app/#/select</a></li>
+<li>一些图片素材 <a href="http://588ku.com/banner/?h=bd" target="_blank" rel="noopener">http://588ku.com/banner/?h=bd</a> （其实相似的网站很多）</li>
+<li>一个神奇的网站 <a href="http://www.html5tricks.com/" target="_blank" rel="noopener">http://www.html5tricks.com/</a> (虽然是一个无名小站，但我能在里面找到很多另人惊叹的作品，也是我平时看源代码的主要网站) <em>重量级藏品</em></li>
+</ul>
+<h2 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h2><p>码字好累，滚回去打代码</p>
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy</p>
+<img src="/posts/886585fa49b2d4e7/8869373-47d427c3652d113c.jpg" class="">
+
+<p>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.708Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%99%E7%BB%99/" rel="tag">写给</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E5%B8%88/" rel="tag">大师</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BB%BA%E8%AE%AE/" rel="tag">建议</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/886585fa49b2d4e7.html&title=《喆大师写给前端的一些建议》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/886585fa49b2d4e7.html&title=《喆大师写给前端的一些建议》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/886585fa49b2d4e7.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《喆大师写给前端的一些建议》 — 画星星高手&url=http://blog.deali.cn/posts/886585fa49b2d4e7.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/886585fa49b2d4e7.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/8775e3df620f1eb6.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">轻松解决百度云限速问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/cbe6c14118eb67f7.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">9-Most-Beautiful-Linux-Distros-You-Need-To-Use-(2018-Edition)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/886585fa49b2d4e7.html&title=《喆大师写给前端的一些建议》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/886585fa49b2d4e7.html&title=《喆大师写给前端的一些建议》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/886585fa49b2d4e7.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《喆大师写给前端的一些建议》 — 画星星高手&url=http://blog.deali.cn/posts/886585fa49b2d4e7.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/886585fa49b2d4e7.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNklEQVR42u3aQY6DQAwFUe5/aUaa1UgTSH0bouAuVlGEmn4sjNv2tuFr/73IP3+vo//JPdsdlwwZMh7L4I85YqQr9O98QZUhQ8YCjPMge076/0geuEmwRuvIkCFDBt4iSfjOV5YhQ4aMOwLuEZL880XfDRkyZHw9g5fDSAgmsPSey87iMmTIeCAjbQx88veN/Q0ZMmQ8hLE3rnRl3haNdyJDhozRDF5KS4cqSEhNk8s3O5QhQ8ZoBk8KeVhMy3mcV3v1MmTIeDqDD4Gdb7TTGCAH5uA7IEOGjEEMMh7BAeRF8AZA8JpkyJCxAKMW+NJN863HLUwZMmSMZtRGHGrNg065jYdgGTJkTGWk6V0aNGvbKn49ZMiQsQCDNADSwlmKrw1qyJAhYyqDBLja2MT5ap3hiRdPlCFDxgKMWsJXG6FIS3soxMuQIWNJBtnoVUdcEujfhGYZMmSMZrQ6CaX0rtb4rOaMMmTImMPotBV5ka5TzgvKfDJkyBjNqB1x06Exvgk+riFDhowVGJ3CGUnv+FustTNlyJCxDqNTGuMNyzvSShkyZKzAqLUS72gk8FS1WNWTIUPGAxl7eKVFfLJap/F5OBYmQ4aMQYxO65EPe/FiXFqqkyFDxjoMHhZrsHTYi++hGN1lyJDxWAY/0KYJXNqqLJ7FZciQIQM0F9PDKg/Kl3ViZciQsQAj3TQPl3EiKEOGjCUZPFym6WA6olFMNGXIkDGaUWsMpAW1NNVLx9FkyJAxlPEDTFYZBmwezrUAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

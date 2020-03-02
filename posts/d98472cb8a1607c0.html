@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【VB超简单入门】九、程序执行顺序-1 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="B超,入门,程序执行,顺序">
+    <meta name="description" content="前言最近作者很忙啦，这个系列的教程更新得也比较慢，在公众号后台看到有同学在催更了，所以抽出时间写一篇哈~有同学担心我没时间继续更新下去，这里再重申一下，只要有人看我就会抽出时间继续更新的啦，请大家放心哈。 关于程序执行顺序我们写程序的时候，是一行一行的写的，在程序运行的时候，也是一行一行的运行，不过现实中的需求都是非常复杂的，如果只能一行一行运行的话，那我们的程序就不能叫做「程序」了，只能称为「批">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【VB超简单入门】九、程序执行顺序-1">
+<meta property="og:url" content="http://blog.deali.cn/posts/d98472cb8a1607c0.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言最近作者很忙啦，这个系列的教程更新得也比较慢，在公众号后台看到有同学在催更了，所以抽出时间写一篇哈~有同学担心我没时间继续更新下去，这里再重申一下，只要有人看我就会抽出时间继续更新的啦，请大家放心哈。 关于程序执行顺序我们写程序的时候，是一行一行的写的，在程序运行的时候，也是一行一行的运行，不过现实中的需求都是非常复杂的，如果只能一行一行运行的话，那我们的程序就不能叫做「程序」了，只能称为「批">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/d98472cb8a1607c0/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.788Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="B超">
+<meta property="article:tag" content="入门">
+<meta property="article:tag" content="程序执行">
+<meta property="article:tag" content="顺序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/d98472cb8a1607c0/8869373-901590e019f6f85b.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【VB超简单入门】九、程序执行顺序-1</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【VB超简单入门】九、程序执行顺序-1</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/VB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">VB入门教程</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于程序执行顺序"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于程序执行顺序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#判断"><span class="post-toc-number">3.</span> <span class="post-toc-text">判断</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#条件语句"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">条件语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#判断两个数的大小"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">判断两个数的大小</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#判断用户名"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">判断用户名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#根据季节说月份"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">根据季节说月份</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择语句"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">选择语句</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#end"><span class="post-toc-number">4.</span> <span class="post-toc-text">end</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">5.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-6d46f547bd087202a08fd4a8097fd89c"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【VB超简单入门】九、程序执行顺序-1</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/VB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">VB入门教程</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近作者很忙啦，这个系列的教程更新得也比较慢，在公众号后台看到有同学在催更了，所以抽出时间写一篇哈~<br>有同学担心我没时间继续更新下去，这里再重申一下，只要有人看我就会抽出时间继续更新的啦，请大家放心哈。</p>
+<h2 id="关于程序执行顺序"><a href="#关于程序执行顺序" class="headerlink" title="关于程序执行顺序"></a>关于程序执行顺序</h2><p>我们写程序的时候，是一行一行的写的，在程序运行的时候，也是一行一行的运行，不过现实中的需求都是非常复杂的，如果只能一行一行运行的话，那我们的程序就不能叫做「程序」了，只能称为「批处理」。</p>
+<p>在VB中，我们有三种方法来控制程序的执行顺序，分别是：判断、循环、<em>跳转</em>。<br>下面我们将分别进行学习。</p>
+<h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><p>判断顾名思义就是判断啦，比如判断两个是的大小，判断用户名和密码是否匹配等等。<br>判断又有两种类型的语句，条件语句和选择语句。</p>
+<h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><p>下面是一个简单的条件语句结构：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 条件<span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">    dosth()</span><br><span class="line"><span class="keyword">elseif</span> 条件<span class="number">2</span> <span class="keyword">then</span></span><br><span class="line">    dosth2()</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    dosth3()</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure>
+
+<p>对于 <code>if</code> 语句，是这样执行的，如果 <code>条件</code> 表达式的值为 <code>true</code> ，那么就执行 <code>then</code> 后面的代码块，如果为 <code>false</code> ，就执行 <code>else</code> 后面的语句。</p>
+<p>举个例子：</p>
+<h4 id="判断两个数的大小"><a href="#判断两个数的大小" class="headerlink" title="判断两个数的大小"></a>判断两个数的大小</h4><p>代码功能：判断两个数的大小，输出最大的数。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dim</span> a <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="keyword">dim</span> b <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    print a</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    print b</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure>
+
+<p>代码执行结果：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="判断用户名"><a href="#判断用户名" class="headerlink" title="判断用户名"></a>判断用户名</h4><p>代码功能：判断用户名是否为管理员</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dim</span> username <span class="keyword">as</span> <span class="built_in">string</span></span><br><span class="line">username = inputbox(<span class="string">"enter your username"</span>)</span><br><span class="line"><span class="keyword">if</span> username = <span class="string">"admin"</span> <span class="keyword">then</span></span><br><span class="line">    print <span class="string">"you are super user"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    print <span class="string">"you are not super user"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p>输入：<code>admin</code></p>
+<p>输出：<code>you are super user</code></p>
+<h4 id="根据季节说月份"><a href="#根据季节说月份" class="headerlink" title="根据季节说月份"></a>根据季节说月份</h4><p>代码功能：根据用户输入的季节输出对应月份</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dim</span> season <span class="keyword">as</span> <span class="built_in">string</span></span><br><span class="line">season = inputbox(<span class="string">"please enter season"</span>)</span><br><span class="line"><span class="keyword">if</span> season = <span class="string">"spring"</span> <span class="keyword">then</span></span><br><span class="line">    print <span class="string">"Jan, Feb, Mar"</span></span><br><span class="line"><span class="keyword">elseif</span> season = <span class="string">"summer"</span> <span class="keyword">then</span></span><br><span class="line">    print <span class="string">"Apr, May, June"</span></span><br><span class="line"><span class="keyword">elseif</span> season = <span class="string">"autumn"</span> <span class="keyword">then</span></span><br><span class="line">    print <span class="string">"July, Aug, Sept"</span></span><br><span class="line"><span class="keyword">elseif</span> season = <span class="string">"winter"</span> <span class="keyword">then</span></span><br><span class="line">    print <span class="string">"Oct, Nov, Dec"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p>输入：<code>spring</code></p>
+<p>输出：<code>Jan, Feb, Mar</code></p>
+<h3 id="选择语句"><a href="#选择语句" class="headerlink" title="选择语句"></a>选择语句</h3><p>在上面的例子里面，有一个根据季节说月份的，一年只有四个季节，所以问题还不大，可以写四个 <code>if else if</code> 语句来判断，假如现在要反过来，根据月份说季节，难道要写12个语句不成？</p>
+<p>为了解决代码太罗嗦的问题，VB中采用了 <code>select</code> 的选择语句，和C语言里的 <code>switch</code> 语句差不多，不过VB的 <code>select</code> 语句功能更强大！</p>
+<p><strong>语法：</strong></p>
+<p><strong>值选择，即根据变量的不同值，执行不同的操作。</strong></p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> 变量</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">call</span> dosth1()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">call</span> dosth2()</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span></span><br><span class="line">        <span class="keyword">call</span> dosth3()</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">call</span> dosth4()</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">select</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><code>select case</code> 语句如何运行？</strong><br>VB先计算测试表达式，然后将表达式的 值与每个<code>Case</code>的值进行比较。若相等， 就执行与该<code>Case</code>相关联的语句块。如果 不止一个<code>Case</code>与测试表达式匹配，那么 只对第一个匹配的Case执行与之相关联 的语句块；如果在表达式列表中没有一 个值与测试表达式相匹配，则执行<code>Case Else</code>子句中的语句。</p>
+<p><strong>可以对每个<code>Case</code>语句设置多个比较值</strong></p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">' 飞机棋游戏</span></span><br><span class="line"><span class="keyword">dim</span> number <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line">number = int(rnd * <span class="number">6</span>) + <span class="number">1</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> number</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>,<span class="number">6</span></span><br><span class="line">        print <span class="string">"起飞"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span></span><br><span class="line">        print <span class="string">"不起飞"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">select</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>也可以用设定范围的方法来设置多个比较值</strong></p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dim</span> score <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line">score = inputbox(<span class="string">"请输入考试分数"</span>)</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> score</span><br><span class="line">    <span class="keyword">case</span> <span class="number">90</span> <span class="keyword">to</span> <span class="number">100</span></span><br><span class="line">        print <span class="string">"优秀"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">80</span> <span class="keyword">to</span> <span class="number">90</span></span><br><span class="line">        print <span class="string">"良好"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">60</span> <span class="keyword">to</span> <span class="number">80</span></span><br><span class="line">        print <span class="string">"及格"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">else</span></span><br><span class="line">        print <span class="string">"不及格"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">select</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>条件选择，VB的 <code>select</code> 语句独有的功能，很好用。</strong><br>相当于简化版本的 <code>if else if</code> 结构。</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dim</span> score <span class="keyword">as</span> <span class="built_in">integer</span></span><br><span class="line">score = inputbox(<span class="string">"请输入考试分数"</span>)</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> sorce</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">is</span> &lt; <span class="number">60</span></span><br><span class="line">        print <span class="string">"不及格"</span></span><br><span class="line">        <span class="keyword">exit</span> <span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">is</span> &gt; <span class="number">60</span> <span class="keyword">and</span> <span class="keyword">is</span> &lt; <span class="number">80</span></span><br><span class="line">        print <span class="string">"及格"</span></span><br><span class="line">        <span class="keyword">exit</span> <span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">is</span> &gt; <span class="number">80</span> <span class="keyword">and</span> <span class="keyword">is</span> &lt; <span class="number">90</span></span><br><span class="line">        print <span class="string">"良好"</span></span><br><span class="line">        <span class="keyword">exit</span> <span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">is</span> &gt; <span class="number">90</span></span><br><span class="line">        print <span class="string">"优秀"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">select</span></span><br></pre></td></tr></table></figure>
+
+<p>由于时间和篇幅关系，不再举更多例子，更详细的语法介绍将在下次更新时展开，敬请关注哈~</p>
+<h2 id="end"><a href="#end" class="headerlink" title="end"></a>end</h2><p>关于程序执行顺序本文就介绍到这里了，循环和跳转将在接下来的文章中介绍，希望同学们持续关注哈~</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/d98472cb8a1607c0/8869373-901590e019f6f85b.png" class="">
+
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.788Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E8%B6%85/" rel="tag">B超</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C/" rel="tag">程序执行</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%BA%E5%BA%8F/" rel="tag">顺序</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/d98472cb8a1607c0.html&title=《【VB超简单入门】九、程序执行顺序-1》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/d98472cb8a1607c0.html&title=《【VB超简单入门】九、程序执行顺序-1》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/d98472cb8a1607c0.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【VB超简单入门】九、程序执行顺序-1》 — 画星星高手&url=http://blog.deali.cn/posts/d98472cb8a1607c0.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/d98472cb8a1607c0.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/391dbf61a14c4a40.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">配置MariaDB数据库服务端远程访问</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/8f8585a1ceeae6d2.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">刚刚入手新书了，嘿嘿，一本《Pro-C#》岂不是美滋滋</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/d98472cb8a1607c0.html&title=《【VB超简单入门】九、程序执行顺序-1》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/d98472cb8a1607c0.html&title=《【VB超简单入门】九、程序执行顺序-1》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/d98472cb8a1607c0.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【VB超简单入门】九、程序执行顺序-1》 — 画星星高手&url=http://blog.deali.cn/posts/d98472cb8a1607c0.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/d98472cb8a1607c0.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3awW6EMAxF0fn/n6bbSi1wXxzQxLmsRi0TfKjkJrY/H3wd4Dq7//dPyD1/75x2yZAhY1kGCY78lj+Fg/mLkyFDxg6Mswdfp0v+Oc2TPDYZMmTISAO6TpqzXoQMGTJk8LBIcPyY+mrClSFDxoIMvkUjB900cb96FpchQ8aCDF51f//zI/0NGTJkLMU4wmusWDa2NQyikiFDRmtGpQFJNoIcTFa4aYjKkCGjKWPucbFSkiu9LBkyZLRm1NuHaRA8LNIkuPmbyJAhoymDj0qQxMpXeKQTK0OGjBYMnmqfOOiOvZrTqqEMGTKaMuqdwVKdr/zdaQ1OGTJkfDEjXZQnQTJYRtI0WkeGDBkbMCpjFmTTRrJ+ujEdnBmRIUPGggxeXEupJFFWQkctTBkyZLRjpJuzMdjYsTYuq8mQIaMRIy3c14fGeDMgSNkyZMjYjFFPi+mRdcJrkiFDxsaMdDvIN5rp+jeFORkyZLRm1FNe2vIcS6nxeIcMGTLaMdLkWA+oPsbxz2oyZMjYhjFreGKsiEbSNBq2kCFDRlNGJSw+7MUxPAYZMmT0ZhzhxYfJ+Apj5bkgr8uQIWNxBr/Ssj4HkzQ9to4MGTI6McaOmmnSvF6BrylDhoydGTzx1bN75T/AYGNAhgwZmzF46kwbDGnDIHi8DBkyNmOkA2E8XFKYe3BrKEOGjK9nkAfzclta0E+/JUOGjN0Y6dGRtzD54EW9OSFDhoymjB+eqWC+zs+SMwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

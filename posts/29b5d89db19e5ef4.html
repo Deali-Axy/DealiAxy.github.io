@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>在Linux-Ubuntu上配置开发JavaFx程序-(更新) | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,配置,开发,Linux,程序">
+    <meta name="description" content="前言不清楚什么原因，网络上关于JavaFx的中文资料很少，并且都很老，所以建议大家有兴趣学习JavaFx还是看官方文档比较好，而且貌似部分人不看好JavaFx。关于Swing的资料倒是要多很多。我觉得挺奇怪的，从设计上来将，还是JavaFx高明一些嘛。  PS：经过近一周的折腾和探索，发现OpenJDK使用JavaFX真的好多坑～OpenJDK 和 Oracle JDK的配置是有差别的，这里推荐大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Linux-Ubuntu上配置开发JavaFx程序-(更新)">
+<meta property="og:url" content="http://blog.deali.cn/posts/29b5d89db19e5ef4.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言不清楚什么原因，网络上关于JavaFx的中文资料很少，并且都很老，所以建议大家有兴趣学习JavaFx还是看官方文档比较好，而且貌似部分人不看好JavaFx。关于Swing的资料倒是要多很多。我觉得挺奇怪的，从设计上来将，还是JavaFx高明一些嘛。  PS：经过近一周的折腾和探索，发现OpenJDK使用JavaFX真的好多坑～OpenJDK 和 Oracle JDK的配置是有差别的，这里推荐大">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-bf50c3eff30ba41b.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-22a3037fb6460d91.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-1e1fa17086e3142e.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-1435c5f20090bb98.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-6192ace8f679460f.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-e415b932c26c2251.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.704Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="配置">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/29b5d89db19e5ef4/8869373-bf50c3eff30ba41b.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">在Linux-Ubuntu上配置开发JavaFx程序-(更新)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">在Linux-Ubuntu上配置开发JavaFx程序-(更新)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#附上安装OracleJDK的方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">附上安装OracleJDK的方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#OpenJDK需要多一步操作"><span class="post-toc-number">3.</span> <span class="post-toc-text">OpenJDK需要多一步操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HelloWorld"><span class="post-toc-number">5.</span> <span class="post-toc-text">HelloWorld</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-Scene-Builder"><span class="post-toc-number">6.</span> <span class="post-toc-text">安装 Scene Builder</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IDEA配置"><span class="post-toc-number">7.</span> <span class="post-toc-text">IDEA配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">8.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-5292e9389b8f256ccd7a58f110e24401"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">在Linux-Ubuntu上配置开发JavaFx程序-(更新)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不清楚什么原因，网络上关于JavaFx的中文资料很少，并且都很老，所以建议大家有兴趣学习JavaFx还是看官方文档比较好，而且貌似部分人不看好JavaFx。<br>关于Swing的资料倒是要多很多。我觉得挺奇怪的，从设计上来将，还是JavaFx高明一些嘛。</p>
+<blockquote>
+<p>PS：经过近一周的折腾和探索，发现OpenJDK使用JavaFX真的好多坑～<br>OpenJDK 和 Oracle JDK的配置是有差别的，这里推荐大家使用OracleJDK以免遇到奇怪的坑～</p>
+</blockquote>
+<h2 id="附上安装OracleJDK的方法"><a href="#附上安装OracleJDK的方法" class="headerlink" title="附上安装OracleJDK的方法"></a>附上安装OracleJDK的方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="OpenJDK需要多一步操作"><a href="#OpenJDK需要多一步操作" class="headerlink" title="OpenJDK需要多一步操作"></a>OpenJDK需要多一步操作</h2><p>因为OpenJDK8默认是没有javafx包的，需要先安装 OpenJFX。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>打开Idea，在一个普通的Java项目里面，导入javafx包是找不到的。<br>Idea 在创建Java项目的时候默认不导入JavaFx包，所以需要我们自己找到路劲并且导入。</p>
+<p>打开 Project Structure，选择SDKs，可以看到JDK路径。</p>
+<img src="/posts/29b5d89db19e5ef4/8869373-bf50c3eff30ba41b.png" class="">
+
+<p>点击旁边的 “+” 号，然后在 jdk 目录下，<code>/lib/ext</code>文件夹里找到 <code>jfxrt.jar</code> 这个包，并且导入，就OK啦～</p>
+<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><p>第一个程序从HelloWorld开始！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> lin.Learning.JavaFx;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javafx.application.Application;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.layout.StackPane;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.control.Label;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        launch(args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">        Label label = <span class="keyword">new</span> Label(<span class="string">"the first label"</span>);</span><br><span class="line">        <span class="comment">// 创建面板作为根节点</span></span><br><span class="line">        StackPane rootNode=<span class="keyword">new</span> StackPane();</span><br><span class="line">        <span class="comment">// 将label控件添加到根节点上</span></span><br><span class="line">        rootNode.getChildren().add(label);</span><br><span class="line">        <span class="comment">// 创建场景对象，指定根节点对象和大小</span></span><br><span class="line">        Scene scene=<span class="keyword">new</span> Scene(rootNode,<span class="number">200</span>,<span class="number">60</span>);</span><br><span class="line">        primaryStage.setTitle(<span class="string">"Hello JavaFx"</span>);</span><br><span class="line">        <span class="comment">// 将场景添加到舞台中</span></span><br><span class="line">        primaryStage.setScene(scene);</span><br><span class="line">        <span class="comment">// 显示舞台</span></span><br><span class="line">        primaryStage.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<img src="/posts/29b5d89db19e5ef4/8869373-22a3037fb6460d91.png" class="">
+
+
+<p>这样就完成了在Linux系统上的第一个JavaFx程序开发了。</p>
+<h2 id="安装-Scene-Builder"><a href="#安装-Scene-Builder" class="headerlink" title="安装 Scene Builder"></a>安装 Scene Builder</h2><p>JavaFx特色就是 View 和 Controller 分离，使用 fxml 写界面布局，并且 Oracle 提供了一款所见即所得的界面设计工具，不过要自己去安装。</p>
+<p>下载地址：<br><a href="https://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-1x-archive-2199384.html#javafx-scenebuilder-2.0-oth-JPR" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-1x-archive-2199384.html#javafx-scenebuilder-2.0-oth-JPR</a></p>
+<p>选择对应系统的版本下载就行了，这里我选择的是Debian的deb安装包。</p>
+<img src="/posts/29b5d89db19e5ef4/8869373-1e1fa17086e3142e.png" class="">
+
+<p>关于 Scene Builder 的安装，可以参照 oracle 的文档：<br><a href="https://docs.oracle.com/javase/8/scene-builder-2/installation-guide/preface.htm#sthref2" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/scene-builder-2/installation-guide/preface.htm#sthref2</a></p>
+<p>这里摘一段文档，关于在Linux平台安装 Scene Builder的：</p>
+<blockquote>
+<p>(Linux platform) Extract the Scene Builder 2.0 files from the javafx_scenebuilder-2_0-linux-<platform>.tar.gz to a directory on your local file system, or double-click the javafx_scenebuilder-2_0-linux-<platform>.deb file to open it with Ubuntu Software Center, where <platform> is either x64 or i586. By default, the Scene Builder application is installed at /opt/JavaFXSceneBuilder2.0/.</p>
+</blockquote>
+<p>可以看到，Scene Builder的安装目录是：<code>/opt/JavaFXSceneBuilder2.0/</code></p>
+<p>那么，接下来就要在IDEA中配置了。</p>
+<h2 id="IDEA配置"><a href="#IDEA配置" class="headerlink" title="IDEA配置"></a>IDEA配置</h2><p>打开设置</p>
+<img src="/posts/29b5d89db19e5ef4/8869373-1435c5f20090bb98.png" class="">
+
+<p>配置路径</p>
+<img src="/posts/29b5d89db19e5ef4/8869373-6192ace8f679460f.png" class="">
+
+<p>然后在我们的项目里面添加一个 FXML 文件。<br>右键就可以通过 Scene Builder 打开啦，这个界面还不错。</p>
+<img src="/posts/29b5d89db19e5ef4/8869373-e415b932c26c2251.png" class="">
+
+
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/29b5d89db19e5ef4/8869373-901590e019f6f85b.png" class="">
+
+<hr>
+<p>Learn more on my WeChat Official Account：DealiAxy<br>Every post was in my blog：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.704Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F/" rel="tag">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html&title=《在Linux-Ubuntu上配置开发JavaFx程序-(更新)》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html&title=《在Linux-Ubuntu上配置开发JavaFx程序-(更新)》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/29b5d89db19e5ef4.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在Linux-Ubuntu上配置开发JavaFx程序-(更新)》 — 画星星高手&url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/d1d557de607bf836.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">深入Jar包：Gradle构建可执行jar包与访问jar包中文件夹与文件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/0ae6b5e94c214bb8.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">NetCore爬虫：CatSpider#-开发笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html&title=《在Linux-Ubuntu上配置开发JavaFx程序-(更新)》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html&title=《在Linux-Ubuntu上配置开发JavaFx程序-(更新)》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/29b5d89db19e5ef4.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在Linux-Ubuntu上配置开发JavaFx程序-(更新)》 — 画星星高手&url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/29b5d89db19e5ef4.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3ay07DUAwFwP7/T5ctEmp0bF8QcSYr1KbNnS6MX69XfL2/XZ/evb7z0yvJZ49dGBgYt2W8L69P91QffM37+Z352TAwMJ7DSMLo9f3VO68Pmp8NAwMDoxcEq8li9SfDwMDAyBnVxDEphjEwMDAmRWy19dYLoL9ei2NgYNyQkXfd//7vX5lvYGBg3IrxLl7VAeQkNSycCgMDYzWj176flJ1Jetc8DwYGxmpGUoLmX33dgJs08pqZLAYGxs0Z1w/oUXvHmqyLYWBgPIHRO1b+mDwRbA47MTAwVjOqTfneqkQ13Wy+i4GBsZSRB8GEN2nYVaeT0eMxMDDWMU419/PEMQnTUVqJgYGxmlEtPntrEHnIrg4hMDAwnsA4tQCRrFwkQbY3fsDAwNjNyJti1TFkftAc8Cr/K8HAwNjAODxhaP1Y+VChsDOCgYGxiDEpTSchcj6QwMDAeBpjEkarqWRvPFBYDcHAwHgAI0/X8kBcHU+OyloMDIyljLOrWvOkMB8GfJzEYmBgrGb0liQmAbqaRBZ2RjAwMNYx8qDZKzInYTpKKzEwMJYyJiOBd+s62547MNnAwMD494xJ03/Syq+mm811MQwMjEWMXqk5ykbjgQQGBgZGdUmr2p47FYKjZQsMDAyMeMTYK1YP5LMYGBgYxVWtXqLZa+1hYGA8h5G30qpNt95AtJxQYmBgrGZUS8fkcNVwfDZhxcDAWMT4AjSL+gjTc8ByAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

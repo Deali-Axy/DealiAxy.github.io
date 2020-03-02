@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【开源】发布一个基于JavaFX的小游戏：CrazyAlpha | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,开源,发布,游戏开发,小游戏">
+    <meta name="description" content="Features 基于JavaFX设计了游戏引擎XEngine 使用自行开发的游戏引擎XEngine实现完整游戏功能 游戏资源管理：字体、图片、音频管理 游戏地图管理，多地图切换 MVVM分层设计，代码解耦合，模块高内聚 Model模型系统设计，模块化设计 使用订阅者模式实现的消息系统和事件处理 使用Gradle构建  下载运行首先，点击打开：CrazyAlpha下载页面   下载CrazyAlp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【开源】发布一个基于JavaFX的小游戏：CrazyAlpha">
+<meta property="og:url" content="http://blog.deali.cn/posts/14b53f2797cc08f7.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="Features 基于JavaFX设计了游戏引擎XEngine 使用自行开发的游戏引擎XEngine实现完整游戏功能 游戏资源管理：字体、图片、音频管理 游戏地图管理，多地图切换 MVVM分层设计，代码解耦合，模块高内聚 Model模型系统设计，模块化设计 使用订阅者模式实现的消息系统和事件处理 使用Gradle构建  下载运行首先，点击打开：CrazyAlpha下载页面   下载CrazyAlp">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-dba7339056ce113e.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-fbde64fc99f06c85.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-2ffef771e37c67c3.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-c90595ad9ef2f8f5.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-bfabf0608d28e3eb.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.708Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="发布">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="小游戏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/14b53f2797cc08f7/8869373-dba7339056ce113e.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【开源】发布一个基于JavaFX的小游戏：CrazyAlpha</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【开源】发布一个基于JavaFX的小游戏：CrazyAlpha</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Production/">Production</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Features"><span class="post-toc-number">1.</span> <span class="post-toc-text">Features</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载运行"><span class="post-toc-number">2.</span> <span class="post-toc-text">下载运行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开源"><span class="post-toc-number">3.</span> <span class="post-toc-text">开源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#架构"><span class="post-toc-number">4.</span> <span class="post-toc-text">架构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图形界面实现"><span class="post-toc-number">5.</span> <span class="post-toc-text">图形界面实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#界面截图"><span class="post-toc-number">6.</span> <span class="post-toc-text">界面截图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#游戏启动画面："><span class="post-toc-number">6.1.</span> <span class="post-toc-text">游戏启动画面：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#游戏主界面："><span class="post-toc-number">6.2.</span> <span class="post-toc-text">游戏主界面：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#游戏暂停画面"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">游戏暂停画面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#游戏结束画面"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">游戏结束画面</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开发心得"><span class="post-toc-number">7.</span> <span class="post-toc-text">开发心得</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">8.</span> <span class="post-toc-text">About</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欢迎交流"><span class="post-toc-number">9.</span> <span class="post-toc-text">欢迎交流</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-53ff3339d00e60d486e1dad07fd78750"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【开源】发布一个基于JavaFX的小游戏：CrazyAlpha</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Production/">Production</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ol>
+<li>基于JavaFX设计了游戏引擎XEngine</li>
+<li>使用自行开发的游戏引擎XEngine实现完整游戏功能</li>
+<li>游戏资源管理：字体、图片、音频管理</li>
+<li>游戏地图管理，多地图切换</li>
+<li>MVVM分层设计，代码解耦合，模块高内聚</li>
+<li>Model模型系统设计，模块化设计</li>
+<li>使用订阅者模式实现的消息系统和事件处理</li>
+<li>使用Gradle构建</li>
+</ol>
+<h2 id="下载运行"><a href="#下载运行" class="headerlink" title="下载运行"></a>下载运行</h2><p>首先，点击打开：<a href="https://github.com/Deali-Axy/CrazyAlpha/releases" target="_blank" rel="noopener">CrazyAlpha下载页面</a></p>
+<img src="/posts/14b53f2797cc08f7/8869373-dba7339056ce113e.png" class="">
+
+<p>下载CrazyAlpha的最新版本，例如图中的是<code>1.0.1</code>，文件名是：<code>crazyalpha.jar</code></p>
+<blockquote>
+<p>PS：由于游戏是使用Java编写的，所以没有安装Java的小伙伴请先下载Java，Windows版本的Java运行环境下载：<a href="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=235724_2787e4a523244c269598db4e85c51e0c" target="_blank" rel="noopener">点击下载</a></p>
+</blockquote>
+<p>在安装完java环境之后，可以双击jar包运行，或者右键选择使用<code>Java Runtime</code>运行<br>当然也可以在命令行中执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar crazyalpha.jar</span><br></pre></td></tr></table></figure>
+
+<h2 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h2><p>Github项目地址：<a href="https://github.com/Deali-Axy/CrazyAlpha" target="_blank" rel="noopener">https://github.com/Deali-Axy/CrazyAlpha</a></p>
+<blockquote>
+<p>PS：由于版权原因，Github代码中不包含游戏用到的图片、字体、声音等资源文件，所以要运行游戏的同学可以自行替换资源文件，或者联系我获取资源文件。</p>
+</blockquote>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
+<li><code>Game.Engine</code>：自行实现的游戏引擎包<ol>
+<li><code>Annotation</code>：引擎注解包，包含引擎定义的注解<ol>
+<li><code>GameEventHandler</code>：事件处理器注解</li>
+<li><code>GameManager</code>：游戏中各类管理器的注解</li>
+<li><code>GameModel</code>：模型注解</li>
+<li><code>GameObject</code>：游戏对象注解</li>
+<li><code>GameView</code>：视图注解，用于实现MVVM分层设计</li>
+</ol>
+</li>
+<li><code>Base</code>：基础类包，包含了引擎定义的各种抽象基类<ol>
+<li><code>BaseModel</code>：基础模型</li>
+<li><code>ImageModel</code>：基础图形模型</li>
+<li><code>ShapeModel</code>：基础形状模型</li>
+<li><code>TextModel</code>：基础文本模型</li>
+</ol>
+</li>
+<li><code>Enum</code>：各类枚举的定义（略）</li>
+<li><code>Utils</code>：其他工具（略）</li>
+<li><code>GameObject</code>：游戏对象基类，所有对象都从这个类派生</li>
+<li><code>GameView</code>：除了游戏主界面外的其他界面都由视图基类派生</li>
+</ol>
+</li>
+<li><code>Game.EventHandler</code>：包含所有事件处理器</li>
+<li><code>Game.Manager</code>：包含了各类管理器，地图、资源、数据、模型、事件等管理器</li>
+<li><code>Game.Object</code>：包含所有游戏对象的定义<ol>
+<li><code>Model</code>：包含所有游戏模型的定义</li>
+<li><code>GameMap</code>：游戏地图对象</li>
+<li><code>Generator</code>：游戏事件发生器</li>
+</ol>
+</li>
+<li><code>Game.View</code>：视图包，包含所有视图的定义</li>
+<li><code>Game</code>：全局游戏对象，使用单例模式创建</li>
+<li><code>Main</code>：游戏主类</li>
+<li><code>Render</code>：核心渲染器，负责游戏的渲染工作</li>
+</ol>
+<h2 id="图形界面实现"><a href="#图形界面实现" class="headerlink" title="图形界面实现"></a>图形界面实现</h2><p>为了开发这个游戏，我先开发了一个基于JavaFX的游戏引擎，引擎实现了从游戏资源管理、模型定义，到画面渲染等一系列功能，按照市面上现有的商业游戏引擎的设计思路进行设计，“麻雀虽小，五脏俱全”，虽然无法匹敌其他成熟的游戏引擎，但是就功能来说，是一应俱全的，能够满足大部分2D小游戏的开发需要。</p>
+<h2 id="界面截图"><a href="#界面截图" class="headerlink" title="界面截图"></a>界面截图</h2><h3 id="游戏启动画面："><a href="#游戏启动画面：" class="headerlink" title="游戏启动画面："></a>游戏启动画面：</h3><p>左上方是游戏的logo，左下角显示最高分记录，下面是作者信息和版本。<br>右下角是两个按钮，一个启动游戏按钮，另一个退出按钮。</p>
+<img src="/posts/14b53f2797cc08f7/8869373-fbde64fc99f06c85.png" class="">
+
+<h3 id="游戏主界面："><a href="#游戏主界面：" class="headerlink" title="游戏主界面："></a>游戏主界面：</h3><p>左上角是玩家头像，当前得分，以及生命值；正上方是当前关卡；<br>画面中央是大风车，大风车跟随音乐节奏发射字母，玩家需要在字母飞出屏幕之前按下对应的字母才能得分。</p>
+<img src="/posts/14b53f2797cc08f7/8869373-2ffef771e37c67c3.png" class="">
+
+<h3 id="游戏暂停画面"><a href="#游戏暂停画面" class="headerlink" title="游戏暂停画面"></a>游戏暂停画面</h3><img src="/posts/14b53f2797cc08f7/8869373-c90595ad9ef2f8f5.png" class="">
+
+<h3 id="游戏结束画面"><a href="#游戏结束画面" class="headerlink" title="游戏结束画面"></a>游戏结束画面</h3><p>左下方显示本局游戏得分，以及是否打破最高分记录。右下角显示返回主界面按钮。</p>
+<img src="/posts/14b53f2797cc08f7/8869373-bfabf0608d28e3eb.png" class="">
+
+
+<h2 id="开发心得"><a href="#开发心得" class="headerlink" title="开发心得"></a>开发心得</h2><p>这是我第一次使用Java做游戏开发，之前对Java这门语言的理解仅限于JavaEE做Web开发这方面，最近学习了JavaFX，用了一下，才发现原来JavaFX这么好用，确实是专门为GUI设计的框架，只是用的人比较少，我在开发过程中遇到了很多问题，基本都找不到国内的资料，还好有万能的StackOverFlow，另外，Oracle官网的文档也是挺详细的，感谢～</p>
+<p>对于我这样写习惯了Python这类动态语言的人来说，写大量Java代码的感受就是，很繁琐，但是很省心，不需要怎么动脑，不用纠结这个参数是什么类型，需不需要做强制类型检查，一切都由IDE和JVM安排的明明白白，不需要我再去操心类型的问题，另外因为Java语法比较死板，没有那么多灵活的写法，这既是缺点又是优点，缺点就是对于我这种喜欢炫技的人来说，写Java代码没有多少快感，但是优点是同样的功能，实现的代码基本都差不多，不同的人来实现也不会有多大的差别，这就保证了代码的可维护性，可能现在用Python写一个大项目，代码全都是挥洒飘逸，不拘一格，写的时候很爽，但是等到后面重构的时候，完蛋了，看不懂之前的代码了，尽管有注释，但不可能每一行代码都有注释吧，灵活的写法增加了理解难度，因此Java在大型项目的绝对统治地位不是空穴来风。</p>
+<p>这次游戏开发也加深了我对Java这门语言的理解，比如说反射，比如说事件，一开始在做事件处理部分的时候，让我感到有点困惑的就是，Java既没有委托、也没有真正的“事件”这个概念，一切都是用接口和类实现，实现接口功能一般都是通过传入实现某个事件接口的匿名类（当然在Java8里可以使用lambda表达式），不过这也不是什么大问题，这些问题都有其他方法可以解决，只不过写起来比较繁琐而已。可能我之前写习惯了C#，所以写Java代码的时候总是不由自主拿来对比，但是其实这两种语言的可对比性不高，因为出生的年代都不一样，C#在语言设计上确实是比Java高明得多，近年来Java的新版本或有或无的在模仿C#多年前的特性，比如说Java8的lambda表达式，Java11的var定义变量等。</p>
+<p>此外，此次开发小游戏让我对Java的体会就是，语法很简单，不像C#和C++那样多而复杂，所以对于初学者而言特别友好，因为一学就会，配合上最好的IDE：IDEA，轻轻松松写出各种项目，有一个说法是，因为Java语言本身的功能太少，所以出现了各种设计模式来补全Java语言的不足。</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/14b53f2797cc08f7/8869373-901590e019f6f85b.png" class="">
+
+<p>Learn more on my WeChat Official Account：DealiAxy</p>
+<p>Every post was in my blog：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+<h2 id="欢迎交流"><a href="#欢迎交流" class="headerlink" title="欢迎交流"></a>欢迎交流</h2><p>交流问题请在微信公众号后台留言，每一条信息我都会回复哈~</p>
+<ul>
+<li>微信公众号：画星星高手</li>
+<li>打代码直播间：<a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener">https://live.bilibili.com/11883038</a></li>
+<li>知乎：<a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener">https://www.zhihu.com/people/dealiaxy</a></li>
+<li>专栏：<a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/deali</a></li>
+<li>简书：<a href="https://www.jianshu.com/u/965b95853b9f" target="_blank" rel="noopener">https://www.jianshu.com/u/965b95853b9f</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.708Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%91%E5%B8%83/" rel="tag">发布</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E6%B8%B8%E6%88%8F/" rel="tag">小游戏</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E6%BA%90/" rel="tag">开源</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/14b53f2797cc08f7.html&title=《【开源】发布一个基于JavaFX的小游戏：CrazyAlpha》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/14b53f2797cc08f7.html&title=《【开源】发布一个基于JavaFX的小游戏：CrazyAlpha》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/14b53f2797cc08f7.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【开源】发布一个基于JavaFX的小游戏：CrazyAlpha》 — 画星星高手&url=http://blog.deali.cn/posts/14b53f2797cc08f7.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/14b53f2797cc08f7.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/1f0588af3588ec0b.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Whoosh搜索引擎的安装与配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/0c44b9e34797af56.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">忘记WSL的root密码怎么办</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/14b53f2797cc08f7.html&title=《【开源】发布一个基于JavaFX的小游戏：CrazyAlpha》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/14b53f2797cc08f7.html&title=《【开源】发布一个基于JavaFX的小游戏：CrazyAlpha》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/14b53f2797cc08f7.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【开源】发布一个基于JavaFX的小游戏：CrazyAlpha》 — 画星星高手&url=http://blog.deali.cn/posts/14b53f2797cc08f7.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/14b53f2797cc08f7.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay25DIQxF0fz/T99OK7Wh+9ikEmYzinJfLAbIxn698Hi+jXdX13e++4c8u23IkCHjWMazHOSTfd7PO/ncZMiQcQ+DTIIA0u2SLN96bjJkyJBBtk6y7a7B5LcMGTJkcAYP/vpgGTJkyEiT2PVT6zt3haEbcnEZMmQcyOCp5v///kh9Q4YMGUcxnnDUDstqoWEwKxkyZIxm8A2OFBpJ8JcWPoPmDxkyZAxlkNR0V5PEJ0oOL55hy5Ah43AGb97qP5veg8AyZMi4htH5QFo84GUDFD7KkCFjNKN29r5rC07byDaXEGTIkHEUg7dZ8K2WT279bNBgIUOGjKGMtMUqbQ7jhQTemvbLe2TIkDGawSeavig+3A9DSbQFy5AhYwSj1s5FnuovR5DiypAh42JGuqXyd9bKpUF9Q4YMGYMYu9rFeKmSXE0XQoYMGbMZPMhLP0OO+9MSRVDZkCFDxiAGD9H4/s2TW7JwQVFThgwZoxmd4Cw9Gku31LhFQ4YMGUMZfHLx2oTgWklVhgwZ9zDSAgC/mqa+tRYxGTJk3MColQx5C0Ut6IxzcRkyZIxjdAqTPPlcv6F2PBfk3zJkyDicwccuMD9i481nMmTIuIHRb6TgiWitBQ0FrDJkyLiA0dn4+p1atdKCDBkyZKSMTrKalhmK1VEZMmRcz+DHbbWF+IMkQ4aMCxi8uSENB0nYl6a7MmTIuI1RSx15CEiO5HgI2CpqypAh4zzGF22B0T+lBxZXAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>PHP7-0-新特性 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PHP,特性">
+    <meta name="description" content="变量类型PHP7版本函数的参数和返回值增加了类型限定。为什么PHP要加入类型呢？实际上此项特性是为了PHP7.1版本的JIT特性做准备，增加类型后PHP Jit可以准确判断变量类型，生成最佳的机器指令。（针对密集运算的优化） 使用示例 123function test(int $a, string $b, array $c) : int &amp;#123;    &#x2F;&#x2F;code&amp;#125;  错误异常在过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP7-0-新特性">
+<meta property="og:url" content="http://blog.deali.cn/posts/acd9184841a37934.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="变量类型PHP7版本函数的参数和返回值增加了类型限定。为什么PHP要加入类型呢？实际上此项特性是为了PHP7.1版本的JIT特性做准备，增加类型后PHP Jit可以准确判断变量类型，生成最佳的机器指令。（针对密集运算的优化） 使用示例 123function test(int $a, string $b, array $c) : int &amp;#123;    &#x2F;&#x2F;code&amp;#125;  错误异常在过">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/acd9184841a37934/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.720Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="特性">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/acd9184841a37934/8869373-901590e019f6f85b.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PHP7-0-新特性</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PHP7-0-新特性</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变量类型"><span class="post-toc-number">1.</span> <span class="post-toc-text">变量类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#错误异常"><span class="post-toc-number">2.</span> <span class="post-toc-text">错误异常</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP7的性能优化"><span class="post-toc-number">3.</span> <span class="post-toc-text">PHP7的性能优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#zval使用栈内存"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">zval使用栈内存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#zend-string存储hash值，array查询不再需要重复计算hash"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">zend_string存储hash值，array查询不再需要重复计算hash</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#hashtable桶内直接存数据，减少了内存申请次数，提升看了Cache命中率和内存访问速度"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">hashtable桶内直接存数据，减少了内存申请次数，提升看了Cache命中率和内存访问速度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#zend-parse-parameters改为宏实现，性能提升5"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">zend_parse_parameters改为宏实现，性能提升5%</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新增加4种OPCODE-call-user-function-is-int-string-array-strlen-defined-4个函数变为PHP-OpCode指令，速度更快"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">新增加4种OPCODE: call_user_function, is_int&#x2F;string&#x2F;array, strlen, defined 4个函数变为PHP OpCode指令，速度更快</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他更多性能优化"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">其他更多性能优化</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP7-Jit"><span class="post-toc-number">4.</span> <span class="post-toc-text">PHP7 Jit</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PHP7-0-final版本不会携带Jit特性"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">PHP7.0-final版本不会携带Jit特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么PHP7-0没有Jit"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">为什么PHP7.0没有Jit</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP内置开发测试服务器"><span class="post-toc-number">5.</span> <span class="post-toc-text">PHP内置开发测试服务器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">6.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-57dd78355a5e092de71be8f97bd3113f"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PHP7-0-新特性</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><p>PHP7版本函数的参数和返回值增加了类型限定。<br>为什么PHP要加入类型呢？实际上此项特性是为了PHP7.1版本的JIT特性做准备，增加类型后PHP Jit可以准确判断变量类型，生成最佳的机器指令。<br><em>（针对密集运算的优化）</em></p>
+<p>使用示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(int $a, string $b, array $c)</span> : <span class="title">int</span> </span>&#123;</span><br><span class="line">    <span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误异常"><a href="#错误异常" class="headerlink" title="错误异常"></a>错误异常</h2><p>在过去，PHP程序出错之后Zend引擎会发生致命错误并终止程序运行，PHP7可以使用<code>try/catch</code>捕获错误。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    not_exists_func();</span><br><span class="line">&#125;<span class="keyword">catch</span>(EngineException $e)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Exception: &#123;$e-&gt;getMessage()&#125;\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="PHP7的性能优化"><a href="#PHP7的性能优化" class="headerlink" title="PHP7的性能优化"></a>PHP7的性能优化</h2><h3 id="zval使用栈内存"><a href="#zval使用栈内存" class="headerlink" title="zval使用栈内存"></a>zval使用栈内存</h3><p>在Zend引擎和扩展中，经常要创建一个PHP的变量，底层就是一个zval指针。<br>之前的版本都是通过<code>MAKE_STD_ZVAL</code>动态的从堆上分配一个zval内存，而PHP7可以直接使用栈内存。<br>好处：节省分配内存的花销</p>
+<p><strong>底层代码</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//php5</span></span><br><span class="line">zval *val;</span><br><span class="line">MAKE_STD_ZVAL(val);</span><br><span class="line"></span><br><span class="line"><span class="comment">//php7</span></span><br><span class="line">zval val;</span><br></pre></td></tr></table></figure>
+
+<h3 id="zend-string存储hash值，array查询不再需要重复计算hash"><a href="#zend-string存储hash值，array查询不再需要重复计算hash" class="headerlink" title="zend_string存储hash值，array查询不再需要重复计算hash"></a>zend_string存储hash值，array查询不再需要重复计算hash</h3><p>PHP7为字符串单独创建了新类型叫做<code>zend_string</code>，除了<code>char *</code>指针和长度之外，<br>增加了一个hash字段，用于保存字符串的hash值。<br>数组的键值查找不需要反复计算hash值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">zend_string</span>&#123;</span></span><br><span class="line">    zend_refcounted     gc;</span><br><span class="line">    zend_ulong          h;</span><br><span class="line">    <span class="keyword">size_t</span>              len;</span><br><span class="line">    <span class="keyword">char</span>                val[<span class="number">1</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="hashtable桶内直接存数据，减少了内存申请次数，提升看了Cache命中率和内存访问速度"><a href="#hashtable桶内直接存数据，减少了内存申请次数，提升看了Cache命中率和内存访问速度" class="headerlink" title="hashtable桶内直接存数据，减少了内存申请次数，提升看了Cache命中率和内存访问速度"></a><code>hashtable</code>桶内直接存数据，减少了内存申请次数，提升看了Cache命中率和内存访问速度</h3><p>在之前版本的PHP中，在<code>array</code>里每插入一个数据，就要申请一次内存，并且使内存存储在不同的内存页上，访问的时候命中率会降低。</p>
+<h3 id="zend-parse-parameters改为宏实现，性能提升5"><a href="#zend-parse-parameters改为宏实现，性能提升5" class="headerlink" title="zend_parse_parameters改为宏实现，性能提升5%"></a><code>zend_parse_parameters</code>改为宏实现，性能提升5%</h3><p>提升PHP扩展的性能</p>
+<h3 id="新增加4种OPCODE-call-user-function-is-int-string-array-strlen-defined-4个函数变为PHP-OpCode指令，速度更快"><a href="#新增加4种OPCODE-call-user-function-is-int-string-array-strlen-defined-4个函数变为PHP-OpCode指令，速度更快" class="headerlink" title="新增加4种OPCODE: call_user_function, is_int/string/array, strlen, defined 4个函数变为PHP OpCode指令，速度更快"></a>新增加4种<code>OPCODE</code>: <code>call_user_function</code>, <code>is_int/string/array</code>, <code>strlen</code>, <code>defined</code> 4个函数变为<code>PHP OpCode</code>指令，速度更快</h3><h3 id="其他更多性能优化"><a href="#其他更多性能优化" class="headerlink" title="其他更多性能优化"></a>其他更多性能优化</h3><ul>
+<li>基础类型<code>int</code>, <code>float</code>, <code>bool</code>等改为直接进行值拷贝</li>
+<li>排序算法改进</li>
+<li><code>PCRE with Jit</code>(正则表达式)</li>
+<li><code>execute_data</code>和<code>opline</code>使用全局寄存器</li>
+<li>使用<code>gdb 4.8</code>的<code>PGO</code>功能</li>
+</ul>
+<h2 id="PHP7-Jit"><a href="#PHP7-Jit" class="headerlink" title="PHP7 Jit"></a>PHP7 Jit</h2><h3 id="PHP7-0-final版本不会携带Jit特性"><a href="#PHP7-0-final版本不会携带Jit特性" class="headerlink" title="PHP7.0-final版本不会携带Jit特性"></a>PHP7.0-final版本不会携带Jit特性</h3><p>Jit使Just in Time得缩写，表示运行时将指令转为二进制的机器码。<br>对于计算密集型的程序，Jit可以将PHP的OpCode直接转换为机器码，大幅提升性能。<br>PHP开发组自己重启Jit开发计划，预计PHP7.1版本会带有Jit特性</p>
+<h3 id="为什么PHP7-0没有Jit"><a href="#为什么PHP7-0没有Jit" class="headerlink" title="为什么PHP7.0没有Jit"></a>为什么PHP7.0没有Jit</h3><p>Jit对于实际项目，如WordPress没有太大的性能提升</p>
+<h2 id="PHP内置开发测试服务器"><a href="#PHP内置开发测试服务器" class="headerlink" title="PHP内置开发测试服务器"></a>PHP内置开发测试服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/php</span><br><span class="line">php -S 0.0.0.0:8080</span><br></pre></td></tr></table></figure>
+<p>即可以<code>~/php</code>为网站根目录启动服务器。</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/acd9184841a37934/8869373-901590e019f6f85b.png" class="">
+
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.720Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%B9%E6%80%A7/" rel="tag">特性</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/acd9184841a37934.html&title=《PHP7-0-新特性》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/acd9184841a37934.html&title=《PHP7-0-新特性》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/acd9184841a37934.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP7-0-新特性》 — 画星星高手&url=http://blog.deali.cn/posts/acd9184841a37934.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/acd9184841a37934.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/0c44b9e34797af56.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">忘记WSL的root密码怎么办</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/6fdbd74b49ec1c7c.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python：使用logging模块记录日志</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/acd9184841a37934.html&title=《PHP7-0-新特性》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/acd9184841a37934.html&title=《PHP7-0-新特性》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/acd9184841a37934.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP7-0-新特性》 — 画星星高手&url=http://blog.deali.cn/posts/acd9184841a37934.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/acd9184841a37934.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3au3LDMAwEwPz/Tyttiti+I5TMiFxWGb+kVYEcAX59xev6sV69+/6Tr15JvnvbwsDAeCzjervam2sfxKtr5feGgYFxDiMpo8m7Hy4W18n83jAwMDCSYJcEx/ZBYGBgYEwYbcjLt6n/WnAxMDAeyMgj2iTGTR7ZbXtxDAyMBzLyZtn///0n8w0MDIxHMa5yzYNgHg2Lu8LAwNiakRe4NjjmIS/aoCYtPAwMjE0Z7QGLCWCtkRdtWTEwMLZmJLC2BZbcdP6ZdjiBgYGxH2OymVw7kDE5fPYhGmJgYBzGuKv3nrfqcvziLhwDA+OxjPelbW08UPT5yuZaPWvFwMDYgtHGsvyVtjGXb5J/uToGBsbWjDyKtZvStrk/P9iBgYGxKyO/lVE7LC6ya7+MgYFxDuPeI1xtiFx7WBgYGOcw1lr5ObUdBtQlGwMDY2tGW3bbgUHb6B/9DgYGxqaMdmPZFtB2VNC28zAwME5grI0e82J6b6CMvoWBgbEpYw2Ql+bFdn85XsXAwDiBMQmIbXlNhpf5L2NgYJzGyAecbUFsMXlYxMDA2JtxlWttJNnGvpqKgYGxNSNfeaRr4+O80GNgYJzAaLea12DlByzqB4eBgXEAIy98a239SQmOIikGBgZGPLxc26xOxqIYGBgYk0FmHjTbwn3DfAMDA+OBjOTCa9vLG2Lfve02DAyMBzLa3JWEv8nBi7v+DWBgYGzB+AafmtE/Uz1ekgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

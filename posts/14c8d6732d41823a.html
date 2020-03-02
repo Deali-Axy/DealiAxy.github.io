@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【VB超简单入门】一、写在前面 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="B超,入门">
+    <meta name="description" content="前言每本书的前面总得写点什么，到我这里也自然不能免俗，前言这东西“存在即合理”，所以就随便写一点咯~ 首先这本书是给从未接触过编程的童鞋准备的，由于我学识疏浅，对VB也只是一知半解所以也只能讲一点点最基础的知识，入门之后便可以自由学习更高级的东西了~ 编程其实并不难，有很多人一看到屏幕上密密麻麻的代码就被吓呆了&#x3D; &#x3D;… 也有很多童鞋问我编程是不是得背很多代码&#x3D; &#x3D;…其实根本不用背，编程涉及的单词都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【VB超简单入门】一、写在前面">
+<meta property="og:url" content="http://blog.deali.cn/posts/14c8d6732d41823a.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言每本书的前面总得写点什么，到我这里也自然不能免俗，前言这东西“存在即合理”，所以就随便写一点咯~ 首先这本书是给从未接触过编程的童鞋准备的，由于我学识疏浅，对VB也只是一知半解所以也只能讲一点点最基础的知识，入门之后便可以自由学习更高级的东西了~ 编程其实并不难，有很多人一看到屏幕上密密麻麻的代码就被吓呆了&#x3D; &#x3D;… 也有很多童鞋问我编程是不是得背很多代码&#x3D; &#x3D;…其实根本不用背，编程涉及的单词都">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-1c9ff82c27e013fc.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-339e9f331d155a32.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-e70ad1bb70abc9bc.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-d70d681ca531df12.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-a26f0df5532c3078.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-ff4bc17ed2b966f5.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-97b21caeb6d8e819.png">
+<meta property="article:published_time" content="2020-03-02T02:27:53.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.788Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="B超">
+<meta property="article:tag" content="入门">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/14c8d6732d41823a/8869373-1c9ff82c27e013fc.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【VB超简单入门】一、写在前面</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【VB超简单入门】一、写在前面</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/VB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">VB入门教程</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Project-Manager-项目管理器"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Project Manager 项目管理器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PassNote-密码笔记本"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">PassNote 密码笔记本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#语音倒计时"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">语音倒计时</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#比例换算"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">比例换算</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-689e2cea33d35e1624a89f11bc02e86e"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【VB超简单入门】一、写在前面</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:53" datetime="2020-03-02T02:27:53.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/VB%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">VB入门教程</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>每本书的前面总得写点什么，到我这里也自然不能免俗，前言这东西“存在即合理”，所以就随便写一点咯~</p>
+<p>首先这本书是给从未接触过编程的童鞋准备的，由于我学识疏浅，对VB也只是一知半解所以也只能讲一点点最基础的知识，入门之后便可以自由学习更高级的东西了~</p>
+<p>编程其实并不难，有很多人一看到屏幕上密密麻麻的代码就被吓呆了= =…</p>
+<p>也有很多童鞋问我编程是不是得背很多代码= =…其实根本不用背，编程涉及的单词都是很简单的，高中的英语水平基本是可以胜任的，当然如果英语水平足够高的话可以直接阅读英文原版手册那就是更好咯，编程涉及的英语单词都是诸如：if while for end begin function之类的很简单的词汇，童鞋们不用害怕。</p>
+<p>除了英语还有一个数学的问题，可能有些同学去看了一些编程教材书，也是被里面很多数学题吓坏了= =… 确实，编程这种东西最初被发明出来就是为了代替人力进行大量计算的，但是！现在时代不同了，我们随随便便一个手机拿出来就可以进行上亿次的计算，还用得着自己编程去算数吗= =… 况且我们不是数学家也不用算那些啊（反正我是想不明白编程算什么焚天塔、八皇后有什么用，这些是用来锻炼算法的，我们入门可以先不做这类）我们现在编程主要是为了开发实用软件，什么是实用软件啊？就是可以实实在在做出什么的软件，算那些乱七八糟数学题的简直make no sense啊= =…</p>
+<p>下图是我用C#写的绘制分形图形，是根据书里题目写的，结果就是这个黑乎乎的东西，然并卵</p>
+<img src="/posts/14c8d6732d41823a/8869373-1c9ff82c27e013fc.png" class="">
+
+<p>分形图形就是涉及数学的东西了吧，但其实我们日常使用电脑谁会去弄这个= =… 所以总结起来就是英语和数学都是不用怕的，因为涉及到的是很少的，除非你研究到很深了，不过那时你也不会怕这些了对吧~</p>
+<p>下面给童鞋看看其他比较有实用性的软件哈= =…</p>
+<h3 id="Project-Manager-项目管理器"><a href="#Project-Manager-项目管理器" class="headerlink" title="Project Manager 项目管理器"></a>Project Manager 项目管理器</h3><p>这是用C#开发的软件，用于管理我正在开发的项目。<br>目前还没有开源，所以想了解的同学可以在公众号联系我。</p>
+<img src="/posts/14c8d6732d41823a/8869373-339e9f331d155a32.png" class="">
+
+<h3 id="PassNote-密码笔记本"><a href="#PassNote-密码笔记本" class="headerlink" title="PassNote 密码笔记本"></a>PassNote 密码笔记本</h3><p>C#开发的密码管理软件，使用AES加密算法保存，可以在软件里生成密码，保存密码。<br>代码已开源，有兴趣的同学可以点击这里：<a href="https://deali-axy.github.io/PassNote/" target="_blank" rel="noopener">PassNote主页</a></p>
+<img src="/posts/14c8d6732d41823a/8869373-e70ad1bb70abc9bc.png" class="">
+
+
+<h3 id="语音倒计时"><a href="#语音倒计时" class="headerlink" title="语音倒计时"></a>语音倒计时</h3><p>这是我用vb编写的一个倒计时提示软件。<br>项目主页：<a href="http://blog.deali.cn/works/qcountdown">http://blog.deali.cn/works/qcountdown</a></p>
+<img src="/posts/14c8d6732d41823a/8869373-d70d681ca531df12.png" class="">
+
+<p>设置开机自动启动后。每次开机会在桌面上显示最近的事件的倒计时，并且会语音提示。就像这样：</p>
+<img src="/posts/14c8d6732d41823a/8869373-a26f0df5532c3078.png" class="">
+
+<h3 id="比例换算"><a href="#比例换算" class="headerlink" title="比例换算"></a>比例换算</h3><p>这是我用vb编写的超级简单的一个实例软件，用于展示<code>CQAF</code>框架（我基于VB开发的软件快速搭建框架）</p>
+<img src="/posts/14c8d6732d41823a/8869373-ff4bc17ed2b966f5.png" class="">
+
+<p>以上介绍的都是PC端的桌面软件，PC端只是软件开发的冰山一角，除此之外，还有网页端、服务器端、移动端的各种程序，由于篇幅限制，且本教程主要是关于PC端开发的，我这里就不再介绍了，有兴趣的同学可以在我的博客里找到对应的信息。或者可以通过公众号联系我。<br>以后随着入门教程的进行，我还会以更多例子展示给童鞋们~</p>
+<p>啰里啰唆说到这里也差不多了，写在前面的话写完了，接下来希望童鞋们保持对编程的兴趣学习下去，不久就可以学会啦！</p>
+<hr>
+<p>有什么问题或者需要交流的同学可以通过微信公众号和我联系。<br>微信公众号：DealiAxy</p>
+<img src="/posts/14c8d6732d41823a/8869373-97b21caeb6d8e819.png" class="">
+
+<p>博客地址：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.788Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E8%B6%85/" rel="tag">B超</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/14c8d6732d41823a.html&title=《【VB超简单入门】一、写在前面》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/14c8d6732d41823a.html&title=《【VB超简单入门】一、写在前面》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/14c8d6732d41823a.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【VB超简单入门】一、写在前面》 — 画星星高手&url=http://blog.deali.cn/posts/14c8d6732d41823a.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/14c8d6732d41823a.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/90df5fdcda9d923a.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我的2018：不念过往、不畏将来</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/391dbf61a14c4a40.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">配置MariaDB数据库服务端远程访问</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/14c8d6732d41823a.html&title=《【VB超简单入门】一、写在前面》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/14c8d6732d41823a.html&title=《【VB超简单入门】一、写在前面》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/14c8d6732d41823a.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【VB超简单入门】一、写在前面》 — 画星星高手&url=http://blog.deali.cn/posts/14c8d6732d41823a.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/14c8d6732d41823a.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aQY6EMAxEUe5/aeYASOGXTY8U52c16kHAY2HZqVwXXvdjkSufv6+vJPdvLRkyZGzLuJeLPID8vuY9r+TvJkOGjHMY5CXIf9NyST4f+nAyZMiQUSuCuFlMP4oMGTJkdG69bgdTsAwZMmSkQywZTXlh/bi4y5AhYzSDj5r///dP8g0ZMmRsxbjDRSLJTkh5l5YMGTJmM3iBS5vFNAAgQ/XLFp4MGTKOYXTGxfV90pGVFOjg8TJkyNicQUoeeUX+0p37BzwZMmSMY3xVHNftYC0SCNpHGTJkjGakUSJ5XXI9GXfTQFSGDBmTGN8e4Yo3yMLNtXh6liFDxjhGZ/uMbNV1Dn69/C1DhozRjFq94lElL81pSxonsTJkyNiWkb4in4nTeIC3jOiYhQwZMkYzakNm2hqmT2zN4jJkyNicUXtA7RhZLQwIAk4ZMmQcwOBTby16TNu++KPIkCFjKKO2HZ9urvWjAnTYQoYMGUMZPFCsBQZpK5l+rCBxlSFDxggGbwf542tNYTFGlSFDxjGMTkHkQykPDOIzIzJkyDiAcZVWbTTtlGwZMmScw7jDxQ+EkWGYFNPPmkIZMmRsy0hLavowfvgsHllrGBkyZGzL6Iyv3wYMacGVIUPGaQxe+Nalk5TXtASjCEGGDBkyGiEl39xv9bMyZMiQAQpuLQbgBfql3ZQhQ8YBDH64oXV4q5aykgZRhgwZoxmd4xS1XzqHz1pBpgwZMvZj/AHN0JNh4BcLWAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

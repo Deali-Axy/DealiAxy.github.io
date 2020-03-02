@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Java开发：JDK安装和环境配置 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,安装,配置,开发,环境">
+    <meta name="description" content="前言环境配置是开发中最基础的部分，不过最近有很多新入坑的同学，都在问怎么安装JDK和配置环境，索性写一篇。这里要注意一下，在Windows平台和Linux平台下做开发是不同的，Windows平台开发Java需要自己手动配置JDK的环境变量，而大多数Linux都是不需要的，安装了OpenJDK就可以了（可能很多发行版都自带了OpenJDK），这点是比较方便的。 下载Java JDKWindows平台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java开发：JDK安装和环境配置">
+<meta property="og:url" content="http://blog.deali.cn/posts/39d775dc7c0105a6.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言环境配置是开发中最基础的部分，不过最近有很多新入坑的同学，都在问怎么安装JDK和配置环境，索性写一篇。这里要注意一下，在Windows平台和Linux平台下做开发是不同的，Windows平台开发Java需要自己手动配置JDK的环境变量，而大多数Linux都是不需要的，安装了OpenJDK就可以了（可能很多发行版都自带了OpenJDK），这点是比较方便的。 下载Java JDKWindows平台">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-b159092a908eda7e.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-4e57bf16c0ffcc8a.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-e1654bad74be8064.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-1fcd296d799971e2.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-6f8b22d1a9998167.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-c8a6d297af2d7736.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-ffc8793c56efb2d2.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-8f9b76bedd0e7713.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-f16bccea8280609e.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-f0edbabc2c285034.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-32d22d0a194f35b0.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-d05c1decea0a16f7.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-fade088bf18e88da.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-88b9342e0e96a692.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-175655b28ef9f37f.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-92a8f8eae572b346.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-fa1b6a8bd7f918ec.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.668Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="安装">
+<meta property="article:tag" content="配置">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="环境">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/39d775dc7c0105a6/8869373-b159092a908eda7e.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java开发：JDK安装和环境配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java开发：JDK安装和环境配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载Java-JDK"><span class="post-toc-number">2.</span> <span class="post-toc-text">下载Java JDK</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows平台"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Windows平台</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux平台"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Linux平台</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Path配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">Path配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows平台配置"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Windows平台配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试"><span class="post-toc-number">4.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">5.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-3f9bf2df92ca4632134f0eb582be8451"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java开发：JDK安装和环境配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>环境配置是开发中最基础的部分，不过最近有很多新入坑的同学，都在问怎么安装JDK和配置环境，索性写一篇。<br>这里要注意一下，在Windows平台和Linux平台下做开发是不同的，Windows平台开发Java需要自己手动配置JDK的环境变量，而大多数Linux都是不需要的，安装了OpenJDK就可以了（可能很多发行版都自带了OpenJDK），这点是比较方便的。</p>
+<h2 id="下载Java-JDK"><a href="#下载Java-JDK" class="headerlink" title="下载Java JDK"></a>下载Java JDK</h2><h3 id="Windows平台"><a href="#Windows平台" class="headerlink" title="Windows平台"></a>Windows平台</h3><p>打开甲骨文的JDK网站：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a><br>网站是这样的。<br>注意下载的时候看清楚版本。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-b159092a908eda7e.png" class="">
+
+<p>本文选择的版本是JDK8</p>
+<img src="/posts/39d775dc7c0105a6/8869373-4e57bf16c0ffcc8a.png" class="">
+
+<p>点击下载按钮下载。<br>下载完成之后打开进行安装就行了。<br>划重点：<strong>记得把安装目录记下来！！后面有用</strong></p>
+<img src="/posts/39d775dc7c0105a6/8869373-e1654bad74be8064.png" class="">
+
+<h3 id="Linux平台"><a href="#Linux平台" class="headerlink" title="Linux平台"></a>Linux平台</h3><p>Linux平台可以选择OpenJDK也可以用甲骨文提供的JDK。这两者是有区别的。<br>这里再贴一下OpenJDK和JDK的不同。(以下内容引用自知乎<code>Aloys寒风</code>)</p>
+<blockquote>
+<p>历史上的原因是，OpenJDK是JDK的开放原始码版本，以GPL(General Public License)协议的形式放出(题&gt;主提到的open就是指的开源)。在JDK7的时候，OpenJDK已经作为JDK7的主干开发，SUN JDK7是在OpenJDK7的基础上发布的，其大部分原始码都相同，只有少部分原始码被替换掉。使用JRL(JavaResearch License，Java研究授权协议)发布。至于OpenJDK6则更是有其复杂的一面，首先是OpenJDK6是JDK7的一个分支，并且尽量去除Java SE7的新特性，使其尽量的符合Java6的标准。关于JDK和OpenJDK的区别，可以归纳为以下几点：</p>
+<p><strong>授权协议的不同：</strong>OpenJDK采用GPL V2协议放出，而SUN JDK则采用JRL放出。两者协议虽然都是开放源代码的，但是在使用上的不同在于GPL V2允许在商业上使用，而JRL只允许个人研究使用。OpenJDK不包含Deployment（部署）功能：部署的功能包括：Browser Plugin、Java Web Start、以及Java控制面板，这些功能在OpenJDK中是找不到的。</p>
+<p><strong>OpenJDK源代码不完整：</strong>这个很容易想到，在采用GPL协议的OpenJDK中，SUN JDK的一部分源代码因为产权的问题无法开放给OpenJDK使用，其中最主要的部份就是JMX中的可选元件SNMP部份的代码。因此这些不能开放的源代码 将它作成plug，以供OpenJDK编译时使用，你也可以选择不要使用plug。而Icedtea则为这些不完整的部分开发了相同功能的源代码 (OpenJDK6)，促使OpenJDK更加完整。</p>
+<p><strong>部分源代码用开源代码替换：</strong>由于产权的问题，很多产权不是SUN的源代码被替换成一些功能相同的开源代码，比如说字体栅格化引擎，使用Free Type代替。</p>
+<p><strong>OpenIDK只包含最精简的JDK：</strong>OpenJDK不包含其他的软件包，比如Rhino Java DB JAXP……，并且可以分离的软件包也都是尽量的分离，但是这大多数都是自由软件，你可以自己下载加入。不能使用Java商标：这个很容易理解，在安装OpenJDK的机器上，输入<code>java
+-version</code>显示的是OpenJDK，但是如果是使用Icedtea补丁的OpenJDK，显示的是java。</p>
+<p>总之，在Java体系中，还是有很多不自由的成分，源代码的开发不够彻底。</p>
+</blockquote>
+<p>所以，Linux平台下到底要JDK还是OpenJDK？？<br>我觉得OpenJDK完全够用啊，安装也方便。在软件包管理器里输入<code>jdk</code>进行安装，装下来的就是OpenJDK。</p>
+<p><strong>Debian系安装</strong>：<code>sudo apt install jdk</code></p>
+<p><strong>Rehat系安装</strong>：<code>yum apt install jdk</code></p>
+<p><strong>SUSE安装</strong>：<code>sudo zypper in jdk</code></p>
+<p>如果非要用甲骨文的JDK。那么就去甲骨文官网下载。下载地址在上面有。<br>然后安装方法，各个Linux发行版略微有差别，能折腾Linux的同学安装个软件应该不是问题。</p>
+<h2 id="Path配置"><a href="#Path配置" class="headerlink" title="Path配置"></a>Path配置</h2><p>好吧。我承认Java最烦人的东西就是需要配置环境变量，特别是Windows上，你就不能安装完直接配置好吗？！人家Python都能这么方便就你不行 = =</p>
+<h3 id="Windows平台配置"><a href="#Windows平台配置" class="headerlink" title="Windows平台配置"></a>Windows平台配置</h3><p>首先打开上面安装完成之后记下来的路径。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-1fcd296d799971e2.png" class="">
+
+<p>然后按Win+R键打开运行。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-6f8b22d1a9998167.png" class="">
+<p>输入：<code>control</code> 打开控制面板</p>
+<img src="/posts/39d775dc7c0105a6/8869373-c8a6d297af2d7736.png" class="">
+
+<p>我用的是英文版系统，但是大家对照着图片来操作是一样的。<br>选择“系统”。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-ffc8793c56efb2d2.png" class="">
+
+<img src="/posts/39d775dc7c0105a6/8869373-8f9b76bedd0e7713.png" class="">
+
+<p>选择”高级系统设置”</p>
+<img src="/posts/39d775dc7c0105a6/8869373-f16bccea8280609e.png" class="">
+
+<p>环境变量</p>
+<img src="/posts/39d775dc7c0105a6/8869373-f0edbabc2c285034.png" class="">
+
+<p>这样就打开了环境变量编辑器</p>
+<img src="/posts/39d775dc7c0105a6/8869373-32d22d0a194f35b0.png" class="">
+
+<p>首先创建一个 <code>JAVA_HOME</code> 的环境变量。内容就是刚才JDK安装的位置。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-d05c1decea0a16f7.png" class="">
+<img src="/posts/39d775dc7c0105a6/8869373-fade088bf18e88da.png" class="">
+
+<p>接着添加 <code>CLASSPATH</code> 变量。<br>内容： <code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</code></p>
+<img src="/posts/39d775dc7c0105a6/8869373-88b9342e0e96a692.png" class="">
+
+<p>最后在系统的 <code>Path</code> 里添加 javahome 和 classpath 。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-175655b28ef9f37f.png" class="">
+<p>点击”添加“。</p>
+<img src="/posts/39d775dc7c0105a6/8869373-92a8f8eae572b346.png" class="">
+<p>添加下面两个路径。<br><code>%JAVA_HOME%\bin</code><br><code>%JAVA_HOME%\jre\bin</code><br>如果不是win10，没有这个Path编辑器的话，就在Path变量原来的基础上加：<br><code>;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin</code> <strong>注意前面有个分号</strong><br>然后点击”确定“就行了。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>打开控制台，输入 <code>jave -version</code></p>
+<img src="/posts/39d775dc7c0105a6/8869373-fa1b6a8bd7f918ec.png" class="">
+<p>配置成功完成！</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/39d775dc7c0105a6/8869373-901590e019f6f85b.png" class="">
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.668Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85/" rel="tag">安装</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83/" rel="tag">环境</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/39d775dc7c0105a6.html&title=《Java开发：JDK安装和环境配置》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/39d775dc7c0105a6.html&title=《Java开发：JDK安装和环境配置》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/39d775dc7c0105a6.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java开发：JDK安装和环境配置》 — 画星星高手&url=http://blog.deali.cn/posts/39d775dc7c0105a6.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/39d775dc7c0105a6.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/44ccd6ffbfcbed47.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Asp-Net-Core学习笔记：（三）使用SignalR实时通信框架开发聊天室</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/fefdbae3eb7f0e9f.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux编译安装Python3-6，理论上各个发行版通用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/39d775dc7c0105a6.html&title=《Java开发：JDK安装和环境配置》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/39d775dc7c0105a6.html&title=《Java开发：JDK安装和环境配置》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/39d775dc7c0105a6.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java开发：JDK安装和环境配置》 — 画星星高手&url=http://blog.deali.cn/posts/39d775dc7c0105a6.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/39d775dc7c0105a6.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aW3bDMAgFwOx/084C3LgXSNJaGn/15Pih0QcFxOMRX8fpSu48/359Z/L+0YWBgXFbxnF5JfckH77mnb+Vrw0DA2MfxqsP5/fkTyWbWP0uBgYGxnUClwfN/P0YGBgY7w24SUKZlKl//H8DAwPj3zPyFK3w6tazH6/FMTAwbsjIu+7f//sj5xsYGBi3YhzFq3pIMEkNC6vCwMBYmtFr30/KziS9a64HAwNjUca8ZM2D8ruOHH5YFQYGxtKMydDDZNG9t0UYDAyMRRm9QYr8lzwRzMtdDAyMPRm9sJiEyKT0vQ790YEoBgbGBozekFZ+3FguR6tfwcDAWJoxKWLzRtukxVbYAgwMjC0ZVUCvHK0u9+U7MTAwlmZMhipy/CTpTJp3GBgYazN6YxPV9G4SXptFLAYGxkKMpMk1P26sDpnN000MDIy7M6qfrx4DTI4iyvuNgYGxJaM6WpGkidUyOAr6GBgYSzOqKWBvodXGXG/sAwMDYzfGpKE2TwqbW4yBgbEBIw+avQODXlAubBkGBsZmjKSgnZe+v6R61fYfBgbGooyjeOWHAXnjrNeeK8R1DAyMmzOqs1XVkYjJWMZ8vAMDA2MlRm9x1dZ/kkqOAi4GBsYGjF7gyxc0CcGj8w0MDIwtGZMJh6Td3yxZMTAwMIqMPNHMj0uj8w0MDIylGflIRFJ2VkNn9SkMDIzdGJPSMW+u5ZuSl8QYGBgbMJ5y2kHPw0gLXgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

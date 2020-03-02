@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JavaWeb开发---使用IDEA创建Servlet程序 | 画星星高手 | 我想要画很多很多星星，用温暖微弱的光，照亮你的每个夜晚。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="使用,开发,JavaEE,Web技术,程序,创建">
+    <meta name="description" content="前言最近做项目需要，从之前熟悉的PHP和Python转到了JavaWeb，所以就有了这个笔记。资源图片都是来自网上的资源，根据自己的实际操作应用，做了总结归纳。 所需工具 JDK Tomcat IDEA  创建工程  设置工程名字：   创建完成后工程结构如下：   上面的图片是在网络上复制的，好像我用的IDEA 2017.3.2没有这个Create web.xml的选项，我也不知道为啥，难道是I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb开发---使用IDEA创建Servlet程序">
+<meta property="og:url" content="http://blog.deali.cn/posts/6b13381b19c88d71.html">
+<meta property="og:site_name" content="画星星高手">
+<meta property="og:description" content="前言最近做项目需要，从之前熟悉的PHP和Python转到了JavaWeb，所以就有了这个笔记。资源图片都是来自网上的资源，根据自己的实际操作应用，做了总结归纳。 所需工具 JDK Tomcat IDEA  创建工程  设置工程名字：   创建完成后工程结构如下：   上面的图片是在网络上复制的，好像我用的IDEA 2017.3.2没有这个Create web.xml的选项，我也不知道为啥，难道是I">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-1f9f299c255067d6.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-e897e336d9faf433.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-d0a224a049837320.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-f24b1140c415668f.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-589fb299e8a3e934.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-4cb52fbee7db0450.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-4573e088e8cb702a.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-19e9bded8626a320.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8869373-e79cc56965c39fdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-0f1e771baa970ce2.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-a60df78d2e597b11.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-2934bba46b41aa60.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-109630a7d88b250a.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-2d1c30fcaf1a87f8.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-8d4096e494b82a66.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-7c9ca4363598fc3e.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-bf7fdf301465c966.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-da525964619a6f22.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-f029d2dff47b7676.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-dd315ca14262f05b.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-d7bbd56167919701.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-553a1f7765e86b03.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-4f50baf13ac0ad38.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-cc5f316238045270.png">
+<meta property="og:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-901590e019f6f85b.png">
+<meta property="article:published_time" content="2020-03-02T02:27:52.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:23:43.776Z">
+<meta property="article:author" content="画星星高手">
+<meta property="article:tag" content="使用">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="JavaEE">
+<meta property="article:tag" content="Web技术">
+<meta property="article:tag" content="程序">
+<meta property="article:tag" content="创建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.deali.cn/posts/6b13381b19c88d71/8869373-1f9f299c255067d6.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="画星星高手" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">画星星高手</h5>
+          <a href="mailto:feedback@deali.cn" title="feedback@deali.cn" class="mail">feedback@deali.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Deali-Axy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/axy12" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://zhuanlan.zhihu.com/deali" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                知乎专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/dealiaxy" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-address-card"></i>
+                知乎主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://live.bilibili.com/11883038" target="_blank" rel="noopener"  >
+                <i class="icon icon-lg icon-tv"></i>
+                直播间
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaWeb开发---使用IDEA创建Servlet程序</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaWeb开发---使用IDEA创建Servlet程序</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-02T02:27:52.000Z" itemprop="datePublished" class="page-time">
+  2020-03-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#所需工具"><span class="post-toc-number">2.</span> <span class="post-toc-text">所需工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建工程"><span class="post-toc-number">3.</span> <span class="post-toc-text">创建工程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Web工程设置"><span class="post-toc-number">4.</span> <span class="post-toc-text">Web工程设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建classes、lib目录"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">创建classes、lib目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#classes目录配置"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">classes目录配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#lib目录配置"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">lib目录配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置打包方式Artifacts"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">配置打包方式Artifacts</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tomcat配置"><span class="post-toc-number">5.</span> <span class="post-toc-text">Tomcat配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建Tomcat容器"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">创建Tomcat容器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置服务器名称路径"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">配置服务器名称路径</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行配置"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">运行配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JavaWeb测试"><span class="post-toc-number">6.</span> <span class="post-toc-text">JavaWeb测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行配置-1"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">运行配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编辑Jsp文件"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">编辑Jsp文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Servlet实现"><span class="post-toc-number">7.</span> <span class="post-toc-text">Servlet实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引入Servlet相关包"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">引入Servlet相关包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写Servlet源文件"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">编写Servlet源文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#部署servlet"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">部署servlet</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法1"><span class="post-toc-number">7.3.1.</span> <span class="post-toc-text">方法1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法2"><span class="post-toc-number">7.3.2.</span> <span class="post-toc-text">方法2</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行Servlet"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">运行Servlet</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">8.</span> <span class="post-toc-text">后记</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#About"><span class="post-toc-number">9.</span> <span class="post-toc-text">About</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-673dcad1e779d074225aefe059c0ddd6"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaWeb开发---使用IDEA创建Servlet程序</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-02 10:27:52" datetime="2020-03-02T02:27:52.000Z"  itemprop="datePublished">2020-03-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近做项目需要，从之前熟悉的PHP和Python转到了JavaWeb，所以就有了这个笔记。资源图片都是来自网上的资源，根据自己的实际操作应用，做了总结归纳。</p>
+<h2 id="所需工具"><a href="#所需工具" class="headerlink" title="所需工具"></a>所需工具</h2><ul>
+<li>JDK</li>
+<li>Tomcat</li>
+<li>IDEA</li>
+</ul>
+<h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><img src="/posts/6b13381b19c88d71/8869373-1f9f299c255067d6.png" class="">
+
+<p>设置工程名字：</p>
+<img src="/posts/6b13381b19c88d71/8869373-e897e336d9faf433.png" class="">
+
+<p>创建完成后工程结构如下：</p>
+<img src="/posts/6b13381b19c88d71/8869373-d0a224a049837320.png" class="">
+
+<p>上面的图片是在网络上复制的，好像我用的<code>IDEA 2017.3.2</code>没有这个<code>Create web.xml</code>的选项，我也不知道为啥，难道是<code>IDEA</code>越更新功能越退步了？<br>如下图：</p>
+<img src="/posts/6b13381b19c88d71/8869373-f24b1140c415668f.png" class="">
+
+
+<p>所以这里就要自己配置<code>IDEA</code>添加<code>web.xml</code>。<br>步骤：打开Project Structure，在facets中选中次级的web或者在Modules中选中web，在deployment Descriptors面板里，点击 +号选择web.xml以及版本号。然后在弹出的对话框中修改xml默认的目录，加上web就可以了。</p>
+<img src="/posts/6b13381b19c88d71/8869373-589fb299e8a3e934.png" class="">
+
+<p>然后确定，就有<code>web.xml</code>文件了。<br>如图：</p>
+<img src="/posts/6b13381b19c88d71/8869373-4cb52fbee7db0450.png" class="">
+
+<h2 id="Web工程设置"><a href="#Web工程设置" class="headerlink" title="Web工程设置"></a>Web工程设置</h2><h3 id="创建classes、lib目录"><a href="#创建classes、lib目录" class="headerlink" title="创建classes、lib目录"></a>创建<code>classes</code>、<code>lib</code>目录</h3><p>在WEB-INF 目录下点击右键，New –&gt; Directory，创建 classes 和 lib 两个目录</p>
+<img src="/posts/6b13381b19c88d71/8869373-4573e088e8cb702a.png" class="">
+
+<p>classes目录用于存放编译后的class文件，lib用于存放依赖的jar包</p>
+<h3 id="classes目录配置"><a href="#classes目录配置" class="headerlink" title="classes目录配置"></a><code>classes</code>目录配置</h3><p>File –&gt; Project Structure…，进入 Project Structure窗口，点击 Modules –&gt; 选中项目“JavaWeb” –&gt; 切换到 Paths 选项卡 –&gt; 勾选 “Use module compile output path”，将 “Output path” 和 “Test output path” 都改为之前创建的classes目录</p>
+<img src="/posts/6b13381b19c88d71/8869373-19e9bded8626a320.png" class="">
+
+<p>即将后面编译的class文件默认生成到classes目录下</p>
+<h3 id="lib目录配置"><a href="#lib目录配置" class="headerlink" title="lib目录配置"></a><code>lib</code>目录配置</h3><p>还是在这个<code>Project Structure</code>这个窗口。点击 Modules –&gt; 选中项目“JavaWeb” –&gt; 切换到 Dependencies 选项卡 –&gt; 点击右边的“+”，选择 “JARs or directories…”，选择创建的lib目录。<br><img src="http://upload-images.jianshu.io/upload_images/8869373-e79cc56965c39fdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="
+"></p>
+<img src="/posts/6b13381b19c88d71/8869373-0f1e771baa970ce2.png" class="">
+
+<p>选择<code>Jar Directory</code></p>
+<img src="/posts/6b13381b19c88d71/8869373-a60df78d2e597b11.png" class="">
+
+<img src="/posts/6b13381b19c88d71/8869373-2934bba46b41aa60.png" class="">
+
+<h3 id="配置打包方式Artifacts"><a href="#配置打包方式Artifacts" class="headerlink" title="配置打包方式Artifacts"></a>配置打包方式Artifacts</h3><p>点击 Artifacts选项卡，IDEA会为该项目自动创建一个名为“JavaWeb:war exploded”的打包方式，表示 打包成war包，并且是文件展开性的，输出路径为当前项目下的 out 文件夹，保持默认即可。另外勾选下“Build on make”，表示编译的时候就打包部署，勾选“Show content of elements”，表示显示详细的内容列表。</p>
+<img src="/posts/6b13381b19c88d71/8869373-109630a7d88b250a.png" class="">
+
+<h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><h3 id="创建Tomcat容器"><a href="#创建Tomcat容器" class="headerlink" title="创建Tomcat容器"></a>创建<code>Tomcat</code>容器</h3><p>Run -&gt; Edit Configurations，进入“Run Configurations”窗口，点击”+”-&gt; Tomcat Server -&gt; Local，创建一个新的Tomcat容器。</p>
+<img src="/posts/6b13381b19c88d71/8869373-2d1c30fcaf1a87f8.png" class="">
+
+<h3 id="配置服务器名称路径"><a href="#配置服务器名称路径" class="headerlink" title="配置服务器名称路径"></a>配置服务器名称路径</h3><p>在”Name”处输入新的服务名，点击“Application server”后面的“Configure…”，弹出Tomcat Server窗口，选择本地安装的Tomcat目录 -&gt; OK</p>
+<img src="/posts/6b13381b19c88d71/8869373-8d4096e494b82a66.png" class="">
+
+<h3 id="运行配置"><a href="#运行配置" class="headerlink" title="运行配置"></a>运行配置</h3><p>在“Run Configurations”窗口的“Server”选项板中，去掉勾选“After launch”，设置“HTTP port”和“JMX port”，点击 Apply -&gt; OK，至此Tomcat配置完成。</p>
+<img src="/posts/6b13381b19c88d71/8869373-7c9ca4363598fc3e.png" class="">
+
+<h2 id="JavaWeb测试"><a href="#JavaWeb测试" class="headerlink" title="JavaWeb测试"></a>JavaWeb测试</h2><h3 id="运行配置-1"><a href="#运行配置-1" class="headerlink" title="运行配置"></a>运行配置</h3><p>Run -&gt; Edit Configurations，进入“Run Configurations”窗口，选择之前配置好的Tomcat，点击“Deployment”选项卡，点击“+” -&gt; “Artifact”-&gt; 选择创建的web项目的Artifact…<br>修改“Application context”-&gt; Apply -&gt; OK</p>
+<img src="/posts/6b13381b19c88d71/8869373-bf7fdf301465c966.png" class="">
+<p>说明：此处的Application context是指定本工程的根目录。就是你访问服务器的路径，比如这里设置了<code>JavaWeb</code>，那么访问服务器的地址就是<code>http://localhost:8080/JavaWeb</code>。</p>
+<h3 id="编辑Jsp文件"><a href="#编辑Jsp文件" class="headerlink" title="编辑Jsp文件"></a>编辑Jsp文件</h3><p>在index.jsp文件中的body之间添加要显示的内容，然后点击“运行”的绿色三角</p>
+<img src="/posts/6b13381b19c88d71/8869373-da525964619a6f22.png" class="">
+
+<p>打开浏览器，输入：localhost:8080/JavaWeb</p>
+<img src="/posts/6b13381b19c88d71/8869373-f029d2dff47b7676.png" class="">
+
+<p>至此，intellij idea创建并设置javaweb工程全部完成，下面是在其中编写并运行Servlet。</p>
+<h2 id="Servlet实现"><a href="#Servlet实现" class="headerlink" title="Servlet实现"></a>Servlet实现</h2><p>接下来记录一下怎么编写一个<code>Servlet</code>程序，到<code>Servlet</code>程序运行起来的全过程。</p>
+<h3 id="引入Servlet相关包"><a href="#引入Servlet相关包" class="headerlink" title="引入Servlet相关包"></a>引入<code>Servlet</code>相关包</h3><p>我感觉IDEA还是有点不太智能，明明配置了<code>Tomcat</code>了，都不给我自动引入<code>Servlet</code>包，导致在IDEA中建立Servlet使用javax.servlet.http.HttpServlet等类时，出现了如下错误：</p>
+<img src="/posts/6b13381b19c88d71/8869373-dd315ca14262f05b.png" class="">
+
+<p>原因：IntelliJ IDEA 没有导入 <code>servlet-api.jar</code> 这个.jar包，需要手动导入。</p>
+<p>导入步骤如下：选中项目，右击选择“Open Modules Settings”，选择“Libraries”，点击“+”，选“Java”；在弹出的窗口中选择tomcat所在的目录，在lib目录下找到<code>servlet-api.jar</code>这个jar包导入完成即可。</p>
+<img src="/posts/6b13381b19c88d71/8869373-d7bbd56167919701.png" class="">
+
+
+<h3 id="编写Servlet源文件"><a href="#编写Servlet源文件" class="headerlink" title="编写Servlet源文件"></a>编写<code>Servlet</code>源文件</h3><p>在src目录下新建HelloWorld.java，并编写一下代码并进行编译：<br>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;  </span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;  </span><br><span class="line"><span class="keyword">import</span> java.io.IOException;  </span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;  </span><br><span class="line"><span class="keyword">private</span> String message;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;  </span><br><span class="line">    message = <span class="string">"Hello world, this message is from servlet!"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;  </span><br><span class="line">        <span class="comment">//设置响应内容类型  </span></span><br><span class="line">    resp.setContentType(<span class="string">"text/html"</span>);  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">//设置逻辑实现  </span></span><br><span class="line">    PrintWriter out = resp.getWriter();  </span><br><span class="line">    out.println(<span class="string">"&lt;h1&gt;"</span> + message + <span class="string">"&lt;/h1&gt;"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">super</span>.destroy();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译后会发现在classes目录下生成了HelloWorld.class文件</p>
+<img src="/posts/6b13381b19c88d71/8869373-553a1f7765e86b03.png" class="">
+
+<h3 id="部署servlet"><a href="#部署servlet" class="headerlink" title="部署servlet"></a>部署<code>servlet</code></h3><h4 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h4><p>在WEB-INF目录下web.xml文件的<web-app>标签中添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloWorld<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>HelloWorld<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloWorld<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/HelloWorld<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p>（反正我自己测试是没有成功的）<br>在HelloWorld文件的类前面加上：@WebServlet(“/HelloWorld”)</p>
+<h3 id="运行Servlet"><a href="#运行Servlet" class="headerlink" title="运行Servlet"></a>运行Servlet</h3><p>点击运行按钮</p>
+<img src="/posts/6b13381b19c88d71/8869373-4f50baf13ac0ad38.png" class="">
+
+<p>控制台出现successfully则tomcat服务启动成功！打开浏览器输入：localhost:8080/JavaWeb/HelloWorld即可查看servlet运行状态了.</p>
+<img src="/posts/6b13381b19c88d71/8869373-cc5f316238045270.png" class="">
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>作为一个写习惯了<code>PHP</code>和<code>Python</code>的人来说，刚刚转到<code>Java</code>还是有各种不适应的，还好Java和我最喜欢写的C#语法很相近，所以上手也不是很难，就是各种环境配置好麻烦= =…</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><img src="/posts/6b13381b19c88d71/8869373-901590e019f6f85b.png" class="">
+<hr>
+<p>了解更多有趣的操作请关注我的微信公众号：DealiAxy<br>每一篇文章都在我的博客有收录：<a href="http://blog.deali.cn">blog.deali.cn</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2020-03-02T03:23:43.776Z" itemprop="dateUpdated">2020-03-02 11:23:43</time>
+</span><br>
+
+
+        
+        <br />喜欢看技术文可以关注公众号【程序设计实验室】<br /><br />想看我的生活分享可以关注公众号【画星星高手】
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.deali.cn">
+            <img src="/img/avatar.jpg" alt="画星星高手">
+            画星星高手
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaEE/" rel="tag">JavaEE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%8A%80%E6%9C%AF/" rel="tag">Web技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%BF%E7%94%A8/" rel="tag">使用</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%9B%E5%BB%BA/" rel="tag">创建</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F/" rel="tag">程序</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/6b13381b19c88d71.html&title=《JavaWeb开发---使用IDEA创建Servlet程序》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/6b13381b19c88d71.html&title=《JavaWeb开发---使用IDEA创建Servlet程序》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/6b13381b19c88d71.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaWeb开发---使用IDEA创建Servlet程序》 — 画星星高手&url=http://blog.deali.cn/posts/6b13381b19c88d71.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/6b13381b19c88d71.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/ed595875ca930568.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android-x86-7-1-稳定版初体验</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/9f45470b37bbda91.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C#学习（三）深入理解委托、匿名方法和-Lambda-表达式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        微信公众号
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>画星星高手 &copy; 2015 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.deali.cn/posts/6b13381b19c88d71.html&title=《JavaWeb开发---使用IDEA创建Servlet程序》 — 画星星高手&pic=http://blog.deali.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.deali.cn/posts/6b13381b19c88d71.html&title=《JavaWeb开发---使用IDEA创建Servlet程序》 — 画星星高手&source=画星星高手，DealiAxy的个人博客，微信公众号1：画星星高手，公众号2：程序设计实验室" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.deali.cn/posts/6b13381b19c88d71.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaWeb开发---使用IDEA创建Servlet程序》 — 画星星高手&url=http://blog.deali.cn/posts/6b13381b19c88d71.html&via=http://blog.deali.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.deali.cn/posts/6b13381b19c88d71.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aS47CMBAFQO5/6Yw0axLes8NoYpdXCJDjYtG4P69XvI7fdfbOcbKuP73+zusbCwMD47GM/DHJ92d2aJ+FgYGxG+M6yM4E3PxZ16QP+2BgYGDER5wJvsnPh4GBgdEG3Dwo/+v/DQwMjIcw8nLYWJBNQu0f5eIYGBgPZLSNgb98/cX+BgYGxkMYx8Rq98zbovVJMDAwlmZcX9HyKJfsM1O8iwIxBgbGoow8NU0ePwMbGw5787+BgYGxHGMsaUzKZG1joMUU/Q0MDIyHM76RvrZN0CT1/fAOBgbGBow2QZ1pJd41avbmhouBgbENI09c81S2BdTDHxgYGEsz8kJ8m7i2pbT50h4GBsbajDb5bJH5RfPmqiEGBsZCjLGi/NihZxoSRZsTAwNjOca9yWRxGw1CfBL6MTAw9mSMFdfaUl3yumg/YGBgLMrIj54/bCywtpfF0/4GBgbGcoz24/wQCe8I1uBlEQMDYzlGu0VbSisS0aFxDQwMjD0ZeQDNA+tYQE/KeRgYGPsw2vrV/OBF+zPdMBaGgYHxWEY7dJWEy7ZFekOJDQMDY1HG/IUvAY+NaxTpNAYGxtKMfOXtxpliXFuqw8DA2IfRNhHHrpJt0a1NnjEwMHZg5KMVeRKbNyzbJPY0lcXAwMAYagO0QTY69FgVEAMDYwPGWGlshlGEZgwMjA0Y7TBE26pM9kmaARgYGHsy2sbAGKkt5yWX0an+BgYGxjMYP2uHf63vRWnUAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
