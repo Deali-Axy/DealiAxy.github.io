@@ -99,6 +99,4 @@ theme: indigo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  - type: git
-    repository: https://{GH_TOKEN}@giturl
-    branch: master
+  type: ''
