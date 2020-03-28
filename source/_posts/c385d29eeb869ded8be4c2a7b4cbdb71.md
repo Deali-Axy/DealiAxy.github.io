@@ -1,7 +1,7 @@
 ---
 title: 全文检索引擎原理以及Lucene简单介绍
-date: 2020/03/02 10:27:53
-abbrlink: c5a8b36d2c1c67bc
+date: 2020/03/28 16:24:14
+abbrlink: @@abbrlink
 categories:
 - 搜索引擎
 tags:

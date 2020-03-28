@@ -1,7 +1,7 @@
 ---
 title: 操作系统学习三：进程调度与死锁-以及银行家算法避免死锁--NetCore实现
-date: 2020/03/02 10:27:53
-abbrlink: 1e6223ee42e53b10
+date: 2020/03/28 16:24:14
+abbrlink: @@abbrlink
 categories:
 - 编程
 tags:

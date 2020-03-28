@@ -1,7 +1,7 @@
 ---
 title: 编译原理学习一，去除代码中的注释
-date: 2020/03/02 10:27:53
-abbrlink: 13f2702ec6a193cd
+date: 2020/03/28 16:24:14
+abbrlink: @@abbrlink
 categories:
 - 编程
 tags:
