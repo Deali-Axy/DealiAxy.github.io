@@ -1,7 +1,7 @@
 ---
 title: 修改_Inotify-Watches-Limit_提高idea性能
-date: 2020/03/28 16:24:14
-abbrlink: c15c9e90c2ee3834
+date: 2020/03/28 20:59:33
+abbrlink: aa72f1d90a2c369f
 categories:
 - 杂七杂八
 tags:
