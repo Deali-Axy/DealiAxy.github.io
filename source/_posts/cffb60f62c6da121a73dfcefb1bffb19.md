@@ -1,7 +1,7 @@
 ---
 title: 给你的Deepin系统换主题～
 date: 2020/03/28 16:24:14
-abbrlink: @@abbrlink
+abbrlink: 935d3242197f3490
 categories:
 - Linux
 tags:

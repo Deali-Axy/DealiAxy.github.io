@@ -1,7 +1,7 @@
 ---
 title: 写一写生活吧，人生不只是有学习和工作。
 date: 2020/03/28 16:24:14
-abbrlink: @@abbrlink
+abbrlink: a89162bd5d3caf44
 categories:
 - 随笔
 tags:

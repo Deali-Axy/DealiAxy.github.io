@@ -1,7 +1,7 @@
 ---
 title: “计算机科学概论”系列，集齐三本，召唤神龙！
 date: 2020/03/28 16:24:14
-abbrlink: @@abbrlink
+abbrlink: c063edf994193d95
 categories:
 - 书单
 tags:

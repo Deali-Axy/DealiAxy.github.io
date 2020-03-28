@@ -1,7 +1,7 @@
 ---
 title: 内存不够用？在Linux上使用swapfile配置交换空间
 date: 2020/03/28 16:24:14
-abbrlink: @@abbrlink
+abbrlink: 6d8f61ec1ba81e2f
 categories:
 - Linux
 tags:
